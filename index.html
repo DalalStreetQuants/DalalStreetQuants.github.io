@@ -436,6 +436,27 @@
 
         .how-to-link:hover { text-decoration: underline; }
 
+        .btn-open-account {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, var(--accent), #d4b43a);
+            color: #1a1a2e;
+            font-weight: 700;
+            font-size: 0.82rem;
+            padding: 8px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-open-account:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(201,162,39,0.3);
+            color: #1a1a2e;
+        }
+
         .account-card {
             background: var(--bg-card);
             border-radius: 20px;
@@ -639,4 +660,923 @@
             margin: 16px 0;
             cursor: pointer;
             transition: all 0.3s;
-            border
+            border: 2px dashed rgba(201,162,39,0.4);
+        }
+
+        .video-placeholder:hover {
+            border-color: var(--accent);
+            transform: scale(1.01);
+        }
+
+        .video-placeholder i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .video-placeholder .vid-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .video-placeholder .vid-sub {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* About Section */
+        .about-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 48px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .about-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent), #d4b43a);
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+        }
+
+        .about-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .about-card p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin: 0 auto 24px;
+        }
+
+        .subscribe-list {
+            list-style: none;
+            padding: 0;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .subscribe-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .subscribe-list li i {
+            color: var(--success);
+            font-size: 1.1rem;
+        }
+
+        /* Social links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .social-link i {
+            font-size: 1.1rem;
+        }
+
+        .social-link.telegram:hover { background: #0088cc; border-color: #0088cc; }
+        .social-link.youtube:hover { background: #ff0000; border-color: #ff0000; }
+        .social-link.facebook:hover { background: #1877f2; border-color: #1877f2; }
+        .social-link.instagram:hover { background: #e4405f; border-color: #e4405f; }
+        .social-link.email:hover { background: #ea4335; border-color: #ea4335; }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: rgba(255,255,255,0.7);
+            padding: 50px 0 30px;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .footer-brand span { color: var(--accent); }
+
+        .footer-desc {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            max-width: 500px;
+            margin: 0 auto 24px;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            color: #1a1a2e;
+            transform: translateY(-3px);
+        }
+
+        .footer-email {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .footer-email:hover { text-decoration: underline; }
+
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.35);
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 50px 0 40px; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; padding: 0 16px; }
+            .hero-badge { font-size: 0.75rem; padding: 5px 14px; }
+            .price-banner { font-size: 0.85rem; padding: 8px 16px; margin: 16px 16px 0; }
+
+            .section { padding: 40px 0; }
+            .section-title { font-size: 1.5rem; }
+            .section-subtitle { font-size: 0.9rem; padding: 0 16px; }
+
+            .bot-card { padding: 24px; }
+            .bot-card h3 { font-size: 1.25rem; }
+            .price-tag { font-size: 1.6rem; }
+
+            .tab-content { padding: 20px 16px; }
+            .step-card { padding: 20px; }
+            .step-content { padding-left: 0; margin-top: 12px; }
+            .step-number { margin-right: 10px; }
+
+            .nav-pills .nav-link { padding: 12px 16px; font-size: 0.85rem; }
+
+            .partner-card { padding: 18px; }
+            .partner-logo { font-size: 1.1rem; }
+            .partner-code { font-size: 0.9rem; padding: 6px 14px; }
+
+            .account-card { padding: 24px 16px; }
+            .account-highlight { padding: 20px; }
+
+            .about-card { padding: 32px 20px; }
+            .about-logo { width: 64px; height: 64px; font-size: 1.6rem; }
+            .about-card h3 { font-size: 1.4rem; }
+
+            .social-link { padding: 8px 14px; font-size: 0.85rem; }
+
+            .telegram-banner { padding: 16px; gap: 12px; }
+            .telegram-banner .banner-text { font-size: 0.9rem; }
+            .btn-telegram { padding: 8px 18px; font-size: 0.9rem; }
+
+            .video-placeholder { padding: 28px 16px; }
+            .video-placeholder i { font-size: 2.2rem; }
+            .video-placeholder .vid-title { font-size: 1rem; }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 { font-size: 1.7rem; }
+            .price-banner { flex-direction: column; gap: 6px; text-align: center; }
+            .alert-box { flex-direction: column; gap: 10px; }
+            .step-title { font-size: 1rem; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-badge"><i class="fas fa-robot me-2"></i>Dalal Street Quants</div>
+            <h1>DSQ <span>Forex Bot</span></h1>
+            <p>Dalal Street Quants builds, tests, and analyzes algorithmic trading strategies for Nifty 50, Bank Nifty, Nifty 500 stocks, Gold and Bitcoin.</p>
+            <div class="price-banner">
+                <i class="fas fa-gift"></i>
+                <span>100% FREE — All Versions | License | Premium Access</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Telegram Query Banner -->
+    <section class="section" style="padding-bottom: 0;">
+        <div class="container">
+            <div class="telegram-banner">
+                <div class="banner-text">
+                    <i class="fab fa-telegram" style="font-size: 1.4rem; margin-right: 8px;"></i>
+                    <strong>Have Queries?</strong> Join our Telegram group and post your questions — our team & community will help you out!
+                </div>
+                <a href="https://t.me/dsqfxtrader" target="_blank" class="btn-telegram">
+                    <i class="fab fa-telegram"></i> Join Telegram Group
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1: Bot Download -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-download me-2" style="color: var(--accent);"></i>Bot Download</h2>
+            <p class="section-subtitle">Choose the version that fits your trading style — every version is completely free</p>
+
+            <div class="row g-4 align-items-stretch">
+                <!-- V1 -->
+                <div class="col-md-6 col-lg-3 d-flex">
+                    <div class="bot-card">
+                        <div class="bot-version"><i class="fas fa-bolt"></i> Version 1.0</div>
+                        <div class="license-badge badge-license"><i class="fas fa-key"></i> Free License</div>
+                        <h3>DSQ V1</h3>
+                        <div class="price-tag">FREE <span class="original">₹1,000</span></div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Grid Trading</li>
+                            <li><i class="fas fa-check"></i> Max Risk Management</li>
+                            <li><i class="fas fa-xmark"></i> Trailing Stop</li>
+                            <li><i class="fas fa-xmark"></i> Hedging</li>
+                            <li><i class="fas fa-xmark"></i> Human Intervention</li>
+                        </ul>
+                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v1.ex5" class="btn-download" target="_blank">
+                            <i class="fas fa-download"></i> Download V1
+                        </a>
+                    </div>
+                </div>
+
+                <!-- V2 -->
+                <div class="col-md-6 col-lg-3 d-flex">
+                    <div class="bot-card">
+                        <div class="bot-version"><i class="fas fa-rocket"></i> Version 2.0</div>
+                        <div class="license-badge badge-license"><i class="fas fa-key"></i> Free License</div>
+                        <h3>DSQ V2</h3>
+                        <div class="price-tag">FREE <span class="original">₹2,000</span></div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Grid Trading</li>
+                            <li><i class="fas fa-check"></i> Trailing Stop</li>
+                            <li><i class="fas fa-check"></i> Max Risk Management</li>
+                            <li><i class="fas fa-xmark"></i> Hedging</li>
+                            <li><i class="fas fa-xmark"></i> Human Intervention</li>
+                        </ul>
+                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v2.ex5" class="btn-download" target="_blank">
+                            <i class="fas fa-download"></i> Download V2
+                        </a>
+                    </div>
+                </div>
+
+                <!-- V3 -->
+                <div class="col-md-6 col-lg-3 d-flex">
+                    <div class="bot-card">
+                        <div class="bot-version"><i class="fas fa-shield-halved"></i> Version 3.0</div>
+                        <div class="license-badge badge-partner"><i class="fas fa-key"></i> Free License + Partner</div>
+                        <h3>DSQ V3</h3>
+                        <div class="price-tag">FREE <span class="original">₹4,000</span></div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Grid Trading</li>
+                            <li><i class="fas fa-check"></i> Trailing Stop</li>
+                            <li><i class="fas fa-check"></i> Max Risk Management</li>
+                            <li><i class="fas fa-check"></i> Hedging</li>
+                            <li><i class="fas fa-xmark"></i> Human Intervention</li>
+                        </ul>
+                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v3.ex5" class="btn-download" target="_blank">
+                            <i class="fas fa-download"></i> Download V3
+                        </a>
+                    </div>
+                </div>
+
+                <!-- V4 -->
+                <div class="col-md-6 col-lg-3 d-flex">
+                    <div class="bot-card">
+                        <div class="bot-version"><i class="fas fa-crown"></i> Version 4.0</div>
+                        <div class="license-badge badge-premium"><i class="fas fa-star"></i> Premium Access</div>
+                        <h3>DSQ V4</h3>
+                        <div class="price-tag">₹1,999 <span class="original">₹6,000</span></div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Grid Trading</li>
+                            <li><i class="fas fa-check"></i> Trailing Stop</li>
+                            <li><i class="fas fa-check"></i> Max Risk Management</li>
+                            <li><i class="fas fa-check"></i> Hedging</li>
+                            <li><i class="fas fa-check"></i> Human Intervention</li>
+                        </ul>
+                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v4.ex5" class="btn-download" target="_blank">
+                            <i class="fas fa-download"></i> Download V4
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Bot Setup -->
+    <section class="section" style="background: white;">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-cogs me-2" style="color: var(--accent);"></i>Bot Setup</h2>
+            <p class="section-subtitle">Follow the step-by-step guide for your chosen bot version</p>
+
+            <div class="setup-tabs">
+                <ul class="nav nav-pills justify-content-center" id="setupTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="v1-tab" data-bs-toggle="pill" data-bs-target="#v1-setup" type="button" role="tab">DSQ V1</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="v2-tab" data-bs-toggle="pill" data-bs-target="#v2-setup" type="button" role="tab">DSQ V2</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="v3-tab" data-bs-toggle="pill" data-bs-target="#v3-setup" type="button" role="tab">DSQ V3</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="v4-tab" data-bs-toggle="pill" data-bs-target="#v4-setup" type="button" role="tab">DSQ V4</button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="setupTabContent">
+                    <!-- V1 Setup -->
+                    <div class="tab-pane fade show active" id="v1-setup" role="tabpanel">
+                        <div class="alert-box alert-free">
+                            <i class="fas fa-gift alert-icon"></i>
+                            <div><strong>Completely Free.</strong> License is free. No payment required. Get your free license instantly via Telegram.</div>
+                        </div>
+
+                        <div class="step-card">
+                            <span class="step-number">1</span>
+                            <span class="step-title">Download MT5 & Login</span>
+                            <div class="step-content">
+                                <ul>
+                                    <li>Download MT5 from <a href="https://www.metatrader5.com/en/download" target="_blank">metatrader5.com</a></li>
+                                    <li>Login with your broker credentials</li>
+                                    <li>Enable <strong>Algorithmic Trading</strong> and add WebRequest URL:
+                                        <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')">
+                                            https://raw.githubusercontent.com <i class="fas fa-copy copy-icon"></i>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <span class="step-number">2</span>
+                            <span class="step-title">Download & Install DSQ V1</span>
+                            <div class="step-content">
+                                <ul>
+                                    <li>Download <code>dsq_v1.ex5</code> from the button above</li>
+                                    <li>Double-click to add to MetaTrader</li>
+                                    <li>Find <strong>dsq_v1</strong> in the Navigator panel under Expert Advisors</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <span class="step-number">3</span>
+                            <span class="step-title">Activate Your Free License</span>
+                            <div class="step-content">
+                                <div class="alert-box alert-success-custom mb-3">
+                                    <i class="fas fa-check-circle alert-icon"></i>
+                                    <div><strong>This is 100% Free.</strong> No credit card. No payment. Join our Telegram and get your license from our Telegram Bot in under 30 seconds.</div>
+                                </div>
+                                <p><strong>How to get your V1 License:</strong></p>
+                                <ul>
+                                    <li>Join our <a href="https://t.me/dsqfxtrader" target="_blank"><strong>Telegram Channel</strong></a></li>
+                                    <li>Message our Telegram Bot with your <strong>MT5 ID</strong> and <strong>Broker Name</strong></li>
+                                    <li>Your free license will be activated instantly — <strong>takes max 30 seconds!</strong></li>
+                                </ul>
+                                <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=PLACEHOLDER_VIDEO_ID','_blank')">
+                                    <i class="fas fa-play-circle"></i>
+                                    <div class="vid-title">Watch: How to Get Your Free V1 License</div>
+                                    <div class="vid-sub">Step-by-step video guide (placeholder — replace link)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- V2 Setup -->
+                    <div class="tab-pane fade" id="v2-setup" role="tabpanel">
+                        <div class="alert-box alert-free">
+                            <i class="fas fa-gift alert-icon"></i>
+                            <div><strong>Completely Free.</strong> License is free. No payment required. Get your free license instantly via Telegram.</div>
+                        </div>
+
+                        <div class="step-card">
+                            <span class="step-number">1</span>
+                            <span class="step-title">Download MT5 & Login</span>
+                            <div class="step-content">
+                                <ul>
+                                    <li>Download MT5 from <a href="https://www.metatrader5.com/en/download" target="_blank">metatrader5.com</a></li>
+                                    <li>Login with your broker credentials</li>
+                                    <li>Enable <strong>Algorithmic Trading</strong> and add WebRequest URL:
+                                        <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')">
+                                            https://raw.githubusercontent.com <i class="fas fa-copy copy-icon"></i>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <span class="step-number">2</span>
+                            <span class="step-title">Download & Install DSQ V2</span>
+                            <div class="step-content">
+                                <ul>
+                                    <li>Download <code>dsq_v2.ex5</code> from the button above</li>
+                                    <li>Double-click to add to MetaTrader</li>
+                                    <li>Find <strong>dsq_v2</strong> in the Navigator panel under Expert Advisors</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <span class="step-number">3</span>
+                            <span class="step-title">Activate Your Free License</span>
+                            <div class="step-content">
+                                <div class="alert-box alert-success-custom mb-3">
+                                    <i class="fas fa-check-circle alert-icon"></i>
+                                    <div><strong>This is 100% Free.</strong> No credit card. No payment. Join our Telegram and get your license from our Telegram Bot in under 30 seconds.</div>
+                                </div>
+                                <p><strong>How to get your V2 License:</strong></p>
+                                <ul>
+                                    <li>Join our <a href="https://t.me/dsqfxtrader" target="_blank"><strong>Telegram Channel</strong></a></li>
+                                    <li>Message our Telegram Bot with your <strong>MT5 ID</strong> and <strong>Broker Name</strong></li>
+                                    <li>Your free license will be activated instantly — <strong>takes max 30 seconds!</strong></li>
+                                </ul>
+                                <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=PLACEHOLDER_VIDEO_ID','_blank')">
+                                    <i class="fas fa-play-circle"></i>
+                                    <div class="vid-title">Watch: How to Get Your Free V2 License</div>
+                                    <div class="vid-sub">Step-by-step video guide (placeholder — replace link)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- V3 Setup -->
+                    <div class="tab-pane fade" id="v3-setup" role="tabpanel">
+                        <div class="alert-box alert-free">
+                            <i class="fas fa-gift alert-icon"></i>
+                            <div><strong>Completely Free.</strong> License is free. Partner code setup is free. No hidden charges ever.</div>
+                        </div>
+
+                        <div class="step-card">
+                            <span class="step-number">1</span>
+                            <span class="step-title">Download MT5 & Login</span>
+                            <div class="step-content">
+                                <ul>
+                                    <li>Download MT5 from <a href="https://www.metatrader5.com/en/download" target="_blank">metatrader5.com</a></li>
+                                    <li>Login with your broker credentials</li>
+                                    <li>Enable <strong>Algorithmic Trading</strong> and add WebRequest URL:
+                                        <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')">
+                                            https://raw.githubusercontent.com <i class="fas fa-copy copy-icon"></i>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <span class="step-number">2</span>
+                            <span class="step-title">Set Partner Code on Your Account</span>
+                            <div class="step-content">
+                                <p>Our bots are supported <strong>only</strong> for the following brokers. Set the partner code on your broker account:</p>
+                                <div class="row g-3 mt-2">
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="partner-card">
+                                            <div class="partner-logo">🏢 Vantage</div>
+                                            <div class="partner-code" onclick="copyToClipboard(this, 'VcM6U1DW')">VcM6U1DW <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
+                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="partner-card">
+                                            <div class="partner-logo">🏢 Roboforex</div>
+                                            <div class="partner-code" onclick="copyToClipboard(this, 'zrfhm')">zrfhm <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
+                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="partner-card">
+                                            <div class="partner-logo">🏢 Exness</div>
+                                            <div class="partner-code" onclick="copyToClipboard(this, 'c_niibgmkreg')">c_niibgmkreg <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
+                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="partner-card">
+                                            <div class="partner-logo">🏢 CXM</div>
+                                            <div class="partner-code" onclick="copyToClipboard(this, 'upcoming')">upcoming <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
+                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <span class="step-number">3</span>
+                            <span class="step-title">Download & Install DSQ V3</span>
+                            <div class="step-content">
+                                <ul>
+                                    <li>Download <code>dsq_v3.ex5</code> from the button above</li>
+                                    <li>Double-click to add to MetaTrader</li>
+                                    <li>Find <strong>dsq_v3</strong> in the Navigator panel</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <span class="step-number">4</span>
+                            <span class="step-title">Activate Your Free License</span>
+                            <div class="step-content">
+                                <div class="alert-box alert-success-custom mb-3">
+                                    <i class="fas fa-check-circle alert-icon"></i>
+                                    <div><strong>This is 100% Free.</strong> No credit card. No payment. Join our Telegram and get your V3 license from our Telegram Bot in under 30 seconds.</div>
+                                </div>
+                                <p><strong>How to get your V3 License:</strong></p>
+                                <ul>
+                                    <li>Join our <a href="https://t.me/dsqfxtrader" target="_blank"><strong>Telegram Channel</strong></a></li>
+                                    <li>Message our Telegram Bot with your <strong>MT5 ID</strong>, <strong>Broker Name</strong>, and confirm your <strong>Partner Code</strong> is set</li>
+                                    <li>Your free license will be activated instantly — <strong>takes max 30 seconds!</strong></li>
+                                </ul>
+                                <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=PLACEHOLDER_VIDEO_ID','_blank')">
+                                    <i class="fas fa-play-circle"></i>
+                                    <div class="vid-title">Watch: How to Get Your Free V3 License</div>
+                                    <div class="vid-sub">Step-by-step video guide (placeholder — replace link)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- V4 Setup -->
+                    <div class="tab-pane fade" id="v4-setup" role="tabpanel">
+                        <div class="alert-box alert-free">
+                            <i class="fas fa-gift alert-icon"></i>
+                            <div><strong>Premium Access.</strong> License is free. Partner code setup is free. Only ₹1,999 one-time for full V4 access.</div>
+                        </div>
+
+                        <div class="alert-box alert-danger-custom">
+                            <i class="fas fa-crown alert-icon"></i>
+                            <div><strong>Premium Access.</strong> Requires License + Partner Code + V3 experience (minimum 1 week).</div>
+                        </div>
+
+                        <div class="alert-box alert-success-custom">
+                            <i class="fas fa-check-circle alert-icon"></i>
+                            <div><strong>Prerequisite:</strong> You must run <strong>DSQ V3</strong> for at least <strong>1 week</strong> before upgrading to V4.</div>
+                        </div>
+
+                        <div class="step-card">
+                            <span class="step-number">1</span>
+                            <span class="step-title">Complete V3 First</span>
+                            <div class="step-content">
+                                <ul>
+                                    <li>Run <strong>DSQ V3</strong> on a demo or cent account for minimum <strong>7 days</strong></li>
+                                    <li>Understand how grid, trailing, and hedging work together</li>
+                                    <li>Practice the emergency stop (<kbd style="background:#1e293b;color:#e2e8f0;padding:4px 10px;border-radius:6px;font-family:monospace;">Ctrl</kbd> + <kbd style="background:#1e293b;color:#e2e8f0;padding:4px 10px;border-radius:6px;font-family:monospace;">E</kbd>) and manual trade closure</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <span class="step-number">2</span>
+                            <span class="step-title">Set Partner Code on Your Account</span>
+                            <div class="step-content">
+                                <p>Our bots are supported <strong>only</strong> for the following brokers. Set the partner code on your broker account:</p>
+                                <div class="row g-3 mt-2">
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="partner-card">
+                                            <div class="partner-logo">🏢 Vantage</div>
+                                            <div class="partner-code" onclick="copyToClipboard(this, 'VcM6U1DW')">VcM6U1DW <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
+                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="partner-card">
+                                            <div class="partner-logo">🏢 Roboforex</div>
+                                            <div class="partner-code" onclick="copyToClipboard(this, 'zrfhm')">zrfhm <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
+                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="partner-card">
+                                            <div class="partner-logo">🏢 Exness</div>
+                                            <div class="partner-code" onclick="copyToClipboard(this, 'c_niibgmkreg')">c_niibgmkreg <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
+                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="partner-card">
+                                            <div class="partner-logo">🏢 CXM</div>
+                                            <div class="partner-code" onclick="copyToClipboard(this, 'upcoming')">upcoming <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
+                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <span class="step-number">3</span>
+                            <span class="step-title">Download & Install DSQ V4</span>
+                            <div class="step-content">
+                                <ul>
+                                    <li>Download <code>dsq_v4.ex5</code> from the button above</li>
+                                    <li>Double-click to add to MetaTrader</li>
+                                    <li>Find <strong>dsq_v4</strong> in the Navigator panel</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <span class="step-number">4</span>
+                            <span class="step-title">Activate Your Premium License</span>
+                            <div class="step-content">
+                                <div class="alert-box alert-success-custom mb-3">
+                                    <i class="fas fa-check-circle alert-icon"></i>
+                                    <div><strong>One-time fee: ₹1,999 only.</strong> No recurring charges. Join our Telegram and request your V4 license from our Telegram Bot.</div>
+                                </div>
+                                <p><strong>How to get your V4 License:</strong></p>
+                                <ul>
+                                    <li>Join our <a href="https://t.me/dsqfxtrader" target="_blank"><strong>Telegram Channel</strong></a></li>
+                                    <li>Message our Telegram Bot with your <strong>MT5 ID</strong>, <strong>Broker Name</strong>, and <strong>V3 usage screenshot</strong></li>
+                                    <li>After verification, your V4 license will be activated — <strong>takes max 30 seconds!</strong></li>
+                                </ul>
+                                <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=PLACEHOLDER_VIDEO_ID','_blank')">
+                                    <i class="fas fa-play-circle"></i>
+                                    <div class="vid-title">Watch: How to Get Your V4 Premium License</div>
+                                    <div class="vid-sub">Step-by-step video guide (placeholder — replace link)</div>
+                                </div>
+                                <small class="text-muted d-block mt-2">V4 approval requires V3 usage verification. Contact our <a href="https://t.me/dsqfxtrader" target="_blank">Telegram Channel</a> for fast-track.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Account Selection -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-wallet me-2" style="color: var(--accent);"></i>Choose Your Account</h2>
+            <p class="section-subtitle">We only recommend Cent Accounts for optimal bot performance</p>
+
+            <div class="account-card">
+                <div class="account-highlight">
+                    <h4><i class="fas fa-bullseye me-2"></i>Our Recommendation: Cent Account Only</h4>
+                    <p>Cent accounts provide the best risk-to-capital ratio for grid trading bots. With 100 USD, you get <strong>10,000 USC</strong> — enough margin buffer for the bot to operate safely.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h5 style="font-weight:700;margin-bottom:16px;"><i class="fas fa-calculator me-2" style="color:var(--accent);"></i>Capital Requirements</h5>
+                        <div class="alert-box alert-info-custom">
+                            <i class="fas fa-rupee-sign alert-icon"></i>
+                            <div>
+                                <strong>10,000 INR (≈ 100 USD)</strong><br>
+                                Deposit into a <strong>Cent Account</strong> → receive <strong>10,000 USC</strong><br>
+                                <small>This is the minimum recommended capital for all DSQ bots.</small>
+                            </div>
+                        </div>
+                        <div class="alert-box alert-warning-custom">
+                            <i class="fas fa-exclamation-triangle alert-icon"></i>
+                            <div>
+                                <strong>USD Account Warning</strong><br>
+                                A USD account needs at least <strong>10,000 USD</strong> for safe operation. Not recommended for small capital traders.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h5 style="font-weight:700;margin-bottom:16px;"><i class="fas fa-building me-2" style="color:var(--accent);"></i>Compatible Cent Accounts</h5>
+                        <div class="broker-table-wrap">
+                            <table class="broker-table">
+                                <thead>
+                                    <tr>
+                                        <th>Broker</th>
+                                        <th>✅ Cent Account</th>
+                                        <th>❌ USD Account</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Vantage</strong></td>
+                                        <td class="check-green"><i class="fas fa-check me-1"></i>Cent STP (1:2000)</td>
+                                        <td class="cross-red"><i class="fas fa-times me-1"></i>Normal STP</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>XM</strong></td>
+                                        <td class="check-green"><i class="fas fa-check me-1"></i>Micro (1:1000)</td>
+                                        <td class="cross-red"><i class="fas fa-times me-1"></i>Ultra Low / Standard</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Roboforex</strong></td>
+                                        <td class="check-green"><i class="fas fa-check me-1"></i>ProCent (1:2000)</td>
+                                        <td class="cross-red"><i class="fas fa-times me-1"></i>Pro account</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Exness</strong></td>
+                                        <td class="check-green"><i class="fas fa-check me-1"></i>USC account</td>
+                                        <td class="cross-red"><i class="fas fa-times me-1"></i>USD account</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert-box alert-warning-custom mt-4">
+                    <i class="fas fa-eye alert-icon"></i>
+                    <div>
+                        <strong>Manual Intervention Required:</strong> Watch the bot while it runs. <strong>Stop immediately and take the loss</strong> if you see a strong one-sided move (e.g., price keeps going up or down without pulling back). The bot is not designed for trending markets.
+                    </div>
+                </div>
+
+                <div class="alert-box alert-success-custom">
+                    <i class="fas fa-shield-alt alert-icon"></i>
+                    <div>
+                        <strong>Safety First:</strong> Always test on a <strong>Demo account</strong> first before using a Real account. Same broker, same cent account type.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Partner Codes -->
+    <section class="section" style="background: white;">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-handshake me-2" style="color: var(--accent);"></i>Set Partner Code on Your Account</h2>
+            <p class="section-subtitle">Our bots are supported only for the following brokers. Set the partner code on your broker account:</p>
+
+            <div class="row g-3 justify-content-center">
+                <div class="col-md-6 col-lg-3">
+                    <div class="partner-card">
+                        <div class="partner-logo">🏢 Vantage</div>
+                        <div class="partner-code" onclick="copyToClipboard(this, 'VcM6U1DW')">VcM6U1DW <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
+                        <div>
+                            <a href="https://www.vantagemarkets.com/en/open-live-account/" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                        </div>
+                        <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="partner-card">
+                        <div class="partner-logo">🏢 Roboforex</div>
+                        <div class="partner-code" onclick="copyToClipboard(this, 'zrfhm')">zrfhm <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
+                        <div>
+                            <a href="https://my.roboforex.com/en/register/" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                        </div>
+                        <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="partner-card">
+                        <div class="partner-logo">🏢 Exness</div>
+                        <div class="partner-code" onclick="copyToClipboard(this, 'c_niibgmkreg')">c_niibgmkreg <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
+                        <div>
+                            <a href="https://my.exness.com/accounts/sign-up/" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                        </div>
+                        <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="partner-card">
+                        <div class="partner-logo">🏢 CXM</div>
+                        <div class="partner-code" onclick="copyToClipboard(this, 'upcoming')">upcoming <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
+                        <div>
+                            <a href="https://www.cxm.com/en/" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                        </div>
+                        <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: About Dalal Street Quants -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-building me-2" style="color: var(--accent);"></i>About Dalal Street Quants</h2>
+            <p class="section-subtitle">Who we are and what we do</p>
+
+            <div class="about-card">
+                <div class="about-logo">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Dalal Street Quants</h3>
+                <p>Dalal Street Quants builds, tests, and analyzes algorithmic trading strategies for Nifty 50, Bank Nifty, Nifty 500 stocks, Gold and Bitcoin.</p>
+
+                <h5 style="font-weight:700;margin:24px 0 12px;color:var(--text-main);">Subscribe to:</h5>
+                <ul class="subscribe-list">
+                    <li><i class="fas fa-check-circle"></i> Replace guesswork with algorithms & Expert Advisors</li>
+                    <li><i class="fas fa-check-circle"></i> Learn backtesting</li>
+                </ul>
+
+                <div class="social-links">
+                    <a href="https://t.me/dsqfxtrader" target="_blank" class="social-link telegram">
+                        <i class="fab fa-telegram"></i> Telegram Channel
+                    </a>
+                    <a href="https://www.youtube.com/@Dalal_street_quants" target="_blank" class="social-link youtube">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61589548676472" target="_blank" class="social-link facebook">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                    <a href="https://www.instagram.com/dsq_fx_trader/" target="_blank" class="social-link instagram">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="mailto:dalalstreetsquants@gmail.com" class="social-link email">
+                        <i class="fas fa-envelope"></i> Email Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-brand">Dalal <span>Street</span> Quants</div>
+            <p class="footer-desc">Building, testing, and analyzing algorithmic trading strategies for Nifty 50, Bank Nifty, Nifty 500 stocks, Gold and Bitcoin.</p>
+
+            <div class="footer-social">
+                <a href="https://t.me/dsqfxtrader" target="_blank" title="Telegram Channel"><i class="fab fa-telegram"></i></a>
+                <a href="https://www.youtube.com/@Dalal_street_quants" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61589548676472" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/dsq_fx_trader/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:dalalstreetsquants@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+
+            <p><a href="mailto:dalalstreetsquants@gmail.com" class="footer-email"><i class="fas fa-envelope me-2"></i>dalalstreetsquants@gmail.com</a></p>
+            <p class="mb-0 mt-2"><i class="fas fa-video me-2"></i>Weekly live 1-hour setup call — <strong style="color:var(--accent);">FREE!</strong></p>
+
+            <div class="footer-bottom">
+                <p>© 2026 Dalal Street Quants. All rights reserved.</p>
+                <p>Disclaimer: Trading involves risk. Always test on Demo first.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function copyToClipboard(element, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const original = element.innerHTML;
+                element.innerHTML = '<i class="fas fa-check" style="color:var(--success);"></i> Copied!';
+                setTimeout(() => { element.innerHTML = original; }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>
