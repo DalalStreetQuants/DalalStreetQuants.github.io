@@ -6,957 +6,631 @@
     <title>DSQ Forex Bot — Dalal Street Quants</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a1a2e;
+            --navy: #0b1220;
+            --navy-2: #111a2e;
+            --navy-3: #16233f;
             --accent: #c9a227;
-            --accent-hover: #b8941f;
-            --bg-soft: #f8f9fb;
-            --bg-card: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --success: #10b981;
-            --danger: #ef4444;
-            --warning: #f59e0b;
-            --info: #3b82f6;
+            --accent-soft: #e9c65a;
+            --accent-ink: #1a1405;
+            --bg: #f6f7f9;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #5b6472;
+            --border: #e5e8ee;
+            --success: #0e9f6e;
+            --danger: #dc2626;
+            --radius: 16px;
+            --shadow-sm: 0 1px 2px rgba(15,23,42,.05), 0 2px 8px rgba(15,23,42,.04);
+            --shadow-md: 0 8px 30px rgba(15,23,42,.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f8f9fb 0%, #eef2f7 50%, #f0f4f8 100%);
-            color: var(--text-main);
-            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* ---------- Navbar ---------- */
+        .navbar-dsq {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(11,18,32,.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,.07);
+        }
+        .navbar-dsq .container {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 68px;
+        }
+        .brand {
+            display: flex; align-items: center; gap: 12px;
+            text-decoration: none;
+        }
+        .brand-mark {
+            width: 38px; height: 38px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+            color: var(--accent-ink);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: .8rem; letter-spacing: .5px;
+        }
+        .brand-name { color: #fff; font-weight: 700; font-size: 1.02rem; letter-spacing: -.2px; }
+        .brand-name small { display: block; font-size: .68rem; font-weight: 500; color: rgba(255,255,255,.5); letter-spacing: .4px; }
+        .nav-links { display: flex; align-items: center; gap: 4px; }
+        .nav-links a.nl {
+            color: rgba(255,255,255,.72);
+            text-decoration: none;
+            font-size: .86rem; font-weight: 500;
+            padding: 8px 14px; border-radius: 8px;
+            transition: all .2s;
+        }
+        .nav-links a.nl:hover { color: #fff; background: rgba(255,255,255,.08); }
+        .btn-nav-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+            color: var(--accent-ink) !important;
+            font-weight: 700; font-size: .85rem;
+            padding: 9px 18px !important; border-radius: 10px;
+            margin-left: 10px;
+            transition: all .2s;
+        }
+        .btn-nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(201,162,39,.35); background: linear-gradient(135deg, var(--accent), var(--accent-soft)) !important; }
+        @media (max-width: 860px) { .nav-links a.nl { display: none; } }
+
+        /* ---------- Hero ---------- */
         .hero {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: white;
-            padding: 80px 0 60px;
+            background:
+                radial-gradient(900px 480px at 85% -10%, rgba(201,162,39,.16), transparent 60%),
+                radial-gradient(700px 420px at 8% 110%, rgba(59,130,246,.10), transparent 60%),
+                linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 55%, var(--navy-3) 100%);
+            color: #fff;
+            padding: 150px 0 90px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
-
-        .hero::before {
+        .hero::after {
             content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(201,162,39,0.08) 0%, transparent 60%);
-            animation: pulse 8s ease-in-out infinite;
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: radial-gradient(700px 400px at 50% 0%, #000, transparent 75%);
+            -webkit-mask-image: radial-gradient(700px 400px at 50% 0%, #000, transparent 75%);
+            pointer-events: none;
         }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
         .hero-content { position: relative; z-index: 1; }
 
-        .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-            letter-spacing: -1px;
-        }
-
-        .hero h1 span { color: var(--accent); }
-
-        .hero p {
-            font-size: 1.15rem;
-            color: rgba(255,255,255,0.75);
-            max-width: 650px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(201,162,39,0.15);
-            border: 1px solid rgba(201,162,39,0.3);
-            color: var(--accent);
-            padding: 6px 18px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
-        }
-
-        .price-banner {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(16,185,129,0.15);
-            border: 1px solid rgba(16,185,129,0.3);
-            color: #10b981;
-            padding: 8px 24px;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-top: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .section { padding: 60px 0; }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 8px;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 40px;
-        }
-
-        .bot-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 32px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.02);
-            border: 1px solid var(--border);
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .bot-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), #e8d5a3);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .bot-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 48px rgba(0,0,0,0.08), 0 8px 16px rgba(0,0,0,0.04);
-        }
-
-        .bot-card:hover::before { opacity: 1; }
-
-        .bot-version {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.75rem;
-            font-weight: 700;
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(201,162,39,.12);
+            border: 1px solid rgba(201,162,39,.35);
+            color: var(--accent-soft);
+            padding: 7px 18px; border-radius: 999px;
+            font-size: .8rem; font-weight: 600; letter-spacing: .6px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent);
+            margin-bottom: 26px;
+        }
+        .hero h1 {
+            font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+            font-weight: 800; letter-spacing: -1.5px;
+            margin-bottom: 18px; line-height: 1.12;
+        }
+        .hero h1 span {
+            background: linear-gradient(120deg, var(--accent-soft), var(--accent));
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p.lead {
+            font-size: 1.08rem; color: rgba(255,255,255,.68);
+            max-width: 640px; margin: 0 auto 30px; font-weight: 400;
+        }
+        .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .btn-hero-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+            color: var(--accent-ink); font-weight: 700; font-size: .95rem;
+            padding: 14px 30px; border-radius: 12px; text-decoration: none;
+            transition: all .25s;
+        }
+        .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201,162,39,.35); color: var(--accent-ink); }
+        .btn-hero-ghost {
+            display: inline-flex; align-items: center; gap: 10px;
+            border: 1px solid rgba(255,255,255,.22);
+            color: #fff; font-weight: 600; font-size: .95rem;
+            padding: 14px 30px; border-radius: 12px; text-decoration: none;
+            transition: all .25s;
+        }
+        .btn-hero-ghost:hover { background: rgba(255,255,255,.08); color: #fff; }
+
+        .hero-stats {
+            display: flex; justify-content: center; gap: 0;
+            margin-top: 58px; flex-wrap: wrap;
+        }
+        .hero-stat {
+            padding: 6px 34px;
+            border-right: 1px solid rgba(255,255,255,.1);
+            text-align: center;
+        }
+        .hero-stat:last-child { border-right: none; }
+        .hero-stat .num { font-size: 1.45rem; font-weight: 800; color: #fff; letter-spacing: -.5px; }
+        .hero-stat .num i { color: var(--accent-soft); margin-right: 4px; }
+        .hero-stat .lbl { font-size: .76rem; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .8px; font-weight: 600; }
+
+        /* ---------- Telegram strip ---------- */
+        .tg-strip-wrap { margin-top: -38px; position: relative; z-index: 5; }
+        .tg-strip {
+            background: linear-gradient(135deg, #0e7cba, #095d8e);
+            color: #fff;
+            border-radius: var(--radius);
+            padding: 20px 26px;
+            display: flex; align-items: center; gap: 18px;
+            justify-content: space-between; flex-wrap: wrap;
+            box-shadow: 0 14px 34px rgba(9,93,142,.28);
+        }
+        .tg-strip .ico {
+            width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+            background: rgba(255,255,255,.15);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+        }
+        .tg-strip .txt { flex: 1; min-width: 240px; font-size: .94rem; }
+        .tg-strip .txt strong { font-weight: 700; }
+        .btn-tg {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #fff; color: #0a6ea8;
+            font-weight: 700; font-size: .88rem;
+            padding: 11px 22px; border-radius: 10px;
+            text-decoration: none; transition: all .25s; flex-shrink: 0;
+        }
+        .btn-tg:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.18); color: #0a6ea8; }
+
+        /* ---------- Sections ---------- */
+        .section { padding: 84px 0; }
+        .section.alt { background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--accent); font-size: .76rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.4px;
             margin-bottom: 12px;
         }
+        .eyebrow::before { content: ''; width: 22px; height: 2px; background: var(--accent); border-radius: 2px; }
+        .section-title { font-size: clamp(1.6rem, 3vw, 2.15rem); font-weight: 800; letter-spacing: -.8px; margin-bottom: 10px; text-align: center; }
+        .section-subtitle { text-align: center; color: var(--muted); font-size: .98rem; max-width: 560px; margin: 0 auto 48px; }
+        .title-block { text-align: center; }
+        .title-block .eyebrow::before { display: none; }
 
-        .bot-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--text-main);
+        /* ---------- Bot cards ---------- */
+        .bot-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 30px 28px;
+            height: 100%;
+            display: flex; flex-direction: column;
+            position: relative;
+            transition: all .3s cubic-bezier(.4,0,.2,1);
+            box-shadow: var(--shadow-sm);
         }
-
-        .price-tag {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--success);
-            margin-bottom: 16px;
+        .bot-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: #d3d9e2; }
+        .bot-card.featured { border: 1.5px solid var(--accent); }
+        .featured-ribbon {
+            position: absolute; top: 16px; right: -34px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+            color: var(--accent-ink); font-size: .68rem; font-weight: 800;
+            letter-spacing: .8px; text-transform: uppercase;
+            padding: 5px 40px; transform: rotate(45deg);
         }
-
-        .price-tag .original {
-            font-size: 1rem;
-            color: var(--text-muted);
-            text-decoration: line-through;
-            margin-left: 8px;
-            font-weight: 500;
+        .bot-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+        .bot-icon {
+            width: 46px; height: 46px; border-radius: 12px;
+            background: linear-gradient(135deg, var(--navy), var(--navy-3));
+            color: var(--accent-soft);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
         }
-
-        .feature-list {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 24px;
-            flex-grow: 1;
+        .license-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: .72rem; font-weight: 700;
+            padding: 5px 12px; border-radius: 999px;
+            letter-spacing: .3px;
         }
+        .badge-license { background: #fef6e0; color: #8a6a10; border: 1px solid #eed88f; }
+        .badge-partner { background: #eaf2fe; color: #1d4fa1; border: 1px solid #c3d9f7; }
+        .badge-premium { background: #fdf0f6; color: #a01a5c; border: 1px solid #f3c6dd; }
 
+        .bot-card h3 { font-size: 1.32rem; font-weight: 800; letter-spacing: -.4px; margin-bottom: 2px; }
+        .bot-tagline { font-size: .82rem; color: var(--muted); margin-bottom: 18px; }
+        .price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 22px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+        .price-now { font-size: 1.9rem; font-weight: 800; color: var(--success); letter-spacing: -1px; }
+        .price-now.paid { color: var(--text); }
+        .price-was { font-size: .92rem; color: var(--muted); text-decoration: line-through; font-weight: 500; }
+        .price-note { font-size: .72rem; color: var(--muted); margin-left: auto; text-transform: uppercase; letter-spacing: .6px; font-weight: 600; }
+
+        .feature-list { list-style: none; padding: 0; margin: 0 0 26px; flex-grow: 1; }
         .feature-list li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 0;
-            font-size: 0.92rem;
-            color: var(--text-muted);
-            border-bottom: 1px solid rgba(226,232,240,0.5);
+            display: flex; align-items: center; gap: 11px;
+            padding: 7px 0; font-size: .9rem; color: var(--text);
         }
-
-        .feature-list li:last-child { border-bottom: none; }
-
-        .feature-list li i {
-            color: var(--success);
-            font-size: 0.85rem;
-            width: 18px;
-        }
-
-        .feature-list li i.fa-xmark { color: #cbd5e1; }
+        .feature-list li.off { color: #a3abb8; }
+        .feature-list li i { width: 18px; text-align: center; font-size: .82rem; }
+        .feature-list li i.fa-check { color: var(--success); }
+        .feature-list li i.fa-xmark { color: #c3c9d2; }
 
         .btn-download {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            padding: 14px 24px;
-            background: linear-gradient(135deg, var(--accent), #d4b43a);
-            color: #1a1a2e;
-            font-weight: 700;
-            font-size: 0.95rem;
-            border: none;
-            border-radius: 12px;
-            text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer;
-            margin-top: auto;
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            width: 100%; padding: 13px 22px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+            color: var(--accent-ink); font-weight: 700; font-size: .92rem;
+            border: none; border-radius: 11px; text-decoration: none;
+            transition: all .25s; margin-top: auto;
         }
+        .btn-download:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(201,162,39,.32); color: var(--accent-ink); }
+        .btn-download.dark { background: var(--navy); color: #fff; }
+        .btn-download.dark:hover { background: var(--navy-3); box-shadow: 0 10px 24px rgba(11,18,32,.3); color: #fff; }
 
-        .btn-download:hover {
-            background: linear-gradient(135deg, var(--accent-hover), #c9a227);
-            transform: scale(1.02);
-            color: #1a1a2e;
-            box-shadow: 0 8px 24px rgba(201,162,39,0.3);
-        }
-
-        .license-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            padding: 6px 14px;
-            border-radius: 50px;
-            margin-bottom: 12px;
-        }
-
-        .badge-free {
-            background: #d1fae5;
-            color: #065f46;
-        }
-
-        .badge-license {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .badge-partner {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-
-        .badge-premium {
-            background: #fce7f3;
-            color: #9d174d;
-        }
-
-        .setup-tabs {
-            background: var(--bg-card);
-            border-radius: 20px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+        /* ---------- Setup tabs ---------- */
+        .setup-shell {
+            background: var(--card);
             border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
             overflow: hidden;
         }
-
         .nav-pills {
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+            flex-wrap: nowrap; overflow-x: auto;
             scrollbar-width: none;
+            border-bottom: 1px solid var(--border);
+            background: #fbfcfd;
+            padding: 0 12px;
         }
-
         .nav-pills::-webkit-scrollbar { display: none; }
-
         .nav-pills .nav-link {
-            color: var(--text-muted);
-            font-weight: 600;
-            font-size: 0.9rem;
-            padding: 14px 24px;
-            border-radius: 0;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
-            white-space: nowrap;
+            color: var(--muted); font-weight: 600; font-size: .9rem;
+            padding: 16px 26px; border-radius: 0;
+            border-bottom: 2.5px solid transparent;
+            white-space: nowrap; transition: all .2s;
+            display: inline-flex; align-items: center; gap: 8px;
         }
+        .nav-pills .nav-link .v-dot { width: 8px; height: 8px; border-radius: 50%; background: #cbd2dc; transition: all .2s; }
+        .nav-pills .nav-link.active { color: var(--text); background: transparent; border-bottom-color: var(--accent); }
+        .nav-pills .nav-link.active .v-dot { background: var(--accent); }
+        .nav-pills .nav-link:hover:not(.active) { color: var(--text); }
+        .tab-content { padding: 40px; }
 
-        .nav-pills .nav-link.active {
-            color: var(--accent);
-            background: transparent;
-            border-bottom-color: var(--accent);
+        .alert-box {
+            border-radius: 13px; padding: 18px 22px; margin-bottom: 18px;
+            display: flex; align-items: flex-start; gap: 14px; font-size: .92rem;
         }
-
-        .nav-pills .nav-link:hover:not(.active) {
-            color: var(--text-main);
-            background: rgba(201,162,39,0.05);
-        }
-
-        .tab-content { padding: 36px; }
+        .alert-icon { font-size: 1.15rem; margin-top: 2px; flex-shrink: 0; }
+        .alert-free { background: #eefaf3; border: 1px solid #9fe0bd; color: #0b5c3e; }
+        .alert-warning-custom { background: #fffaeb; border: 1px solid #f3d27a; color: #7a5b0b; }
+        .alert-info-custom { background: #eff6ff; border: 1px solid #a9c9f5; color: #1d4fa1; }
+        .alert-success-custom { background: #eefaf3; border: 1px solid #9fe0bd; color: #0b5c3e; }
+        .alert-danger-custom { background: #fef3f3; border: 1px solid #f2b1b1; color: #96211f; }
 
         .step-card {
-            background: var(--bg-soft);
-            border-radius: 16px;
-            padding: 28px;
-            margin-bottom: 20px;
+            background: #fbfcfd;
             border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 26px 28px;
+            margin-bottom: 18px;
         }
-
+        .step-head { display: flex; align-items: center; gap: 14px; }
         .step-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, var(--accent), #d4b43a);
-            color: #1a1a2e;
-            font-weight: 800;
-            font-size: 0.9rem;
+            width: 36px; height: 36px; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--navy), var(--navy-3));
+            color: var(--accent-soft);
+            font-weight: 800; font-size: .92rem;
             border-radius: 10px;
-            margin-right: 14px;
-            flex-shrink: 0;
+            display: inline-flex; align-items: center; justify-content: center;
         }
-
-        .step-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .step-content {
-            margin-top: 16px;
-            padding-left: 50px;
-        }
-
-        .step-content ul {
-            padding-left: 20px;
-            color: var(--text-muted);
-        }
-
-        .step-content ul li { margin-bottom: 8px; }
-
-        .step-content a {
-            color: var(--accent);
-            font-weight: 600;
-            text-decoration: none;
-        }
-
+        .step-title { font-size: 1.05rem; font-weight: 700; letter-spacing: -.2px; }
+        .step-content { margin-top: 14px; padding-left: 50px; color: var(--muted); font-size: .92rem; }
+        .step-content ul { padding-left: 18px; margin-bottom: 10px; }
+        .step-content ul li { margin-bottom: 7px; }
+        .step-content p { margin-bottom: 8px; }
+        .step-content strong { color: var(--text); }
+        .step-content a { color: #b8891c; font-weight: 600; text-decoration: none; }
         .step-content a:hover { text-decoration: underline; }
+        .step-content code {
+            background: #eef1f5; color: var(--navy);
+            padding: 2px 8px; border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace; font-size: .82rem;
+        }
 
         .code-block {
-            background: #1e293b;
-            color: #e2e8f0;
-            padding: 12px 18px;
-            border-radius: 10px;
-            font-family: 'SF Mono', monospace;
-            font-size: 0.85rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin: 4px 0;
-            word-break: break-all;
+            background: var(--navy); color: #dbe3ee;
+            padding: 10px 16px; border-radius: 9px;
+            font-family: 'JetBrains Mono', monospace; font-size: .8rem;
+            display: inline-flex; align-items: center; gap: 10px;
+            cursor: pointer; transition: all .2s; margin: 6px 0;
+            word-break: break-all; border: 1px solid #1f2c47;
         }
+        .code-block:hover { background: var(--navy-3); border-color: var(--accent); }
+        .copy-icon { color: var(--accent-soft); font-size: .78rem; }
 
-        .code-block:hover { background: #334155; }
-
-        .copy-icon { color: var(--accent); font-size: 0.8rem; }
-
-        .partner-card {
-            background: linear-gradient(135deg, #f8f9fb, #eef2f7);
-            border-radius: 16px;
-            padding: 24px;
-            border: 1px solid var(--border);
-            text-align: center;
-            transition: all 0.3s;
+        .video-placeholder {
+            background: linear-gradient(135deg, var(--navy), var(--navy-3));
+            border: 1.5px dashed rgba(201,162,39,.45);
+            border-radius: 13px;
+            padding: 32px 22px; text-align: center; color: #fff;
+            margin: 16px 0 4px; cursor: pointer; transition: all .25s;
         }
-
-        .partner-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-        }
-
-        .partner-logo {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 8px;
-        }
-
-        .partner-code {
-            display: inline-block;
-            background: var(--primary);
-            color: var(--accent);
-            padding: 8px 20px;
-            border-radius: 8px;
-            font-family: 'SF Mono', monospace;
-            font-weight: 700;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            margin: 8px 0;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .partner-code:hover {
-            background: #2a2a4a;
-            transform: scale(1.05);
-        }
-
-        .how-to-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.82rem;
-            color: var(--info);
-            font-weight: 600;
-            margin-top: 8px;
-            text-decoration: none;
-        }
-
-        .how-to-link:hover { text-decoration: underline; }
-
-        .btn-open-account {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: linear-gradient(135deg, var(--accent), #d4b43a);
-            color: #1a1a2e;
-            font-weight: 700;
-            font-size: 0.82rem;
-            padding: 8px 18px;
-            border-radius: 8px;
-            text-decoration: none;
-            margin-top: 10px;
-            transition: all 0.3s;
-        }
-
-        .btn-open-account:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 16px rgba(201,162,39,0.3);
-            color: #1a1a2e;
-        }
-
-        .account-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
-            border: 1px solid var(--border);
-        }
-
-        .account-highlight {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            border-radius: 16px;
-            padding: 28px;
-            margin-bottom: 28px;
-            border: 1px solid #f59e0b;
-        }
-
-        .account-highlight h4 {
-            color: #92400e;
-            font-weight: 700;
+        .video-placeholder:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .video-placeholder .play {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: rgba(201,162,39,.16); border: 1px solid rgba(201,162,39,.5);
+            display: inline-flex; align-items: center; justify-content: center;
             margin-bottom: 12px;
         }
+        .video-placeholder .play i { font-size: 1.2rem; color: var(--accent-soft); margin-left: 3px; }
+        .video-placeholder .vid-title { font-weight: 700; font-size: 1rem; margin-bottom: 3px; }
+        .video-placeholder .vid-sub { font-size: .8rem; color: rgba(255,255,255,.55); }
 
-        .account-highlight p {
-            color: #a16207;
-            margin-bottom: 0;
+        /* ---------- Partner cards ---------- */
+        .partner-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 20px;
+            text-align: center;
+            height: 100%;
+            transition: all .25s;
+            box-shadow: var(--shadow-sm);
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .partner-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .partner-card.soon { opacity: .65; }
+        .partner-avatar {
+            width: 48px; height: 48px; border-radius: 12px;
+            background: linear-gradient(135deg, var(--navy), var(--navy-3));
+            color: var(--accent-soft);
+            font-weight: 800; font-size: 1.05rem;
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-bottom: 12px;
+        }
+        .partner-logo { font-size: 1.12rem; font-weight: 700; letter-spacing: -.2px; margin-bottom: 4px; }
+        .partner-sub { font-size: .76rem; color: var(--muted); margin-bottom: 14px; }
+        .partner-code {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--navy); color: var(--accent-soft);
+            padding: 8px 18px; border-radius: 9px;
+            font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: .92rem;
+            letter-spacing: .5px; margin-bottom: 14px;
+            cursor: pointer; transition: all .2s; border: 1px solid #1f2c47;
+        }
+        .partner-code:hover { border-color: var(--accent); transform: scale(1.03); }
+        .btn-open-account {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+            color: var(--accent-ink); font-weight: 700; font-size: .82rem;
+            padding: 9px 20px; border-radius: 9px; text-decoration: none;
+            transition: all .25s; margin-bottom: 10px;
+        }
+        .btn-open-account:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(201,162,39,.3); color: var(--accent-ink); }
+        .btn-open-account.disabled { background: #e7eaef; color: #9aa3af; pointer-events: none; box-shadow: none; }
+        .how-to-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: .78rem; color: #2563eb; font-weight: 600; text-decoration: none;
+        }
+        .how-to-link:hover { text-decoration: underline; }
+        .soon-pill {
+            font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px;
+            background: #eef1f5; color: var(--muted);
+            padding: 4px 12px; border-radius: 999px; margin-bottom: 14px;
         }
 
-        .broker-table-wrap {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+        /* ---------- Account section ---------- */
+        .account-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 44px;
+            box-shadow: var(--shadow-sm);
         }
-
-        .broker-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin-top: 20px;
-            min-width: 400px;
+        .account-highlight {
+            background: linear-gradient(135deg, #fff8e6, #fdf0c9);
+            border: 1px solid #ecd27e;
+            border-radius: 14px; padding: 26px 30px; margin-bottom: 34px;
         }
+        .account-highlight h4 { color: #7a5b0b; font-weight: 800; margin-bottom: 8px; font-size: 1.1rem; letter-spacing: -.2px; }
+        .account-highlight p { color: #8a6a10; margin: 0; font-size: .94rem; }
+        .mini-title { font-weight: 700; font-size: 1rem; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .mini-title i { color: var(--accent); }
 
+        .broker-table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+        .broker-table { width: 100%; border-collapse: collapse; min-width: 420px; }
         .broker-table th {
-            background: var(--primary);
-            color: white;
-            padding: 14px 20px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 0.9rem;
+            background: var(--navy); color: #fff;
+            padding: 13px 18px; text-align: left;
+            font-weight: 600; font-size: .84rem; letter-spacing: .2px;
         }
-
-        .broker-table th:first-child { border-radius: 12px 0 0 0; }
-        .broker-table th:last-child { border-radius: 0 12px 0 0; }
-
         .broker-table td {
-            padding: 14px 20px;
+            padding: 13px 18px; font-size: .88rem;
             border-bottom: 1px solid var(--border);
-            font-size: 0.92rem;
+            background: #fff;
         }
-
-        .broker-table tr:last-child td:first-child { border-radius: 0 0 0 12px; }
-        .broker-table tr:last-child td:last-child { border-radius: 0 0 12px 0; }
-
-        .broker-table tr:hover td { background: var(--bg-soft); }
-
+        .broker-table tr:last-child td { border-bottom: none; }
+        .broker-table tr:hover td { background: #fbfcfd; }
         .check-green { color: var(--success); font-weight: 600; }
         .cross-red { color: var(--danger); font-weight: 600; }
 
-        .license-form {
-            background: var(--bg-soft);
-            border-radius: 16px;
-            padding: 28px;
-            border: 1px solid var(--border);
-            margin-top: 20px;
-        }
-
-        .form-label {
-            font-weight: 600;
-            font-size: 0.88rem;
-            color: var(--text-main);
-            margin-bottom: 6px;
-        }
-
-        .form-control, .form-select {
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            padding: 12px 16px;
-            font-size: 0.95rem;
-            transition: all 0.2s;
-        }
-
-        .form-control:focus, .form-select:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(201,162,39,0.1);
-        }
-
-        .btn-submit {
-            background: linear-gradient(135deg, var(--accent), #d4b43a);
-            color: #1a1a2e;
-            font-weight: 700;
-            padding: 12px 28px;
-            border: none;
-            border-radius: 10px;
-            transition: all 0.3s;
-        }
-
-        .btn-submit:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 24px rgba(201,162,39,0.3);
-        }
-
-        .alert-box {
-            border-radius: 14px;
-            padding: 20px 24px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-        }
-
-        .alert-warning-custom {
-            background: #fffbeb;
-            border: 1px solid #fcd34d;
-            color: #92400e;
-        }
-
-        .alert-info-custom {
-            background: #eff6ff;
-            border: 1px solid #93c5fd;
-            color: #1e40af;
-        }
-
-        .alert-success-custom {
-            background: #ecfdf5;
-            border: 1px solid #6ee7b7;
-            color: #065f46;
-        }
-
-        .alert-danger-custom {
-            background: #fef2f2;
-            border: 1px solid #fca5a5;
-            color: #991b1b;
-        }
-
-        .alert-free {
-            background: #ecfdf5;
-            border: 2px solid #10b981;
-            color: #065f46;
-        }
-
-        .alert-icon { font-size: 1.2rem; margin-top: 2px; flex-shrink: 0; }
-
-        /* Telegram Banner */
-        .telegram-banner {
-            background: linear-gradient(135deg, #0088cc, #005f8f);
-            color: white;
-            padding: 20px 24px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .telegram-banner .banner-text {
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        .telegram-banner .banner-text strong {
-            font-weight: 700;
-        }
-
-        .btn-telegram {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: white;
-            color: #0088cc;
-            font-weight: 700;
-            padding: 10px 24px;
-            border-radius: 10px;
-            text-decoration: none;
-            transition: all 0.3s;
-            flex-shrink: 0;
-        }
-
-        .btn-telegram:hover {
-            background: #f0f9ff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        /* Video Placeholder */
-        .video-placeholder {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            border-radius: 16px;
-            padding: 40px 24px;
-            text-align: center;
-            color: white;
-            margin: 16px 0;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px dashed rgba(201,162,39,0.4);
-        }
-
-        .video-placeholder:hover {
-            border-color: var(--accent);
-            transform: scale(1.01);
-        }
-
-        .video-placeholder i {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 12px;
-        }
-
-        .video-placeholder .vid-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 4px;
-        }
-
-        .video-placeholder .vid-sub {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.6);
-        }
-
-        /* About Section */
+        /* ---------- About ---------- */
         .about-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 48px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
-            border: 1px solid var(--border);
-            text-align: center;
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 52px 48px;
+            box-shadow: var(--shadow-sm); text-align: center;
         }
-
         .about-logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--accent), #d4b43a);
-            border-radius: 20px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: #1a1a2e;
-            margin-bottom: 20px;
+            width: 74px; height: 74px; border-radius: 18px;
+            background: linear-gradient(135deg, var(--navy), var(--navy-3));
+            color: var(--accent-soft); font-size: 1.7rem;
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-bottom: 22px;
         }
+        .about-card h3 { font-size: 1.65rem; font-weight: 800; letter-spacing: -.6px; margin-bottom: 12px; }
+        .about-card > p { color: var(--muted); font-size: 1rem; max-width: 620px; margin: 0 auto 26px; }
+        .subscribe-list { list-style: none; padding: 0; display: inline-block; text-align: left; }
+        .subscribe-list li { display: flex; align-items: center; gap: 11px; padding: 6px 0; font-size: .96rem; }
+        .subscribe-list li i { color: var(--success); }
 
-        .about-card h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .about-card p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            max-width: 700px;
-            margin: 0 auto 24px;
-        }
-
-        .subscribe-list {
-            list-style: none;
-            padding: 0;
-            display: inline-block;
-            text-align: left;
-        }
-
-        .subscribe-list li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 6px 0;
-            font-size: 1rem;
-            color: var(--text-main);
-        }
-
-        .subscribe-list li i {
-            color: var(--success);
-            font-size: 1.1rem;
-        }
-
-        /* Social links */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-top: 24px;
-            flex-wrap: wrap;
-        }
-
+        .social-links { display: flex; justify-content: center; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
         .social-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: var(--bg-soft);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            color: var(--text-main);
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 20px; border-radius: 10px;
+            background: var(--bg); border: 1px solid var(--border);
+            color: var(--text); font-weight: 600; font-size: .88rem;
+            text-decoration: none; transition: all .25s;
         }
-
-        .social-link:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .social-link i {
-            font-size: 1.1rem;
-        }
-
-        .social-link.telegram:hover { background: #0088cc; border-color: #0088cc; }
-        .social-link.youtube:hover { background: #ff0000; border-color: #ff0000; }
+        .social-link:hover { color: #fff; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(15,23,42,.14); }
+        .social-link.telegram:hover { background: #0e7cba; border-color: #0e7cba; }
+        .social-link.youtube:hover { background: #e02424; border-color: #e02424; }
         .social-link.facebook:hover { background: #1877f2; border-color: #1877f2; }
-        .social-link.instagram:hover { background: #e4405f; border-color: #e4405f; }
-        .social-link.email:hover { background: #ea4335; border-color: #ea4335; }
+        .social-link.instagram:hover { background: #d6336c; border-color: #d6336c; }
+        .social-link.email:hover { background: var(--navy); border-color: var(--navy); }
 
-        /* Footer */
-        .footer {
-            background: var(--primary);
-            color: rgba(255,255,255,0.7);
-            padding: 50px 0 30px;
-            text-align: center;
-        }
-
-        .footer-brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 8px;
-        }
-
-        .footer-brand span { color: var(--accent); }
-
-        .footer-desc {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
-            max-width: 500px;
-            margin: 0 auto 24px;
-        }
-
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-        }
-
+        /* ---------- Footer ---------- */
+        .footer { background: var(--navy); color: rgba(255,255,255,.65); padding: 60px 0 30px; text-align: center; }
+        .footer-brand { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .footer-brand .brand-mark { width: 40px; height: 40px; }
+        .footer-brand span { color: #fff; font-weight: 700; font-size: 1.15rem; }
+        .footer-desc { color: rgba(255,255,255,.48); font-size: .9rem; max-width: 520px; margin: 0 auto 26px; }
+        .footer-social { display: flex; justify-content: center; gap: 12px; margin-bottom: 26px; flex-wrap: wrap; }
         .footer-social a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            color: rgba(255,255,255,0.7);
-            font-size: 1.1rem;
-            text-decoration: none;
-            transition: all 0.3s;
+            width: 42px; height: 42px; border-radius: 50%;
+            background: rgba(255,255,255,.07); color: rgba(255,255,255,.7);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1rem; text-decoration: none; transition: all .25s;
         }
-
-        .footer-social a:hover {
-            background: var(--accent);
-            color: #1a1a2e;
-            transform: translateY(-3px);
-        }
-
-        .footer-email {
-            color: var(--accent);
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 0.95rem;
-        }
-
+        .footer-social a:hover { background: var(--accent); color: var(--accent-ink); transform: translateY(-3px); }
+        .footer-email { color: var(--accent-soft); font-weight: 600; text-decoration: none; font-size: .92rem; }
         .footer-email:hover { text-decoration: underline; }
+        .footer-call { color: rgba(255,255,255,.6); font-size: .9rem; margin-top: 10px; }
+        .footer-call strong { color: var(--accent-soft); }
+        .footer-bottom { margin-top: 34px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.08); font-size: .8rem; color: rgba(255,255,255,.35); }
+        .footer-bottom p { margin-bottom: 4px; }
 
-        .footer-bottom {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.35);
+        /* ---------- Copy toast ---------- */
+        .copy-toast {
+            position: fixed; bottom: 26px; left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: var(--navy); color: #fff;
+            padding: 12px 24px; border-radius: 12px;
+            font-size: .88rem; font-weight: 600;
+            display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 14px 34px rgba(11,18,32,.4);
+            transition: transform .35s cubic-bezier(.4,0,.2,1);
+            z-index: 2000; pointer-events: none;
         }
+        .copy-toast.show { transform: translateX(-50%) translateY(0); }
+        .copy-toast i { color: var(--accent-soft); }
 
+        /* ---------- Responsive ---------- */
         @media (max-width: 768px) {
-            .hero { padding: 50px 0 40px; }
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1rem; padding: 0 16px; }
-            .hero-badge { font-size: 0.75rem; padding: 5px 14px; }
-            .price-banner { font-size: 0.85rem; padding: 8px 16px; margin: 16px 16px 0; }
-
-            .section { padding: 40px 0; }
-            .section-title { font-size: 1.5rem; }
-            .section-subtitle { font-size: 0.9rem; padding: 0 16px; }
-
-            .bot-card { padding: 24px; }
-            .bot-card h3 { font-size: 1.25rem; }
-            .price-tag { font-size: 1.6rem; }
-
-            .tab-content { padding: 20px 16px; }
+            .hero { padding: 120px 0 70px; }
+            .hero-stat { padding: 6px 20px; }
+            .section { padding: 60px 0; }
+            .tab-content { padding: 24px 18px; }
+            .step-content { padding-left: 0; }
             .step-card { padding: 20px; }
-            .step-content { padding-left: 0; margin-top: 12px; }
-            .step-number { margin-right: 10px; }
-
-            .nav-pills .nav-link { padding: 12px 16px; font-size: 0.85rem; }
-
-            .partner-card { padding: 18px; }
-            .partner-logo { font-size: 1.1rem; }
-            .partner-code { font-size: 0.9rem; padding: 6px 14px; }
-
-            .account-card { padding: 24px 16px; }
-            .account-highlight { padding: 20px; }
-
-            .about-card { padding: 32px 20px; }
-            .about-logo { width: 64px; height: 64px; font-size: 1.6rem; }
-            .about-card h3 { font-size: 1.4rem; }
-
-            .social-link { padding: 8px 14px; font-size: 0.85rem; }
-
-            .telegram-banner { padding: 16px; gap: 12px; }
-            .telegram-banner .banner-text { font-size: 0.9rem; }
-            .btn-telegram { padding: 8px 18px; font-size: 0.9rem; }
-
-            .video-placeholder { padding: 28px 16px; }
-            .video-placeholder i { font-size: 2.2rem; }
-            .video-placeholder .vid-title { font-size: 1rem; }
-        }
-
-        @media (max-width: 576px) {
-            .hero h1 { font-size: 1.7rem; }
-            .price-banner { flex-direction: column; gap: 6px; text-align: center; }
-            .alert-box { flex-direction: column; gap: 10px; }
-            .step-title { font-size: 1rem; }
+            .account-card { padding: 26px 20px; }
+            .about-card { padding: 36px 22px; }
+            .nav-pills .nav-link { padding: 14px 18px; font-size: .85rem; }
         }
     </style>
 <base target="_blank">
 </head>
 <body>
 
+    <!-- Navbar -->
+    <nav class="navbar-dsq">
+        <div class="container">
+            <a href="#top" class="brand" target="_self">
+                <span class="brand-mark">DSQ</span>
+                <span class="brand-name">Dalal Street Quants<small>Algorithmic Trading Bots</small></span>
+            </a>
+            <div class="nav-links">
+                <a class="nl" href="#download" target="_self">Download</a>
+                <a class="nl" href="#setup" target="_self">Setup</a>
+                <a class="nl" href="#account" target="_self">Account</a>
+                <a class="nl" href="#brokers" target="_self">Brokers</a>
+                <a class="nl" href="#about" target="_self">About</a>
+                <a href="https://t.me/dsqfxtrader" class="nl btn-nav-cta"><i class="fab fa-telegram"></i> Join Telegram</a>
+            </div>
+        </div>
+    </nav>
+
     <!-- Hero -->
-    <section class="hero">
+    <section class="hero" id="top">
         <div class="container hero-content">
-            <div class="hero-badge"><i class="fas fa-robot me-2"></i>Dalal Street Quants</div>
+            <div class="hero-badge"><i class="fas fa-robot"></i> Dalal Street Quants</div>
             <h1>DSQ <span>Forex Bot</span></h1>
-            <p>Dalal Street Quants builds, tests, and analyzes algorithmic trading strategies for Nifty 50, Bank Nifty, Nifty 500 stocks, Gold and Bitcoin.</p>
-            <div class="price-banner">
-                <i class="fas fa-gift"></i>
-                <span>100% FREE — All Versions | License | Premium Access</span>
+            <p class="lead">Algorithmic trading strategies built, tested, and analyzed for Nifty 50, Bank Nifty, Nifty 500 stocks, Gold and Bitcoin.</p>
+            <div class="hero-ctas">
+                <a href="#download" class="btn-hero-primary" target="_self"><i class="fas fa-download"></i> Download Free Bot</a>
+                <a href="#setup" class="btn-hero-ghost" target="_self"><i class="fas fa-circle-play"></i> Setup Guide</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat"><div class="num">4</div><div class="lbl">Bot Versions</div></div>
+                <div class="hero-stat"><div class="num"><i class="fas fa-gift"></i>FREE</div><div class="lbl">V1 – V3 Licenses</div></div>
+                <div class="hero-stat"><div class="num">30s</div><div class="lbl">License Activation</div></div>
+                <div class="hero-stat"><div class="num">5</div><div class="lbl">Partner Brokers</div></div>
             </div>
         </div>
     </section>
 
-    <!-- Telegram Query Banner -->
-    <section class="section" style="padding-bottom: 0;">
+    <!-- Telegram strip -->
+    <div class="tg-strip-wrap">
         <div class="container">
-            <div class="telegram-banner">
-                <div class="banner-text">
-                    <i class="fab fa-telegram" style="font-size: 1.4rem; margin-right: 8px;"></i>
-                    <strong>Have Queries?</strong> Join our Telegram group and post your questions — our team & community will help you out!
-                </div>
-                <a href="https://t.me/dsqfxtrader" target="_blank" class="btn-telegram">
-                    <i class="fab fa-telegram"></i> Join Telegram Group
-                </a>
+            <div class="tg-strip">
+                <span class="ico"><i class="fab fa-telegram"></i></span>
+                <div class="txt"><strong>Have questions?</strong> Join our Telegram group — our team &amp; community will help you out.</div>
+                <a href="https://t.me/dsqfxtrader" class="btn-tg"><i class="fab fa-telegram"></i> Join Telegram Group</a>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Section 1: Bot Download -->
-    <section class="section">
+    <section class="section" id="download">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-download me-2" style="color: var(--accent);"></i>Bot Download</h2>
-            <p class="section-subtitle">Choose the version that fits your trading style — every version is completely free</p>
+            <div class="title-block">
+                <span class="eyebrow"><i class="fas fa-download"></i> Bot Download</span>
+                <h2 class="section-title">Choose Your Version</h2>
+                <p class="section-subtitle">Pick the version that fits your trading style — V1 to V3 are completely free.</p>
+            </div>
 
             <div class="row g-4 align-items-stretch">
                 <!-- V1 -->
                 <div class="col-md-6 col-lg-3 d-flex">
                     <div class="bot-card">
-                        <div class="bot-version"><i class="fas fa-bolt"></i> Version 1.0</div>
-                        <div class="license-badge badge-license"><i class="fas fa-key"></i> Free License</div>
+                        <div class="bot-head">
+                            <span class="bot-icon"><i class="fas fa-bolt"></i></span>
+                            <span class="license-badge badge-license"><i class="fas fa-key"></i> Free License</span>
+                        </div>
                         <h3>DSQ V1</h3>
-                        <div class="price-tag">FREE <span class="original">₹1,000</span></div>
+                        <div class="bot-tagline">Version 1.0 — Starter grid bot</div>
+                        <div class="price-row">
+                            <span class="price-now">FREE</span>
+                            <span class="price-was">₹1,000</span>
+                        </div>
                         <ul class="feature-list">
                             <li><i class="fas fa-check"></i> Grid Trading</li>
                             <li><i class="fas fa-check"></i> Max Risk Management</li>
-                            <li><i class="fas fa-xmark"></i> Trailing Stop</li>
-                            <li><i class="fas fa-xmark"></i> Hedging</li>
-                            <li><i class="fas fa-xmark"></i> Human Intervention</li>
+                            <li class="off"><i class="fas fa-xmark"></i> Trailing Stop</li>
+                            <li class="off"><i class="fas fa-xmark"></i> Hedging</li>
+                            <li class="off"><i class="fas fa-xmark"></i> Human Intervention</li>
                         </ul>
-                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v1.ex5" class="btn-download" target="_blank">
+                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v1.ex5" class="btn-download">
                             <i class="fas fa-download"></i> Download V1
                         </a>
                     </div>
@@ -965,18 +639,24 @@
                 <!-- V2 -->
                 <div class="col-md-6 col-lg-3 d-flex">
                     <div class="bot-card">
-                        <div class="bot-version"><i class="fas fa-rocket"></i> Version 2.0</div>
-                        <div class="license-badge badge-license"><i class="fas fa-key"></i> Free License</div>
+                        <div class="bot-head">
+                            <span class="bot-icon"><i class="fas fa-rocket"></i></span>
+                            <span class="license-badge badge-license"><i class="fas fa-key"></i> Free License</span>
+                        </div>
                         <h3>DSQ V2</h3>
-                        <div class="price-tag">FREE <span class="original">₹2,000</span></div>
+                        <div class="bot-tagline">Version 2.0 — Adds trailing stop</div>
+                        <div class="price-row">
+                            <span class="price-now">FREE</span>
+                            <span class="price-was">₹2,000</span>
+                        </div>
                         <ul class="feature-list">
                             <li><i class="fas fa-check"></i> Grid Trading</li>
                             <li><i class="fas fa-check"></i> Trailing Stop</li>
                             <li><i class="fas fa-check"></i> Max Risk Management</li>
-                            <li><i class="fas fa-xmark"></i> Hedging</li>
-                            <li><i class="fas fa-xmark"></i> Human Intervention</li>
+                            <li class="off"><i class="fas fa-xmark"></i> Hedging</li>
+                            <li class="off"><i class="fas fa-xmark"></i> Human Intervention</li>
                         </ul>
-                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v2.ex5" class="btn-download" target="_blank">
+                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v2.ex5" class="btn-download">
                             <i class="fas fa-download"></i> Download V2
                         </a>
                     </div>
@@ -985,18 +665,24 @@
                 <!-- V3 -->
                 <div class="col-md-6 col-lg-3 d-flex">
                     <div class="bot-card">
-                        <div class="bot-version"><i class="fas fa-shield-halved"></i> Version 3.0</div>
-                        <div class="license-badge badge-partner"><i class="fas fa-key"></i> Free License + Partner</div>
+                        <div class="bot-head">
+                            <span class="bot-icon"><i class="fas fa-shield-halved"></i></span>
+                            <span class="license-badge badge-partner"><i class="fas fa-key"></i> Free + Partner</span>
+                        </div>
                         <h3>DSQ V3</h3>
-                        <div class="price-tag">FREE <span class="original">₹4,000</span></div>
+                        <div class="bot-tagline">Version 3.0 — Adds hedging</div>
+                        <div class="price-row">
+                            <span class="price-now">FREE</span>
+                            <span class="price-was">₹4,000</span>
+                        </div>
                         <ul class="feature-list">
                             <li><i class="fas fa-check"></i> Grid Trading</li>
                             <li><i class="fas fa-check"></i> Trailing Stop</li>
                             <li><i class="fas fa-check"></i> Max Risk Management</li>
                             <li><i class="fas fa-check"></i> Hedging</li>
-                            <li><i class="fas fa-xmark"></i> Human Intervention</li>
+                            <li class="off"><i class="fas fa-xmark"></i> Human Intervention</li>
                         </ul>
-                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v3.ex5" class="btn-download" target="_blank">
+                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v3.ex5" class="btn-download">
                             <i class="fas fa-download"></i> Download V3
                         </a>
                     </div>
@@ -1004,11 +690,19 @@
 
                 <!-- V4 -->
                 <div class="col-md-6 col-lg-3 d-flex">
-                    <div class="bot-card">
-                        <div class="bot-version"><i class="fas fa-crown"></i> Version 4.0</div>
-                        <div class="license-badge badge-premium"><i class="fas fa-star"></i> Premium Access</div>
+                    <div class="bot-card featured">
+                        <div class="featured-ribbon">Premium</div>
+                        <div class="bot-head">
+                            <span class="bot-icon"><i class="fas fa-crown"></i></span>
+                            <span class="license-badge badge-premium"><i class="fas fa-star"></i> Premium</span>
+                        </div>
                         <h3>DSQ V4</h3>
-                        <div class="price-tag">₹1,999 <span class="original">₹6,000</span></div>
+                        <div class="bot-tagline">Version 4.0 — Full feature suite</div>
+                        <div class="price-row">
+                            <span class="price-now paid">₹1,999</span>
+                            <span class="price-was">₹6,000</span>
+                            <span class="price-note">One-time</span>
+                        </div>
                         <ul class="feature-list">
                             <li><i class="fas fa-check"></i> Grid Trading</li>
                             <li><i class="fas fa-check"></i> Trailing Stop</li>
@@ -1016,7 +710,7 @@
                             <li><i class="fas fa-check"></i> Hedging</li>
                             <li><i class="fas fa-check"></i> Human Intervention</li>
                         </ul>
-                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v4.ex5" class="btn-download" target="_blank">
+                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v4.ex5" class="btn-download dark">
                             <i class="fas fa-download"></i> Download V4
                         </a>
                     </div>
@@ -1026,24 +720,27 @@
     </section>
 
     <!-- Section 2: Bot Setup -->
-    <section class="section" style="background: white;">
+    <section class="section alt" id="setup">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-cogs me-2" style="color: var(--accent);"></i>Bot Setup</h2>
-            <p class="section-subtitle">Follow the step-by-step guide for your chosen bot version</p>
+            <div class="title-block">
+                <span class="eyebrow"><i class="fas fa-cogs"></i> Bot Setup</span>
+                <h2 class="section-title">Step-by-Step Setup Guide</h2>
+                <p class="section-subtitle">Follow the guide for your chosen bot version — most setups complete in minutes.</p>
+            </div>
 
-            <div class="setup-tabs">
+            <div class="setup-shell">
                 <ul class="nav nav-pills justify-content-center" id="setupTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="v1-tab" data-bs-toggle="pill" data-bs-target="#v1-setup" type="button" role="tab">DSQ V1</button>
+                        <button class="nav-link active" id="v1-tab" data-bs-toggle="pill" data-bs-target="#v1-setup" type="button" role="tab"><span class="v-dot"></span>DSQ V1</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="v2-tab" data-bs-toggle="pill" data-bs-target="#v2-setup" type="button" role="tab">DSQ V2</button>
+                        <button class="nav-link" id="v2-tab" data-bs-toggle="pill" data-bs-target="#v2-setup" type="button" role="tab"><span class="v-dot"></span>DSQ V2</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="v3-tab" data-bs-toggle="pill" data-bs-target="#v3-setup" type="button" role="tab">DSQ V3</button>
+                        <button class="nav-link" id="v3-tab" data-bs-toggle="pill" data-bs-target="#v3-setup" type="button" role="tab"><span class="v-dot"></span>DSQ V3</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="v4-tab" data-bs-toggle="pill" data-bs-target="#v4-setup" type="button" role="tab">DSQ V4</button>
+                        <button class="nav-link" id="v4-tab" data-bs-toggle="pill" data-bs-target="#v4-setup" type="button" role="tab"><span class="v-dot"></span>DSQ V4</button>
                     </li>
                 </ul>
 
@@ -1056,18 +753,17 @@
                         </div>
 
                         <div class="step-card">
-                            <span class="step-number">1</span>
-                            <span class="step-title">Download MT5 & Login</span>
+                            <div class="step-head"><span class="step-number">1</span><span class="step-title">Download MT5 &amp; Login</span></div>
                             <div class="step-content">
                                 <ul>
-                                    <li>Download MT5 from <a href="https://www.metatrader5.com/en/download" target="_blank">metatrader5.com</a></li>
+                                    <li>Download MT5 from <a href="https://www.metatrader5.com/en/download">metatrader5.com</a></li>
                                     <li>Login with your broker credentials (use Cent account only with maximum leverage set like 1:2000)</li>
                                     <li>
                                         In MetaTrader, go to <strong>Tools → Options → Expert Advisors</strong>:
-                                        <ul style="margin-top: 8px; padding-left: 20px;">
+                                        <ul style="margin-top: 8px;">
                                             <li>Allow <strong>Algorithmic Trading</strong></li>
-                                            <li>Allow <strong>Web Request for listed URL</strong> → Add: 
-                                                <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')" style="margin-top: 4px; display: inline-flex;">
+                                            <li>Allow <strong>Web Request for listed URL</strong> → Add:
+                                                <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')">
                                                     https://raw.githubusercontent.com <i class="fas fa-copy copy-icon"></i>
                                                 </span>
                                             </li>
@@ -1078,8 +774,7 @@
                         </div>
 
                         <div class="step-card">
-                            <span class="step-number">2</span>
-                            <span class="step-title">Download & Install DSQ V1</span>
+                            <div class="step-head"><span class="step-number">2</span><span class="step-title">Download &amp; Install DSQ V1</span></div>
                             <div class="step-content">
                                 <ul>
                                     <li>Download <code>dsq_v1.ex5</code> from the button above</li>
@@ -1090,8 +785,7 @@
                         </div>
 
                         <div class="step-card">
-                            <span class="step-number">3</span>
-                            <span class="step-title">Activate Your Free License</span>
+                            <div class="step-head"><span class="step-number">3</span><span class="step-title">Activate Your Free License</span></div>
                             <div class="step-content">
                                 <div class="alert-box alert-success-custom mb-3">
                                     <i class="fas fa-check-circle alert-icon"></i>
@@ -1099,12 +793,12 @@
                                 </div>
                                 <p><strong>How to get your V1 License:</strong></p>
                                 <ul>
-                                    <li>Join our <a href="https://t.me/dsqfxtrader" target="_blank"><strong>Telegram Channel</strong></a></li>
+                                    <li>Join our <a href="https://t.me/dsqfxtrader"><strong>Telegram Channel</strong></a></li>
                                     <li>Message our Telegram Bot with your <strong>MT5 ID</strong> and <strong>Broker Name</strong></li>
                                     <li>Your free license will be activated instantly — <strong>takes max 30 seconds!</strong></li>
                                 </ul>
                                 <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=PLACEHOLDER_VIDEO_ID','_blank')">
-                                    <i class="fas fa-play-circle"></i>
+                                    <span class="play"><i class="fas fa-play"></i></span>
                                     <div class="vid-title">Watch: How to Get Your Free V1 License</div>
                                     <div class="vid-sub">Step-by-step video guide (placeholder — replace link)</div>
                                 </div>
@@ -1120,18 +814,17 @@
                         </div>
 
                         <div class="step-card">
-                            <span class="step-number">1</span>
-                            <span class="step-title">Download MT5 & Login</span>
+                            <div class="step-head"><span class="step-number">1</span><span class="step-title">Download MT5 &amp; Login</span></div>
                             <div class="step-content">
                                 <ul>
-                                    <li>Download MT5 from <a href="https://www.metatrader5.com/en/download" target="_blank">metatrader5.com</a></li>
+                                    <li>Download MT5 from <a href="https://www.metatrader5.com/en/download">metatrader5.com</a></li>
                                     <li>Login with your broker credentials (use Cent account only with maximum leverage set like 1:2000)</li>
                                     <li>
                                         In MetaTrader, go to <strong>Tools → Options → Expert Advisors</strong>:
-                                        <ul style="margin-top: 8px; padding-left: 20px;">
+                                        <ul style="margin-top: 8px;">
                                             <li>Allow <strong>Algorithmic Trading</strong></li>
-                                            <li>Allow <strong>Web Request for listed URL</strong> → Add: 
-                                                <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')" style="margin-top: 4px; display: inline-flex;">
+                                            <li>Allow <strong>Web Request for listed URL</strong> → Add:
+                                                <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')">
                                                     https://raw.githubusercontent.com <i class="fas fa-copy copy-icon"></i>
                                                 </span>
                                             </li>
@@ -1142,8 +835,7 @@
                         </div>
 
                         <div class="step-card">
-                            <span class="step-number">2</span>
-                            <span class="step-title">Download & Install DSQ V2</span>
+                            <div class="step-head"><span class="step-number">2</span><span class="step-title">Download &amp; Install DSQ V2</span></div>
                             <div class="step-content">
                                 <ul>
                                     <li>Download <code>dsq_v2.ex5</code> from the button above</li>
@@ -1154,8 +846,7 @@
                         </div>
 
                         <div class="step-card">
-                            <span class="step-number">3</span>
-                            <span class="step-title">Activate Your Free License</span>
+                            <div class="step-head"><span class="step-number">3</span><span class="step-title">Activate Your Free License</span></div>
                             <div class="step-content">
                                 <div class="alert-box alert-success-custom mb-3">
                                     <i class="fas fa-check-circle alert-icon"></i>
@@ -1163,12 +854,12 @@
                                 </div>
                                 <p><strong>How to get your V2 License:</strong></p>
                                 <ul>
-                                    <li>Join our <a href="https://t.me/dsqfxtrader" target="_blank"><strong>Telegram Channel</strong></a></li>
+                                    <li>Join our <a href="https://t.me/dsqfxtrader"><strong>Telegram Channel</strong></a></li>
                                     <li>Message our Telegram Bot with your <strong>MT5 ID</strong> and <strong>Broker Name</strong></li>
                                     <li>Your free license will be activated instantly — <strong>takes max 30 seconds!</strong></li>
                                 </ul>
                                 <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=PLACEHOLDER_VIDEO_ID','_blank')">
-                                    <i class="fas fa-play-circle"></i>
+                                    <span class="play"><i class="fas fa-play"></i></span>
                                     <div class="vid-title">Watch: How to Get Your Free V2 License</div>
                                     <div class="vid-sub">Step-by-step video guide (placeholder — replace link)</div>
                                 </div>
@@ -1184,18 +875,17 @@
                         </div>
 
                         <div class="step-card">
-                            <span class="step-number">1</span>
-                            <span class="step-title">Download MT5 & Login</span>
+                            <div class="step-head"><span class="step-number">1</span><span class="step-title">Download MT5 &amp; Login</span></div>
                             <div class="step-content">
                                 <ul>
-                                    <li>Download MT5 from <a href="https://www.metatrader5.com/en/download" target="_blank">metatrader5.com</a></li>
+                                    <li>Download MT5 from <a href="https://www.metatrader5.com/en/download">metatrader5.com</a></li>
                                     <li>Login with your broker credentials (use Cent account only with maximum leverage set like 1:2000)</li>
                                     <li>
                                         In MetaTrader, go to <strong>Tools → Options → Expert Advisors</strong>:
-                                        <ul style="margin-top: 8px; padding-left: 20px;">
+                                        <ul style="margin-top: 8px;">
                                             <li>Allow <strong>Algorithmic Trading</strong></li>
-                                            <li>Allow <strong>Web Request for listed URL</strong> → Add: 
-                                                <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')" style="margin-top: 4px; display: inline-flex;">
+                                            <li>Allow <strong>Web Request for listed URL</strong> → Add:
+                                                <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')">
                                                     https://raw.githubusercontent.com <i class="fas fa-copy copy-icon"></i>
                                                 </span>
                                             </li>
@@ -1206,59 +896,57 @@
                         </div>
 
                         <div class="step-card">
-                            <span class="step-number">2</span>
-                            <span class="step-title">Set Partner Code on Your Account</span>
+                            <div class="step-head"><span class="step-number">2</span><span class="step-title">Set Partner Code on Your Account</span></div>
                             <div class="step-content">
                                 <p>Our bots are supported <strong>only</strong> for the following brokers. Set the partner code on your broker account:</p>
                                 <div class="row g-3 mt-2">
                                     <div class="col-md-6 col-lg-3">
                                         <div class="partner-card">
-                                            <div class="partner-logo">🏢 Vantage</div>
-                                            <div class="partner-code" onclick="copyToClipboard(this, 'VcM6U1DW')">VcM6U1DW <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
-                                            <div>
-                                                <a href="https://vigco.co/la-com-inv/VcM6U1DW" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            </div>
-                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                            <span class="partner-avatar">V</span>
+                                            <div class="partner-logo">Vantage</div>
+                                            <div class="partner-sub">Partner broker</div>
+                                            <span class="partner-code" onclick="copyToClipboard(this, 'VcM6U1DW')">VcM6U1DW <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                                            <a href="https://vigco.co/la-com-inv/VcM6U1DW" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <div class="partner-card">
-                                            <div class="partner-logo">🏢 Roboforex</div>
-                                            <div class="partner-code" onclick="copyToClipboard(this, 'zrfhm')">zrfhm <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
-                                            <div>
-                                                <a href="https://my.roboforex.com/en/?a=zrfhm" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            </div>
-                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                            <span class="partner-avatar">R</span>
+                                            <div class="partner-logo">Roboforex</div>
+                                            <div class="partner-sub">Partner broker</div>
+                                            <span class="partner-code" onclick="copyToClipboard(this, 'zrfhm')">zrfhm <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                                            <a href="https://my.roboforex.com/en/?a=zrfhm" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <div class="partner-card">
-                                            <div class="partner-logo">🏢 Exness</div>
-                                            <div class="partner-code" onclick="copyToClipboard(this, 'c_niibgmkreg')">c_niibgmkreg <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
-                                            <div>
-                                                <a href="https://one.exnessonelink.com/a/c_niibgmkreg" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            </div>
-                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                            <span class="partner-avatar">E</span>
+                                            <div class="partner-logo">Exness</div>
+                                            <div class="partner-sub">Partner broker</div>
+                                            <span class="partner-code" onclick="copyToClipboard(this, 'c_niibgmkreg')">c_niibgmkreg <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                                            <a href="https://one.exnessonelink.com/a/c_niibgmkreg" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <div class="partner-card">
-                                            <div class="partner-logo">🏢 XM</div>
-                                            <div class="partner-code" onclick="copyToClipboard(this, '4299V')">4299V <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
-                                            <div>
-                                                <a href="https://affs.click/mvjlf" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            </div>
-                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                            <span class="partner-avatar">X</span>
+                                            <div class="partner-logo">XM</div>
+                                            <div class="partner-sub">Partner broker</div>
+                                            <span class="partner-code" onclick="copyToClipboard(this, '4299V')">4299V <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                                            <a href="https://affs.click/mvjlf" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
-                                        <div class="partner-card">
-                                            <div class="partner-logo">🏢 CXM</div>
-                                            <div class="partner-code" onclick="copyToClipboard(this, 'upcoming')">upcoming <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
-                                            <div>
-                                                <a href="#" class="btn-open-account" style="opacity: 0.5; pointer-events: none;"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            </div>
-                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                        <div class="partner-card soon">
+                                            <span class="partner-avatar">C</span>
+                                            <div class="partner-logo">CXM</div>
+                                            <div class="partner-sub">Partner broker</div>
+                                            <span class="soon-pill">Coming Soon</span>
+                                            <span class="btn-open-account disabled"><i class="fas fa-user-plus"></i> Open Account</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1266,8 +954,7 @@
                         </div>
 
                         <div class="step-card">
-                            <span class="step-number">3</span>
-                            <span class="step-title">Download & Install DSQ V3</span>
+                            <div class="step-head"><span class="step-number">3</span><span class="step-title">Download &amp; Install DSQ V3</span></div>
                             <div class="step-content">
                                 <ul>
                                     <li>Download <code>dsq_v3.ex5</code> from the button above</li>
@@ -1278,8 +965,7 @@
                         </div>
 
                         <div class="step-card">
-                            <span class="step-number">4</span>
-                            <span class="step-title">Activate Your Free License</span>
+                            <div class="step-head"><span class="step-number">4</span><span class="step-title">Activate Your Free License</span></div>
                             <div class="step-content">
                                 <div class="alert-box alert-success-custom mb-3">
                                     <i class="fas fa-check-circle alert-icon"></i>
@@ -1287,12 +973,12 @@
                                 </div>
                                 <p><strong>How to get your V3 License:</strong></p>
                                 <ul>
-                                    <li>Join our <a href="https://t.me/dsqfxtrader" target="_blank"><strong>Telegram Channel</strong></a></li>
+                                    <li>Join our <a href="https://t.me/dsqfxtrader"><strong>Telegram Channel</strong></a></li>
                                     <li>Message our Telegram Bot with your <strong>MT5 ID</strong>, <strong>Broker Name</strong>, and confirm your <strong>Partner Code</strong> is set</li>
                                     <li>Your free license will be activated instantly — <strong>takes max 30 seconds!</strong></li>
                                 </ul>
                                 <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=PLACEHOLDER_VIDEO_ID','_blank')">
-                                    <i class="fas fa-play-circle"></i>
+                                    <span class="play"><i class="fas fa-play"></i></span>
                                     <div class="vid-title">Watch: How to Get Your Free V3 License</div>
                                     <div class="vid-sub">Step-by-step video guide (placeholder — replace link)</div>
                                 </div>
@@ -1313,18 +999,17 @@
                         </div>
 
                         <div class="step-card">
-                            <span class="step-number">1</span>
-                            <span class="step-title">Download MT5 & Login</span>
+                            <div class="step-head"><span class="step-number">1</span><span class="step-title">Download MT5 &amp; Login</span></div>
                             <div class="step-content">
                                 <ul>
-                                    <li>Download MT5 from <a href="https://www.metatrader5.com/en/download" target="_blank">metatrader5.com</a></li>
+                                    <li>Download MT5 from <a href="https://www.metatrader5.com/en/download">metatrader5.com</a></li>
                                     <li>Login with your broker credentials (use Cent account only with maximum leverage set like 1:2000)</li>
                                     <li>
                                         In MetaTrader, go to <strong>Tools → Options → Expert Advisors</strong>:
-                                        <ul style="margin-top: 8px; padding-left: 20px;">
+                                        <ul style="margin-top: 8px;">
                                             <li>Allow <strong>Algorithmic Trading</strong></li>
-                                            <li>Allow <strong>Web Request for listed URL</strong> → Add: 
-                                                <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')" style="margin-top: 4px; display: inline-flex;">
+                                            <li>Allow <strong>Web Request for listed URL</strong> → Add:
+                                                <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')">
                                                     https://raw.githubusercontent.com <i class="fas fa-copy copy-icon"></i>
                                                 </span>
                                             </li>
@@ -1335,59 +1020,57 @@
                         </div>
 
                         <div class="step-card">
-                            <span class="step-number">2</span>
-                            <span class="step-title">Set Partner Code on Your Account</span>
+                            <div class="step-head"><span class="step-number">2</span><span class="step-title">Set Partner Code on Your Account</span></div>
                             <div class="step-content">
                                 <p>Our bots are supported <strong>only</strong> for the following brokers. Set the partner code on your broker account:</p>
                                 <div class="row g-3 mt-2">
                                     <div class="col-md-6 col-lg-3">
                                         <div class="partner-card">
-                                            <div class="partner-logo">🏢 Vantage</div>
-                                            <div class="partner-code" onclick="copyToClipboard(this, 'VcM6U1DW')">VcM6U1DW <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
-                                            <div>
-                                                <a href="https://vigco.co/la-com-inv/VcM6U1DW" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            </div>
-                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                            <span class="partner-avatar">V</span>
+                                            <div class="partner-logo">Vantage</div>
+                                            <div class="partner-sub">Partner broker</div>
+                                            <span class="partner-code" onclick="copyToClipboard(this, 'VcM6U1DW')">VcM6U1DW <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                                            <a href="https://vigco.co/la-com-inv/VcM6U1DW" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <div class="partner-card">
-                                            <div class="partner-logo">🏢 Roboforex</div>
-                                            <div class="partner-code" onclick="copyToClipboard(this, 'zrfhm')">zrfhm <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
-                                            <div>
-                                                <a href="https://my.roboforex.com/en/?a=zrfhm" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            </div>
-                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                            <span class="partner-avatar">R</span>
+                                            <div class="partner-logo">Roboforex</div>
+                                            <div class="partner-sub">Partner broker</div>
+                                            <span class="partner-code" onclick="copyToClipboard(this, 'zrfhm')">zrfhm <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                                            <a href="https://my.roboforex.com/en/?a=zrfhm" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <div class="partner-card">
-                                            <div class="partner-logo">🏢 Exness</div>
-                                            <div class="partner-code" onclick="copyToClipboard(this, 'c_niibgmkreg')">c_niibgmkreg <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
-                                            <div>
-                                                <a href="https://one.exnessonelink.com/a/c_niibgmkreg" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            </div>
-                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                            <span class="partner-avatar">E</span>
+                                            <div class="partner-logo">Exness</div>
+                                            <div class="partner-sub">Partner broker</div>
+                                            <span class="partner-code" onclick="copyToClipboard(this, 'c_niibgmkreg')">c_niibgmkreg <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                                            <a href="https://one.exnessonelink.com/a/c_niibgmkreg" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <div class="partner-card">
-                                            <div class="partner-logo">🏢 XM</div>
-                                            <div class="partner-code" onclick="copyToClipboard(this, '4299V')">4299V <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
-                                            <div>
-                                                <a href="https://affs.click/mvjlf" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            </div>
-                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                            <span class="partner-avatar">X</span>
+                                            <div class="partner-logo">XM</div>
+                                            <div class="partner-sub">Partner broker</div>
+                                            <span class="partner-code" onclick="copyToClipboard(this, '4299V')">4299V <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                                            <a href="https://affs.click/mvjlf" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
-                                        <div class="partner-card">
-                                            <div class="partner-logo">🏢 CXM</div>
-                                            <div class="partner-code" onclick="copyToClipboard(this, 'upcoming')">upcoming <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
-                                            <div>
-                                                <a href="#" class="btn-open-account" style="opacity: 0.5; pointer-events: none;"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            </div>
-                                            <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                        <div class="partner-card soon">
+                                            <span class="partner-avatar">C</span>
+                                            <div class="partner-logo">CXM</div>
+                                            <div class="partner-sub">Partner broker</div>
+                                            <span class="soon-pill">Coming Soon</span>
+                                            <span class="btn-open-account disabled"><i class="fas fa-user-plus"></i> Open Account</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1395,8 +1078,7 @@
                         </div>
 
                         <div class="step-card">
-                            <span class="step-number">3</span>
-                            <span class="step-title">Download & Install DSQ V4</span>
+                            <div class="step-head"><span class="step-number">3</span><span class="step-title">Download &amp; Install DSQ V4</span></div>
                             <div class="step-content">
                                 <ul>
                                     <li>Download <code>dsq_v4.ex5</code> from the button above</li>
@@ -1407,8 +1089,7 @@
                         </div>
 
                         <div class="step-card">
-                            <span class="step-number">4</span>
-                            <span class="step-title">Activate Your Premium License</span>
+                            <div class="step-head"><span class="step-number">4</span><span class="step-title">Activate Your Premium License</span></div>
                             <div class="step-content">
                                 <div class="alert-box alert-success-custom mb-3">
                                     <i class="fas fa-check-circle alert-icon"></i>
@@ -1416,16 +1097,16 @@
                                 </div>
                                 <p><strong>How to get your V4 License:</strong></p>
                                 <ul>
-                                    <li>Join our <a href="https://t.me/dsqfxtrader" target="_blank"><strong>Telegram Channel</strong></a></li>
+                                    <li>Join our <a href="https://t.me/dsqfxtrader"><strong>Telegram Channel</strong></a></li>
                                     <li>Message our Telegram Bot with your <strong>MT5 ID</strong> and <strong>Broker Name</strong></li>
                                     <li>After verification, your V4 license will be activated — <strong>takes max 30 seconds!</strong></li>
                                 </ul>
                                 <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=PLACEHOLDER_VIDEO_ID','_blank')">
-                                    <i class="fas fa-play-circle"></i>
+                                    <span class="play"><i class="fas fa-play"></i></span>
                                     <div class="vid-title">Watch: How to Get Your V4 Premium License</div>
                                     <div class="vid-sub">Step-by-step video guide (placeholder — replace link)</div>
                                 </div>
-                                <small class="text-muted d-block mt-2">V4 approval requires real account verification. Contact our <a href="https://t.me/dsqfxtrader" target="_blank">Telegram Channel</a> for fast-track.</small>
+                                <small class="text-muted d-block mt-2">V4 approval requires real account verification. Contact our <a href="https://t.me/dsqfxtrader">Telegram Channel</a> for fast-track.</small>
                             </div>
                         </div>
                     </div>
@@ -1435,10 +1116,13 @@
     </section>
 
     <!-- Section 3: Account Selection -->
-    <section class="section">
+    <section class="section" id="account">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-wallet me-2" style="color: var(--accent);"></i>Choose Your Account</h2>
-            <p class="section-subtitle">We only recommend Cent Accounts for optimal bot performance</p>
+            <div class="title-block">
+                <span class="eyebrow"><i class="fas fa-wallet"></i> Account Setup</span>
+                <h2 class="section-title">Choose Your Account</h2>
+                <p class="section-subtitle">We only recommend Cent Accounts for optimal bot performance.</p>
+            </div>
 
             <div class="account-card">
                 <div class="account-highlight">
@@ -1446,9 +1130,9 @@
                     <p>Cent accounts provide the best risk-to-capital ratio for grid trading bots. With 100 USD, you get <strong>10,000 USC</strong> — enough margin buffer for the bot to operate safely.</p>
                 </div>
 
-                <div class="row">
+                <div class="row g-4">
                     <div class="col-lg-6">
-                        <h5 style="font-weight:700;margin-bottom:16px;"><i class="fas fa-calculator me-2" style="color:var(--accent);"></i>Capital Requirements</h5>
+                        <div class="mini-title"><i class="fas fa-calculator"></i> Capital Requirements</div>
                         <div class="alert-box alert-info-custom">
                             <i class="fas fa-rupee-sign alert-icon"></i>
                             <div>
@@ -1466,14 +1150,14 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <h5 style="font-weight:700;margin-bottom:16px;"><i class="fas fa-building me-2" style="color:var(--accent);"></i>Compatible Cent Accounts</h5>
+                        <div class="mini-title"><i class="fas fa-building-columns"></i> Compatible Cent Accounts</div>
                         <div class="broker-table-wrap">
                             <table class="broker-table">
                                 <thead>
                                     <tr>
                                         <th>Broker</th>
-                                        <th>✅ Cent Account</th>
-                                        <th>❌ USD Account</th>
+                                        <th>Cent Account</th>
+                                        <th>USD Account</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -1510,7 +1194,7 @@
                     </div>
                 </div>
 
-                <div class="alert-box alert-success-custom">
+                <div class="alert-box alert-success-custom mb-0">
                     <i class="fas fa-shield-alt alert-icon"></i>
                     <div>
                         <strong>Safety First:</strong> Always test on a <strong>Demo account</strong> first before using a Real account. Same broker, same cent account type.
@@ -1521,101 +1205,94 @@
     </section>
 
     <!-- Section 4: Partner Codes -->
-    <section class="section" style="background: white;">
+    <section class="section alt" id="brokers">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-handshake me-2" style="color: var(--accent);"></i>Set Partner Code on Your Account</h2>
-            <p class="section-subtitle">Our bots are supported only for the following brokers. Set the partner code on your broker account:</p>
+            <div class="title-block">
+                <span class="eyebrow"><i class="fas fa-handshake"></i> Partner Brokers</span>
+                <h2 class="section-title">Set Partner Code on Your Account</h2>
+                <p class="section-subtitle">Our bots are supported only for the following brokers. Click a code to copy it.</p>
+            </div>
 
             <div class="row g-3 justify-content-center">
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-3 d-flex">
                     <div class="partner-card">
-                        <div class="partner-logo">🏢 Vantage</div>
-                        <div class="partner-code" onclick="copyToClipboard(this, 'VcM6U1DW')">VcM6U1DW <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
-                        <div>
-                            <a href="https://vigco.co/la-com-inv/VcM6U1DW" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                        </div>
-                        <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                        <span class="partner-avatar">V</span>
+                        <div class="partner-logo">Vantage</div>
+                        <div class="partner-sub">Partner broker</div>
+                        <span class="partner-code" onclick="copyToClipboard(this, 'VcM6U1DW')">VcM6U1DW <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                        <a href="https://vigco.co/la-com-inv/VcM6U1DW" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                        <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-3 d-flex">
                     <div class="partner-card">
-                        <div class="partner-logo">🏢 Roboforex</div>
-                        <div class="partner-code" onclick="copyToClipboard(this, 'zrfhm')">zrfhm <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
-                        <div>
-                            <a href="https://my.roboforex.com/en/?a=zrfhm" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                        </div>
-                        <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                        <span class="partner-avatar">R</span>
+                        <div class="partner-logo">Roboforex</div>
+                        <div class="partner-sub">Partner broker</div>
+                        <span class="partner-code" onclick="copyToClipboard(this, 'zrfhm')">zrfhm <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                        <a href="https://my.roboforex.com/en/?a=zrfhm" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                        <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-3 d-flex">
                     <div class="partner-card">
-                        <div class="partner-logo">🏢 Exness</div>
-                        <div class="partner-code" onclick="copyToClipboard(this, 'c_niibgmkreg')">c_niibgmkreg <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
-                        <div>
-                            <a href="https://one.exnessonelink.com/a/c_niibgmkreg" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                        </div>
-                        <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                        <span class="partner-avatar">E</span>
+                        <div class="partner-logo">Exness</div>
+                        <div class="partner-sub">Partner broker</div>
+                        <span class="partner-code" onclick="copyToClipboard(this, 'c_niibgmkreg')">c_niibgmkreg <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                        <a href="https://one.exnessonelink.com/a/c_niibgmkreg" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                        <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-3 d-flex">
                     <div class="partner-card">
-                        <div class="partner-logo">🏢 XM</div>
-                        <div class="partner-code" onclick="copyToClipboard(this, '4299V')">4299V <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
-                        <div>
-                            <a href="https://affs.click/mvjlf" target="_blank" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                        </div>
-                        <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                        <span class="partner-avatar">X</span>
+                        <div class="partner-logo">XM</div>
+                        <div class="partner-sub">Partner broker</div>
+                        <span class="partner-code" onclick="copyToClipboard(this, '4299V')">4299V <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                        <a href="https://affs.click/mvjlf" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                        <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="partner-card">
-                        <div class="partner-logo">🏢 CXM</div>
-                        <div class="partner-code" onclick="copyToClipboard(this, 'upcoming')">upcoming <i class="fas fa-copy ms-1" style="font-size:0.75rem;"></i></div>
-                        <div>
-                            <a href="#" class="btn-open-account" style="opacity: 0.5; pointer-events: none;"><i class="fas fa-user-plus"></i> Open Account</a>
-                        </div>
-                        <a href="https://google.com" target="_blank" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                <div class="col-md-6 col-lg-3 d-flex">
+                    <div class="partner-card soon">
+                        <span class="partner-avatar">C</span>
+                        <div class="partner-logo">CXM</div>
+                        <div class="partner-sub">Partner broker</div>
+                        <span class="soon-pill">Coming Soon</span>
+                        <span class="btn-open-account disabled"><i class="fas fa-user-plus"></i> Open Account</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 5: About Dalal Street Quants -->
-    <section class="section">
+    <!-- Section 5: About -->
+    <section class="section" id="about">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-building me-2" style="color: var(--accent);"></i>About Dalal Street Quants</h2>
-            <p class="section-subtitle">Who we are and what we do</p>
+            <div class="title-block">
+                <span class="eyebrow"><i class="fas fa-chart-line"></i> About Us</span>
+                <h2 class="section-title">About Dalal Street Quants</h2>
+                <p class="section-subtitle">Who we are and what we do.</p>
+            </div>
 
             <div class="about-card">
-                <div class="about-logo">
-                    <i class="fas fa-chart-line"></i>
-                </div>
+                <div class="about-logo"><i class="fas fa-chart-line"></i></div>
                 <h3>Dalal Street Quants</h3>
                 <p>Dalal Street Quants builds, tests, and analyzes algorithmic trading strategies for Nifty 50, Bank Nifty, Nifty 500 stocks, Gold and Bitcoin.</p>
 
-                <h5 style="font-weight:700;margin:24px 0 12px;color:var(--text-main);">Subscribe to:</h5>
+                <div class="mini-title justify-content-center" style="margin-top: 8px;">Subscribe to:</div>
                 <ul class="subscribe-list">
-                    <li><i class="fas fa-check-circle"></i> Replace guesswork with algorithms & Expert Advisors</li>
+                    <li><i class="fas fa-check-circle"></i> Replace guesswork with algorithms &amp; Expert Advisors</li>
                     <li><i class="fas fa-check-circle"></i> Learn backtesting</li>
                 </ul>
 
                 <div class="social-links">
-                    <a href="https://t.me/dsqfxtrader" target="_blank" class="social-link telegram">
-                        <i class="fab fa-telegram"></i> Telegram Channel
-                    </a>
-                    <a href="https://www.youtube.com/@DalalStreetQuants" target="_blank" class="social-link youtube">
-                        <i class="fab fa-youtube"></i> YouTube
-                    </a>
-                    <a href="https://www.facebook.com/profile.php?id=61589548676472" target="_blank" class="social-link facebook">
-                        <i class="fab fa-facebook-f"></i> Facebook
-                    </a>
-                    <a href="https://www.instagram.com/dsq_fx_trader/" target="_blank" class="social-link instagram">
-                        <i class="fab fa-instagram"></i> Instagram
-                    </a>
-                    <a href="mailto:dalalstreetsquants@gmail.com" class="social-link email">
-                        <i class="fas fa-envelope"></i> Email Us
-                    </a>
+                    <a href="https://t.me/dsqfxtrader" class="social-link telegram"><i class="fab fa-telegram"></i> Telegram Channel</a>
+                    <a href="https://www.youtube.com/@DalalStreetQuants" class="social-link youtube"><i class="fab fa-youtube"></i> YouTube</a>
+                    <a href="https://www.facebook.com/profile.php?id=61589548676472" class="social-link facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="https://www.instagram.com/dsq_fx_trader/" class="social-link instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="mailto:dalalstreetsquants@gmail.com" class="social-link email"><i class="fas fa-envelope"></i> Email Us</a>
                 </div>
             </div>
         </div>
@@ -1624,19 +1301,22 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-brand">Dalal <span>Street</span> Quants</div>
+            <div class="footer-brand">
+                <span class="brand-mark">DSQ</span>
+                <span>Dalal Street Quants</span>
+            </div>
             <p class="footer-desc">Building, testing, and analyzing algorithmic trading strategies for Nifty 50, Bank Nifty, Nifty 500 stocks, Gold and Bitcoin.</p>
 
             <div class="footer-social">
-                <a href="https://t.me/dsqfxtrader" target="_blank" title="Telegram Channel"><i class="fab fa-telegram"></i></a>
-                <a href="https://www.youtube.com/@DalalStreetQuants" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=61589548676472" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/dsq_fx_trader/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/dsqfxtrader" title="Telegram Channel"><i class="fab fa-telegram"></i></a>
+                <a href="https://www.youtube.com/@DalalStreetQuants" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61589548676472" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/dsq_fx_trader/" title="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="mailto:dalalstreetsquants@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
             </div>
 
-            <p><a href="mailto:dalalstreetsquants@gmail.com" class="footer-email"><i class="fas fa-envelope me-2"></i>dalalstreetsquants@gmail.com</a></p>
-            <p class="mb-0 mt-2"><i class="fas fa-video me-2"></i>Weekly live 1-hour setup call — <strong style="color:var(--accent);">FREE!</strong></p>
+            <p class="mb-0"><a href="mailto:dalalstreetsquants@gmail.com" class="footer-email"><i class="fas fa-envelope me-2"></i>dalalstreetsquants@gmail.com</a></p>
+            <p class="footer-call"><i class="fas fa-video me-2"></i>Weekly live 1-hour setup call — <strong>FREE!</strong></p>
 
             <div class="footer-bottom">
                 <p>© 2026 Dalal Street Quants. All rights reserved.</p>
@@ -1645,13 +1325,18 @@
         </div>
     </footer>
 
+    <!-- Copy toast -->
+    <div class="copy-toast" id="copyToast"><i class="fas fa-check-circle"></i> Copied to clipboard</div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        let toastTimer;
         function copyToClipboard(element, text) {
             navigator.clipboard.writeText(text).then(() => {
-                const original = element.innerHTML;
-                element.innerHTML = '<i class="fas fa-check" style="color:var(--success);"></i> Copied!';
-                setTimeout(() => { element.innerHTML = original; }, 1500);
+                const toast = document.getElementById('copyToast');
+                toast.classList.add('show');
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
             });
         }
     </script>
