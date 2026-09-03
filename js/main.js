@@ -12,11 +12,13 @@ toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
 function updateCountdown() {
 const now = new Date();
 const currentYear = now.getFullYear();
-let targetDate = new Date(`October 15, ${currentYear} 23:59:59`).getTime();
+
+// Use explicit date format for better browser compatibility
+let targetDate = new Date(currentYear, 9, 15, 23, 59, 59).getTime(); // Month is 0-indexed (9 = October)
 
 // If October 15 has already passed this year, use next year
 if (now.getTime() > targetDate) {
-targetDate = new Date(`October 15, ${currentYear + 1} 23:59:59`).getTime();
+targetDate = new Date(currentYear + 1, 9, 15, 23, 59, 59).getTime();
 }
 
 const difference = targetDate - now.getTime();
@@ -59,6 +61,8 @@ document.getElementById('minutes').textContent = String(minutes).padStart(2, '0'
 document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
 }
 
-// Update countdown every second
+// Update countdown every second when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+updateCountdown();
 setInterval(updateCountdown, 1000);
-updateCountdown(); // Initial call
+});
