@@ -41,9 +41,9 @@
                 <a href="#setup" class="btn-hero-ghost" target="_self"><i class="fas fa-circle-play"></i> Setup Guide</a>
             </div>
             <div class="hero-stats">
-                <div class="hero-stat"><div class="num">4</div><div class="lbl">Bot Versions</div></div>
-                <div class="hero-stat"><div class="num"><i class="fas fa-gift"></i>FREE</div><div class="lbl">V1 – V3 Licenses</div></div>
-                <div class="hero-stat"><div class="num">30s</div><div class="lbl">License Activation</div></div>
+                <div class="hero-stat"><div class="num">3</div><div class="lbl">Bot Versions</div></div>
+                <div class="hero-stat"><div class="num"><i class="fas fa-gift"></i>FREE</div><div class="lbl">V2 – V3 Licenses</div></div>
+                <div class="hero-stat"><div class="num">24-48h</div><div class="lbl">License Activation</div></div>
                 <div class="hero-stat"><div class="num">5</div><div class="lbl">Partner Brokers</div></div>
             </div>
         </div>
@@ -70,34 +70,8 @@
             </div>
 
             <div class="row g-4 align-items-stretch">
-                <!-- V1 -->
-                <div class="col-md-6 col-lg-3 d-flex">
-                    <div class="bot-card">
-                        <div class="bot-head">
-                            <span class="bot-icon"><i class="fas fa-bolt"></i></span>
-                            <span class="license-badge badge-license"><i class="fas fa-key"></i> Free License</span>
-                        </div>
-                        <h3>DSQ V1</h3>
-                        <div class="bot-tagline">Version 1.0 — Starter grid bot</div>
-                        <div class="price-row">
-                            <span class="price-now">FREE</span>
-                            <span class="price-was">₹1,000</span>
-                        </div>
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check"></i> Grid Trading</li>
-                            <li><i class="fas fa-check"></i> Max Risk Management</li>
-                            <li class="off"><i class="fas fa-xmark"></i> Trailing Stop</li>
-                            <li class="off"><i class="fas fa-xmark"></i> Hedging</li>
-                            <li class="off"><i class="fas fa-xmark"></i> Human Intervention</li>
-                        </ul>
-                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v1.ex5" class="btn-download">
-                            <i class="fas fa-download"></i> Download V1
-                        </a>
-                    </div>
-                </div>
-
                 <!-- V2 -->
-                <div class="col-md-6 col-lg-3 d-flex">
+                <div class="col-md-6 col-lg-4 d-flex">
                     <div class="bot-card">
                         <div class="bot-head">
                             <span class="bot-icon"><i class="fas fa-rocket"></i></span>
@@ -123,7 +97,7 @@
                 </div>
 
                 <!-- V3 -->
-                <div class="col-md-6 col-lg-3 d-flex">
+                <div class="col-md-6 col-lg-4 d-flex">
                     <div class="bot-card">
                         <div class="bot-head">
                             <span class="bot-icon"><i class="fas fa-shield-halved"></i></span>
@@ -145,23 +119,32 @@
                         <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v3.ex5" class="btn-download">
                             <i class="fas fa-download"></i> Download V3
                         </a>
+                        <div class="real-account-notice">
+                            <i class="fas fa-exclamation-circle"></i> <strong>Real Account Only</strong> — Demo not available
+                        </div>
                     </div>
                 </div>
 
                 <!-- V4 -->
-                <div class="col-md-6 col-lg-3 d-flex">
+                <div class="col-md-6 col-lg-4 d-flex">
                     <div class="bot-card featured">
-                        <div class="featured-ribbon">Premium</div>
+                        <div class="featured-ribbon">Limited Offer</div>
                         <div class="bot-head">
                             <span class="bot-icon"><i class="fas fa-crown"></i></span>
-                            <span class="license-badge badge-premium"><i class="fas fa-star"></i> Premium</span>
+                            <span class="license-badge badge-premium"><i class="fas fa-star"></i> FREE till Oct 15</span>
                         </div>
                         <h3>DSQ V4</h3>
                         <div class="bot-tagline">Version 4.0 — Full feature suite</div>
                         <div class="price-row">
-                            <span class="price-now paid">₹1,999</span>
+                            <span class="price-now free-timer">FREE</span>
                             <span class="price-was">₹6,000</span>
-                            <span class="price-note">One-time</span>
+                            <span class="price-note" id="v4-offer-end">Offer ends in:</span>
+                        </div>
+                        <div class="countdown-timer" id="v4-countdown">
+                            <div class="time-segment"><span class="time-num" id="days">00</span><span class="time-label">Days</span></div>
+                            <div class="time-segment"><span class="time-num" id="hours">00</span><span class="time-label">Hours</span></div>
+                            <div class="time-segment"><span class="time-num" id="minutes">00</span><span class="time-label">Mins</span></div>
+                            <div class="time-segment"><span class="time-num" id="seconds">00</span><span class="time-label">Secs</span></div>
                         </div>
                         <ul class="feature-list">
                             <li><i class="fas fa-check"></i> Grid Trading</li>
@@ -173,6 +156,9 @@
                         <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v4.ex5" class="btn-download dark">
                             <i class="fas fa-download"></i> Download V4
                         </a>
+                        <div class="real-account-notice">
+                            <i class="fas fa-exclamation-circle"></i> <strong>Real Account Only</strong> — Demo not available
+                        </div>
                     </div>
                 </div>
             </div>
@@ -191,10 +177,7 @@
             <div class="setup-shell">
                 <ul class="nav nav-pills justify-content-center" id="setupTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="v1-tab" data-bs-toggle="pill" data-bs-target="#v1-setup" type="button" role="tab"><span class="v-dot"></span>DSQ V1</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="v2-tab" data-bs-toggle="pill" data-bs-target="#v2-setup" type="button" role="tab"><span class="v-dot"></span>DSQ V2</button>
+                        <button class="nav-link active" id="v2-tab" data-bs-toggle="pill" data-bs-target="#v2-setup" type="button" role="tab"><span class="v-dot"></span>DSQ V2</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="v3-tab" data-bs-toggle="pill" data-bs-target="#v3-setup" type="button" role="tab"><span class="v-dot"></span>DSQ V3</button>
@@ -205,72 +188,11 @@
                 </ul>
 
                 <div class="tab-content" id="setupTabContent">
-                    <!-- V1 Setup -->
-                    <div class="tab-pane fade show active" id="v1-setup" role="tabpanel">
-                        <div class="alert-box alert-free">
-                            <i class="fas fa-gift alert-icon"></i>
-                            <div><strong>Completely Free.</strong> License is free. No payment required. Get your free license instantly via Telegram.</div>
-                        </div>
-
-                        <div class="step-card">
-                            <div class="step-head"><span class="step-number">1</span><span class="step-title">Download MT5 &amp; Login</span></div>
-                            <div class="step-content">
-                                <ul>
-                                    <li>Download MT5 from <a href="https://www.metatrader5.com/en/download">metatrader5.com</a></li>
-                                    <li>Login with your broker credentials (use Cent account only with maximum leverage set like 1:2000)</li>
-                                    <li>
-                                        In MetaTrader, go to <strong>Tools → Options → Expert Advisors</strong>:
-                                        <ul style="margin-top: 8px;">
-                                            <li>Allow <strong>Algorithmic Trading</strong></li>
-                                            <li>Allow <strong>Web Request for listed URL</strong> → Add:
-                                                <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')">
-                                                    https://raw.githubusercontent.com <i class="fas fa-copy copy-icon"></i>
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="step-card">
-                            <div class="step-head"><span class="step-number">2</span><span class="step-title">Download &amp; Install DSQ V1</span></div>
-                            <div class="step-content">
-                                <ul>
-                                    <li>Download <code>dsq_v1.ex5</code> from the button above</li>
-                                    <li>Double-click to add to MetaTrader</li>
-                                    <li>Find <strong>dsq_v1</strong> in the Navigator panel under Expert Advisors</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="step-card">
-                            <div class="step-head"><span class="step-number">3</span><span class="step-title">Activate Your Free License</span></div>
-                            <div class="step-content">
-                                <div class="alert-box alert-success-custom mb-3">
-                                    <i class="fas fa-check-circle alert-icon"></i>
-                                    <div><strong>This is 100% Free.</strong> No credit card. No payment. Join our Telegram and get your license from our Telegram Bot in under 30 seconds.</div>
-                                </div>
-                                <p><strong>How to get your V1 License:</strong></p>
-                                <ul>
-                                    <li>Join our <a href="https://t.me/dsqfxtrader"><strong>Telegram Channel</strong></a></li>
-                                    <li>Message our Telegram Bot with your <strong>MT5 ID</strong> and <strong>Broker Name</strong></li>
-                                    <li>Your free license will be activated instantly — <strong>takes max 30 seconds!</strong></li>
-                                </ul>
-                                <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=r-4ae0ceFuY,'_blank')">
-                                    <span class="play"><i class="fas fa-play"></i></span>
-                                    <div class="vid-title">Watch: How to Get Your Free V1 License</div>
-                                    <div class="vid-sub">Step-by-step video guide</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- V2 Setup -->
-                    <div class="tab-pane fade" id="v2-setup" role="tabpanel">
+                    <div class="tab-pane fade show active" id="v2-setup" role="tabpanel">
                         <div class="alert-box alert-free">
                             <i class="fas fa-gift alert-icon"></i>
-                            <div><strong>Completely Free.</strong> License is free. No payment required. Get your free license instantly via Telegram.</div>
+                            <div><strong>Completely Free.</strong> License is free. No payment required. Get your free license via Telegram.</div>
                         </div>
 
                         <div class="step-card">
@@ -308,20 +230,20 @@
                         <div class="step-card">
                             <div class="step-head"><span class="step-number">3</span><span class="step-title">Activate Your Free License</span></div>
                             <div class="step-content">
-                                <div class="alert-box alert-success-custom mb-3">
-                                    <i class="fas fa-check-circle alert-icon"></i>
-                                    <div><strong>This is 100% Free.</strong> No credit card. No payment. Join our Telegram and get your license from our Telegram Bot in under 30 seconds.</div>
+                                <div class="alert-box alert-info-custom mb-3">
+                                    <i class="fas fa-info-circle alert-icon"></i>
+                                    <div><strong>License Activation Period:</strong> License activation takes between <strong>24 to 48 hours</strong>. Please be patient while we verify your request.</div>
                                 </div>
                                 <p><strong>How to get your V2 License:</strong></p>
                                 <ul>
                                     <li>Join our <a href="https://t.me/dsqfxtrader"><strong>Telegram Channel</strong></a></li>
                                     <li>Message our Telegram Bot with your <strong>MT5 ID</strong> and <strong>Broker Name</strong></li>
-                                    <li>Your free license will be activated instantly — <strong>takes max 30 seconds!</strong></li>
+                                    <li>Your free license will be activated within <strong>24-48 hours</strong></li>
                                 </ul>
                                 <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=r-4ae0ceFuY','_blank')">
                                     <span class="play"><i class="fas fa-play"></i></span>
                                     <div class="vid-title">Watch: How to Get Your Free V2 License</div>
-                                    <div class="vid-sub">Step-by-step video guide </div>
+                                    <div class="vid-sub">Step-by-step video guide</div>
                                 </div>
                             </div>
                         </div>
@@ -332,6 +254,11 @@
                         <div class="alert-box alert-free">
                             <i class="fas fa-gift alert-icon"></i>
                             <div><strong>Completely Free.</strong> License is free. Partner code setup is free. No hidden charges ever.</div>
+                        </div>
+
+                        <div class="alert-box alert-warning-custom">
+                            <i class="fas fa-exclamation-triangle alert-icon"></i>
+                            <div><strong>Important:</strong> DSQ V3 is available <strong>only on a real account</strong>. No demo account is available.</div>
                         </div>
 
                         <div class="step-card">
@@ -427,15 +354,15 @@
                         <div class="step-card">
                             <div class="step-head"><span class="step-number">4</span><span class="step-title">Activate Your Free License</span></div>
                             <div class="step-content">
-                                <div class="alert-box alert-success-custom mb-3">
-                                    <i class="fas fa-check-circle alert-icon"></i>
-                                    <div><strong>This is 100% Free.</strong> No credit card. No payment. Join our Telegram and get your V3 license from our Telegram Bot in under 30 seconds.</div>
+                                <div class="alert-box alert-info-custom mb-3">
+                                    <i class="fas fa-info-circle alert-icon"></i>
+                                    <div><strong>License Activation Period:</strong> License activation takes between <strong>24 to 48 hours</strong>. Please be patient while we verify your request.</div>
                                 </div>
                                 <p><strong>How to get your V3 License:</strong></p>
                                 <ul>
                                     <li>Join our <a href="https://t.me/dsqfxtrader"><strong>Telegram Channel</strong></a></li>
                                     <li>Message our Telegram Bot with your <strong>MT5 ID</strong>, <strong>Broker Name</strong>, and confirm your <strong>Partner Code</strong> is set</li>
-                                    <li>Your free license will be activated instantly — <strong>takes max 30 seconds!</strong></li>
+                                    <li>Your free license will be activated within <strong>24-48 hours</strong></li>
                                 </ul>
                                 <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=r-4ae0ceFuY','_blank')">
                                     <span class="play"><i class="fas fa-play"></i></span>
@@ -450,12 +377,12 @@
                     <div class="tab-pane fade" id="v4-setup" role="tabpanel">
                         <div class="alert-box alert-free">
                             <i class="fas fa-gift alert-icon"></i>
-                            <div><strong>Premium Access.</strong> License is free. Partner code setup is free. Only ₹1,999 one-time for full V4 access.</div>
+                            <div><strong>Limited Time Offer!</strong> DSQ V4 is <strong>FREE until October 15th</strong>. After that, regular pricing applies. Get it now while it's free!</div>
                         </div>
 
                         <div class="alert-box alert-danger-custom">
                             <i class="fas fa-crown alert-icon"></i>
-                            <div><strong>Important:</strong> This bot is available <strong>only on a real account</strong>. No demo account is available for V4.</div>
+                            <div><strong>Important:</strong> DSQ V4 is available <strong>only on a real account</strong>. No demo account is available for V4.</div>
                         </div>
 
                         <div class="step-card">
@@ -551,15 +478,15 @@
                         <div class="step-card">
                             <div class="step-head"><span class="step-number">4</span><span class="step-title">Activate Your Premium License</span></div>
                             <div class="step-content">
-                                <div class="alert-box alert-success-custom mb-3">
-                                    <i class="fas fa-check-circle alert-icon"></i>
-                                    <div><strong>One-time fee: ₹1,999 only.</strong> No recurring charges. Join our Telegram and request your V4 license from our Telegram Bot.</div>
+                                <div class="alert-box alert-info-custom mb-3">
+                                    <i class="fas fa-info-circle alert-icon"></i>
+                                    <div><strong>License Activation Period:</strong> License activation takes between <strong>24 to 48 hours</strong>. Please be patient while we verify your request.</div>
                                 </div>
                                 <p><strong>How to get your V4 License:</strong></p>
                                 <ul>
                                     <li>Join our <a href="https://t.me/dsqfxtrader"><strong>Telegram Channel</strong></a></li>
                                     <li>Message our Telegram Bot with your <strong>MT5 ID</strong> and <strong>Broker Name</strong></li>
-                                    <li>After verification, your V4 license will be activated — <strong>takes max 30 seconds!</strong></li>
+                                    <li>After verification, your V4 license will be activated within <strong>24-48 hours</strong></li>
                                 </ul>
                                 <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=r-4ae0ceFuY','_blank')">
                                     <span class="play"><i class="fas fa-play"></i></span>
