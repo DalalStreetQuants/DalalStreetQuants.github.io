@@ -10,9 +10,16 @@ toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
 
 // Countdown timer for V4 free offer (ends October 15th)
 function updateCountdown() {
-const targetDate = new Date('October 15, 2024 23:59:59').getTime();
-const now = new Date().getTime();
-const difference = targetDate - now;
+const now = new Date();
+const currentYear = now.getFullYear();
+let targetDate = new Date(`October 15, ${currentYear} 23:59:59`).getTime();
+
+// If October 15 has already passed this year, use next year
+if (now.getTime() > targetDate) {
+targetDate = new Date(`October 15, ${currentYear + 1} 23:59:59`).getTime();
+}
+
+const difference = targetDate - now.getTime();
 
 if (difference <= 0) {
 // Offer expired
