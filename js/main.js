@@ -66,3 +66,126 @@ document.addEventListener('DOMContentLoaded', function() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 });
+
+// GitHub API Configuration
+const GITHUB_API_URL = 'https://raw.githubusercontent.com/ranjanZ/Dalal_Street_Quants/main/licences.json';
+const GITHUB_API_WRITE_URL = 'https://api.github.com/repos/ranjanZ/Dalal_Street_Quants/contents/licences.json';
+const BACKEND_API_URL = 'http://100.109.209.38:8000/api/v1/licences';
+
+// License Form Submission
+async function submitLicenseForm(event, version) {
+event.preventDefault();
+
+const form = event.target;
+const formData = new FormData(form);
+const mt5Id = formData.get('mt5_id');
+const name = formData.get('name');
+const broker = formData.get('broker');
+const accountType = formData.get('account_type');
+
+const messageDiv = document.getElementById(`${version}-form-message`);
+const submitBtn = form.querySelector('.btn-submit-license');
+
+// Disable button during submission
+submitBtn.disabled = true;
+submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+try {
+// Call backend API to create licence
+const response = await fetch(`${BACKEND_API_URL}?version=${version}`, {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json',
+},
+body: JSON.stringify({
+mt5_id: mt5Id,
+name: name,
+broker: broker,
+account_type: accountType
+})
+});
+
+const data = await response.json();
+
+if (response.ok) {
+messageDiv.className = 'form-message success';
+messageDiv.textContent = `License request submitted successfully for MT5 ID: ${mt5Id}. Status: Verification Ongoing. You will receive confirmation within 24-48 hours.`;
+form.reset();
+} else {
+messageDiv.className = 'form-message error';
+messageDiv.textContent = data.detail || 'Failed to submit license request. Please try again.';
+submitBtn.disabled = false;
+submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit License Request';
+}
+
+} catch (error) {
+console.error('Error submitting license:', error);
+messageDiv.className = 'form-message error';
+messageDiv.textContent = 'Network error. Please check your connection or contact us on Telegram.';
+submitBtn.disabled = false;
+submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit License Request';
+}
+}
+
+// Check License Status
+async function checkLicenseStatus(event) {
+event.preventDefault();
+
+const mt5Id = document.getElementById('check-mt5-id').value.trim();
+const resultDiv = document.getElementById('license-result');
+const errorDiv = document.getElementById('license-error');
+
+// Hide previous results
+resultDiv.style.display = 'none';
+errorDiv.style.display = 'none';
+
+try {
+// Fetch licences data from GitHub (read-only operation, can use raw URL)
+const response = await fetch(GITHUB_API_URL);
+if (!response.ok) throw new Error('Failed to fetch licence data');
+
+const data = await response.json();
+const users = data.users || [];
+
+// Find user by MT5 ID
+const user = users.find(u => u.metatrader_id === mt5Id);
+
+if (user) {
+// Display license details
+document.getElementById('result-mt5-id').textContent = user.metatrader_id;
+document.getElementById('result-name').textContent = user.name || 'N/A';
+document.getElementById('result-valid-upto').textContent = user.valid_upto || 'N/A';
+
+const verified = user.Verified === 'True' || user.Verified === true;
+const statusBadge = document.getElementById('result-status');
+const statusText = document.getElementById('result-verified');
+
+if (verified) {
+statusBadge.className = 'status-badge verified';
+statusBadge.textContent = 'Verified';
+statusText.className = 'result-value status-text verified';
+statusText.textContent = 'Verified';
+} else {
+statusBadge.className = 'status-badge pending';
+statusBadge.textContent = 'Pending';
+statusText.className = 'result-value status-text pending';
+statusText.textContent = 'Verification Ongoing';
+}
+
+resultDiv.style.display = 'block';
+} else {
+// License not found
+document.getElementById('error-text').textContent = `License not found for MT5 ID: ${mt5Id}. Please check your ID or submit a new license request.`;
+errorDiv.style.display = 'block';
+}
+
+} catch (error) {
+console.error('Error checking license:', error);
+document.getElementById('error-text').textContent = 'An error occurred while checking license status. Please try again.';
+errorDiv.style.display = 'block';
+}
+}
+
+// Expose functions globally for inline event handlers
+window.submitLicenseForm = submitLicenseForm;
+window.checkLicenseStatus = checkLicenseStatus;
