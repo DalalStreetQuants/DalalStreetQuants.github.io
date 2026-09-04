@@ -22,6 +22,7 @@
             <div class="nav-links">
                 <a class="nl" href="#download" target="_self">Download</a>
                 <a class="nl" href="#setup" target="_self">Setup</a>
+                <a class="nl" href="#license-verification" target="_self">License Check</a>
                 <a class="nl" href="#account" target="_self">Account</a>
                 <a class="nl" href="#brokers" target="_self">Brokers</a>
                 <a class="nl" href="#about" target="_self">About</a>
@@ -240,6 +241,51 @@
                                     <li>Message our Telegram Bot with your <strong>MT5 ID</strong> and <strong>Broker Name</strong></li>
                                     <li>Your free license will be activated within <strong>24-48 hours</strong></li>
                                 </ul>
+                                
+                                <!-- License Activation Form -->
+                                <div class="license-activation-widget mt-4">
+                                    <h5 class="widget-title"><i class="fas fa-key"></i> Activate Your License Online</h5>
+                                    <p class="widget-subtitle">Fill the form below to submit your license request directly</p>
+                                    
+                                    <form id="v2-license-form" class="license-form" onsubmit="submitLicenseForm(event, 'v2')">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="v2-mt5-id"><i class="fas fa-id-card"></i> MT5 ID *</label>
+                                                <input type="text" id="v2-mt5-id" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="v2-name"><i class="fas fa-user"></i> Full Name *</label>
+                                                <input type="text" id="v2-name" name="name" required placeholder="Enter your full name" class="form-input">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="v2-broker"><i class="fas fa-building"></i> Broker Name *</label>
+                                                <select id="v2-broker" name="broker" required class="form-input">
+                                                    <option value="">Select Broker</option>
+                                                    <option value="vantage">Vantage</option>
+                                                    <option value="roboforex">Roboforex</option>
+                                                    <option value="exness">Exness</option>
+                                                    <option value="xm">XM</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="v2-account-type"><i class="fas fa-wallet"></i> Account Type *</label>
+                                                <select id="v2-account-type" name="account_type" required class="form-input">
+                                                    <option value="">Select Account Type</option>
+                                                    <option value="cent">Cent Account</option>
+                                                    <option value="micro">Micro Account</option>
+                                                    <option value="standard">Standard Account</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn-submit-license">
+                                            <i class="fas fa-paper-plane"></i> Submit License Request
+                                        </button>
+                                    </form>
+                                    <div id="v2-form-message" class="form-message"></div>
+                                </div>
+                                
                                 <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=r-4ae0ceFuY','_blank')">
                                     <span class="play"><i class="fas fa-play"></i></span>
                                     <div class="vid-title">Watch: How to Get Your Free V2 License</div>
@@ -364,6 +410,51 @@
                                     <li>Message our Telegram Bot with your <strong>MT5 ID</strong>, <strong>Broker Name</strong>, and confirm your <strong>Partner Code</strong> is set</li>
                                     <li>Your free license will be activated within <strong>24-48 hours</strong></li>
                                 </ul>
+                                
+                                <!-- License Activation Form -->
+                                <div class="license-activation-widget mt-4">
+                                    <h5 class="widget-title"><i class="fas fa-key"></i> Activate Your License Online</h5>
+                                    <p class="widget-subtitle">Fill the form below to submit your license request directly</p>
+                                    
+                                    <form id="v3-license-form" class="license-form" onsubmit="submitLicenseForm(event, 'v3')">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="v3-mt5-id"><i class="fas fa-id-card"></i> MT5 ID *</label>
+                                                <input type="text" id="v3-mt5-id" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="v3-name"><i class="fas fa-user"></i> Full Name *</label>
+                                                <input type="text" id="v3-name" name="name" required placeholder="Enter your full name" class="form-input">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="v3-broker"><i class="fas fa-building"></i> Broker Name *</label>
+                                                <select id="v3-broker" name="broker" required class="form-input">
+                                                    <option value="">Select Broker</option>
+                                                    <option value="vantage">Vantage</option>
+                                                    <option value="roboforex">Roboforex</option>
+                                                    <option value="exness">Exness</option>
+                                                    <option value="xm">XM</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="v3-account-type"><i class="fas fa-wallet"></i> Account Type *</label>
+                                                <select id="v3-account-type" name="account_type" required class="form-input">
+                                                    <option value="">Select Account Type</option>
+                                                    <option value="cent">Cent Account</option>
+                                                    <option value="micro">Micro Account</option>
+                                                    <option value="standard">Standard Account</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn-submit-license">
+                                            <i class="fas fa-paper-plane"></i> Submit License Request
+                                        </button>
+                                    </form>
+                                    <div id="v3-form-message" class="form-message"></div>
+                                </div>
+                                
                                 <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=r-4ae0ceFuY','_blank')">
                                     <span class="play"><i class="fas fa-play"></i></span>
                                     <div class="vid-title">Watch: How to Get Your Free V3 License</div>
@@ -488,6 +579,51 @@
                                     <li>Message our Telegram Bot with your <strong>MT5 ID</strong> and <strong>Broker Name</strong></li>
                                     <li>After verification, your V4 license will be activated within <strong>24-48 hours</strong></li>
                                 </ul>
+                                
+                                <!-- License Activation Form -->
+                                <div class="license-activation-widget mt-4">
+                                    <h5 class="widget-title"><i class="fas fa-key"></i> Activate Your License Online</h5>
+                                    <p class="widget-subtitle">Fill the form below to submit your license request directly</p>
+                                    
+                                    <form id="v4-license-form" class="license-form" onsubmit="submitLicenseForm(event, 'v4')">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="v4-mt5-id"><i class="fas fa-id-card"></i> MT5 ID *</label>
+                                                <input type="text" id="v4-mt5-id" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="v4-name"><i class="fas fa-user"></i> Full Name *</label>
+                                                <input type="text" id="v4-name" name="name" required placeholder="Enter your full name" class="form-input">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="v4-broker"><i class="fas fa-building"></i> Broker Name *</label>
+                                                <select id="v4-broker" name="broker" required class="form-input">
+                                                    <option value="">Select Broker</option>
+                                                    <option value="vantage">Vantage</option>
+                                                    <option value="roboforex">Roboforex</option>
+                                                    <option value="exness">Exness</option>
+                                                    <option value="xm">XM</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="v4-account-type"><i class="fas fa-wallet"></i> Account Type *</label>
+                                                <select id="v4-account-type" name="account_type" required class="form-input">
+                                                    <option value="">Select Account Type</option>
+                                                    <option value="cent">Cent Account</option>
+                                                    <option value="micro">Micro Account</option>
+                                                    <option value="standard">Standard Account</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn-submit-license">
+                                            <i class="fas fa-paper-plane"></i> Submit License Request
+                                        </button>
+                                    </form>
+                                    <div id="v4-form-message" class="form-message"></div>
+                                </div>
+                                
                                 <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=r-4ae0ceFuY','_blank')">
                                     <span class="play"><i class="fas fa-play"></i></span>
                                     <div class="vid-title">Watch: How to Get Your V4 Premium License</div>
@@ -496,6 +632,64 @@
                                 <small class="text-muted d-block mt-2">V4 approval requires real account verification. Contact our <a href="https://t.me/dsqfxtrader">Telegram Channel</a> for fast-track.</small>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: License Verification -->
+    <section class="section alt" id="license-verification">
+        <div class="container">
+            <div class="title-block">
+                <span class="eyebrow"><i class="fas fa-shield-check"></i> License Verification</span>
+                <h2 class="section-title">Check Your License Status</h2>
+                <p class="section-subtitle">Enter your MetaTrader ID to verify your license status and details.</p>
+            </div>
+
+            <div class="license-verification-widget">
+                <div class="verification-search-box">
+                    <form id="license-check-form" onsubmit="checkLicenseStatus(event)">
+                        <div class="search-input-group">
+                            <input type="text" id="check-mt5-id" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input search-input">
+                            <button type="submit" class="btn-check-license">
+                                <i class="fas fa-search"></i> Check License
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="license-result" class="license-result" style="display: none;">
+                    <div class="result-card">
+                        <div class="result-header">
+                            <h4><i class="fas fa-user-circle"></i> License Details</h4>
+                            <span id="result-status" class="status-badge"></span>
+                        </div>
+                        <div class="result-body">
+                            <div class="result-row">
+                                <span class="result-label"><i class="fas fa-id-card"></i> MetaTrader ID:</span>
+                                <span id="result-mt5-id" class="result-value"></span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label"><i class="fas fa-user"></i> Name:</span>
+                                <span id="result-name" class="result-value"></span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label"><i class="fas fa-calendar-alt"></i> Valid Upto:</span>
+                                <span id="result-valid-upto" class="result-value"></span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label"><i class="fas fa-check-circle"></i> Status:</span>
+                                <span id="result-verified" class="result-value status-text"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="license-error" class="license-error" style="display: none;">
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span id="error-text">License not found. Please check your MT5 ID and try again.</span>
                     </div>
                 </div>
             </div>
