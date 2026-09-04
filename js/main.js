@@ -67,9 +67,7 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 });
 
-// GitHub API Configuration
-const GITHUB_API_URL = 'https://raw.githubusercontent.com/ranjanZ/Dalal_Street_Quants/main/licences.json';
-const GITHUB_API_WRITE_URL = 'https://api.github.com/repos/ranjanZ/Dalal_Street_Quants/contents/licences.json';
+// Backend API Configuration
 const BACKEND_API_URL = 'http://100.109.209.38:8000/api/v1/licences';
 
 // License Form Submission
@@ -111,6 +109,9 @@ if (response.ok) {
 messageDiv.className = 'form-message success';
 messageDiv.textContent = `License request submitted successfully for MT5 ID: ${mt5Id}. Status: Verification Ongoing. You will receive confirmation within 24-48 hours.`;
 form.reset();
+// Reset button on success
+submitBtn.disabled = false;
+submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit License Request';
 } else {
 messageDiv.className = 'form-message error';
 messageDiv.textContent = data.detail || 'Failed to submit license request. Please try again.';
@@ -139,16 +140,30 @@ const errorDiv = document.getElementById('license-error');
 resultDiv.style.display = 'none';
 errorDiv.style.display = 'none';
 
+if (!mt5Id) {
+document.getElementById('error-text').textContent = 'Please enter a valid MetaTrader ID.';
+errorDiv.style.display = 'block';
+return;
+}
+
 try {
-// Fetch licences data from GitHub (read-only operation, can use raw URL)
-const response = await fetch(GITHUB_API_URL);
-if (!response.ok) throw new Error('Failed to fetch licence data');
+// Fetch all licences from backend API
+const response = await fetch(`${BACKEND_API_URL}?version=v3`, {
+method: 'GET',
+headers: {
+'Content-Type': 'application/json',
+}
+});
+
+if (!response.ok) {
+throw new Error(`Failed to fetch licence data: ${response.status}`);
+}
 
 const data = await response.json();
-const users = data.users || [];
+const users = Array.isArray(data) ? data : (data.users || []);
 
 // Find user by MT5 ID
-const user = users.find(u => u.metatrader_id === mt5Id);
+const user = users.find(u => u.metatrader_id === mt5Id || u.metatrader_id == mt5Id);
 
 if (user) {
 // Display license details
@@ -156,7 +171,7 @@ document.getElementById('result-mt5-id').textContent = user.metatrader_id;
 document.getElementById('result-name').textContent = user.name || 'N/A';
 document.getElementById('result-valid-upto').textContent = user.valid_upto || 'N/A';
 
-const verified = user.Verified === 'True' || user.Verified === true;
+const verified = user.Verified === 'True' || user.Verified === true || user.Verified === 'true';
 const statusBadge = document.getElementById('result-status');
 const statusText = document.getElementById('result-verified');
 
@@ -181,7 +196,7 @@ errorDiv.style.display = 'block';
 
 } catch (error) {
 console.error('Error checking license:', error);
-document.getElementById('error-text').textContent = 'An error occurred while checking license status. Please try again.';
+document.getElementById('error-text').textContent = 'An error occurred while checking license status. Please try again. Ensure the backend API is accessible.';
 errorDiv.style.display = 'block';
 }
 }
