@@ -68,7 +68,7 @@ setInterval(updateCountdown, 1000);
 });
 
 // Backend API Configuration
-const BACKEND_API_URL = 'http://100.109.209.38:8000/api/v1/licences';
+const BACKEND_API_URL = 'http://zhedge.tailc7f7ac.ts.net:8000/api/v1/licences';
 
 // License Form Submission
 async function submitLicenseForm(event, version) {
