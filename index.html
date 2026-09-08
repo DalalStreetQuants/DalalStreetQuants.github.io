@@ -254,8 +254,26 @@
                                                 <input type="text" id="v2-mt5-id" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input">
                                             </div>
                                             <div class="form-group">
+                                                <label for="v2-account-mode"><i class="fas fa-exchange-alt"></i> Account Mode *</label>
+                                                <select id="v2-account-mode" name="account_mode" required class="form-input">
+                                                    <option value="">Select Mode</option>
+                                                    <option value="real">Real Account</option>
+                                                    <option value="demo">Demo Account</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
                                                 <label for="v2-name"><i class="fas fa-user"></i> Full Name *</label>
                                                 <input type="text" id="v2-name" name="name" required placeholder="Enter your full name" class="form-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="v2-partner-code"><i class="fas fa-user-tag"></i> Partner Code Added? *</label>
+                                                <select id="v2-partner-code" name="partner_code" required class="form-input">
+                                                    <option value="">Select Option</option>
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -423,8 +441,26 @@
                                                 <input type="text" id="v3-mt5-id" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input">
                                             </div>
                                             <div class="form-group">
+                                                <label for="v3-account-mode"><i class="fas fa-exchange-alt"></i> Account Mode *</label>
+                                                <select id="v3-account-mode" name="account_mode" required class="form-input">
+                                                    <option value="">Select Mode</option>
+                                                    <option value="real">Real Account</option>
+                                                    <option value="demo">Demo Account</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
                                                 <label for="v3-name"><i class="fas fa-user"></i> Full Name *</label>
                                                 <input type="text" id="v3-name" name="name" required placeholder="Enter your full name" class="form-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="v3-partner-code"><i class="fas fa-user-tag"></i> Partner Code Added? *</label>
+                                                <select id="v3-partner-code" name="partner_code" required class="form-input">
+                                                    <option value="">Select Option</option>
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -592,8 +628,26 @@
                                                 <input type="text" id="v4-mt5-id" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input">
                                             </div>
                                             <div class="form-group">
+                                                <label for="v4-account-mode"><i class="fas fa-exchange-alt"></i> Account Mode *</label>
+                                                <select id="v4-account-mode" name="account_mode" required class="form-input">
+                                                    <option value="">Select Mode</option>
+                                                    <option value="real">Real Account</option>
+                                                    <option value="demo">Demo Account</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
                                                 <label for="v4-name"><i class="fas fa-user"></i> Full Name *</label>
                                                 <input type="text" id="v4-name" name="name" required placeholder="Enter your full name" class="form-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="v4-partner-code"><i class="fas fa-user-tag"></i> Partner Code Added? *</label>
+                                                <select id="v4-partner-code" name="partner_code" required class="form-input">
+                                                    <option value="">Select Option</option>
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -651,6 +705,12 @@
                 <div class="verification-search-box">
                     <form id="license-check-form" onsubmit="checkLicenseStatus(event)">
                         <div class="search-input-group">
+                            <select id="check-bot-version" name="bot_version" required class="form-input">
+                                <option value="" disabled selected>Select Bot Version</option>
+                                <option value="dsq_v2">DSQ V2</option>
+                                <option value="dsq_v3">DSQ V3</option>
+                                <option value="dsq_v4">DSQ V4</option>
+                            </select>
                             <input type="text" id="check-mt5-id" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input search-input">
                             <button type="submit" class="btn-check-license">
                                 <i class="fas fa-search"></i> Check License

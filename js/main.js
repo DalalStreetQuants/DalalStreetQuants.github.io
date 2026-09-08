@@ -80,9 +80,23 @@ const mt5Id = formData.get('mt5_id');
 const name = formData.get('name');
 const broker = formData.get('broker');
 const accountType = formData.get('account_type');
+const accountMode = formData.get('account_mode');
+const partnerCode = formData.get('partner_code');
 
 const messageDiv = document.getElementById(`${version}-form-message`);
 const submitBtn = form.querySelector('.btn-submit-license');
+
+// Validation for DSQ V3 and V4: Real account and partner code required
+if (version === 'v3' || version === 'v4') {
+    if (accountMode !== 'real') {
+        alert(`DSQ ${version.toUpperCase()} is supported only for Real accounts. Demo accounts are not allowed.`);
+        return;
+    }
+    if (partnerCode !== 'yes') {
+        alert(`DSQ ${version.toUpperCase()} requires Partner Code to be added. Please add the partner code to your MetaTrader account before submitting.`);
+        return;
+    }
+}
 
 // Disable button during submission
 submitBtn.disabled = true;
@@ -99,7 +113,9 @@ body: JSON.stringify({
 mt5_id: mt5Id,
 name: name,
 broker: broker,
-account_type: accountType
+account_type: accountType,
+account_mode: accountMode,
+partner_code: partnerCode
 })
 });
 
@@ -132,6 +148,7 @@ submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit License Request
 async function checkLicenseStatus(event) {
 event.preventDefault();
 
+const botVersion = document.getElementById('check-bot-version').value.trim();
 const mt5Id = document.getElementById('check-mt5-id').value.trim();
 const resultDiv = document.getElementById('license-result');
 const errorDiv = document.getElementById('license-error');
@@ -140,15 +157,31 @@ const errorDiv = document.getElementById('license-error');
 resultDiv.style.display = 'none';
 errorDiv.style.display = 'none';
 
+if (!botVersion) {
+document.getElementById('error-text').textContent = 'Please select a bot version.';
+errorDiv.style.display = 'block';
+return;
+}
+
 if (!mt5Id) {
 document.getElementById('error-text').textContent = 'Please enter a valid MetaTrader ID.';
 errorDiv.style.display = 'block';
 return;
 }
 
+// Map bot version to API version parameter
+let apiVersion;
+if (botVersion === 'dsq_v2') {
+apiVersion = 'v2';
+} else if (botVersion === 'dsq_v3') {
+apiVersion = 'v3';
+} else if (botVersion === 'dsq_v4') {
+apiVersion = 'v4';
+}
+
 try {
-// Fetch all licences from backend API
-const response = await fetch(`${BACKEND_API_URL}?version=v3`, {
+// Fetch all licences from backend API for the selected bot version
+const response = await fetch(`${BACKEND_API_URL}?version=${apiVersion}`, {
 method: 'GET',
 headers: {
 'Content-Type': 'application/json',
@@ -179,18 +212,33 @@ if (verified) {
 statusBadge.className = 'status-badge verified';
 statusBadge.textContent = 'Verified';
 statusText.className = 'result-value status-text verified';
-statusText.textContent = 'Verified';
+statusText.textContent = 'Licence is Valid';
 } else {
 statusBadge.className = 'status-badge pending';
 statusBadge.textContent = 'Pending';
 statusText.className = 'result-value status-text pending';
-statusText.textContent = 'Verification Ongoing';
+statusText.textContent = 'Pending for approval. Please wait 24 to 48 hours for approval.';
+
+// Add disclaimer for V3 and V4 about partner code
+if (botVersion === 'dsq_v3' || botVersion === 'dsq_v4') {
+const disclaimerDiv = document.createElement('div');
+disclaimerDiv.className = 'alert-box alert-warning-custom mt-3';
+disclaimerDiv.innerHTML = '<i class="fas fa-exclamation-circle alert-icon"></i><div><strong>Disclaimer:</strong> If partner code is not added, then this will not be verified.</div>';
+
+// Remove any existing disclaimer
+const existingDisclaimer = statusText.parentElement.querySelector('.alert-box');
+if (existingDisclaimer) {
+existingDisclaimer.remove();
+}
+
+statusText.parentElement.appendChild(disclaimerDiv);
+}
 }
 
 resultDiv.style.display = 'block';
 } else {
-// License not found
-document.getElementById('error-text').textContent = `License not found for MT5 ID: ${mt5Id}. Please check your ID or submit a new license request.`;
+// License not found - no MT5 ID in database
+document.getElementById('error-text').textContent = `License not found for MT5 ID: ${mt5Id}. No license exists for this MetaTrader ID. Please submit a license request first.`;
 errorDiv.style.display = 'block';
 }
 
