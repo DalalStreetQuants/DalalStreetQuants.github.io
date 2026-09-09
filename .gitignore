@@ -1,11 +1,8 @@
-```
 # Compiled and build artifacts
 *.pyc
 __pycache__/
 *.o
 *.obj
-dist/
-build/
 *.class
 *.exe
 *.dll
@@ -20,6 +17,11 @@ venv/
 .env
 .env.local
 .env.*
+
+# Build directories
+dist/
+build/
+target/
 
 # Logs and temp files
 *.log
@@ -44,8 +46,7 @@ htmlcov/
 .mypy_cache/
 .pytest_cache/
 
-# Java/Gradle
-target/
+# Gradle
 .gradle/
 
 # Compressed files
@@ -71,4 +72,3 @@ target/
 *.tar.bz2
 *.tar.xz
 *.tar.zst
-```

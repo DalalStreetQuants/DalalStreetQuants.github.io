@@ -57,6 +57,26 @@ font-weight: 800; font-size: .8rem; letter-spacing: .5px;
 .brand-name { color: #fff; font-weight: 700; font-size: 1.02rem; letter-spacing: -.2px; }
 .brand-name small { display: block; font-size: .68rem; font-weight: 500; color: rgba(255,255,255,.5); letter-spacing: .4px; }
 .nav-links { display: flex; align-items: center; gap: 4px; }
+/* Language Selector */
+.language-selector {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: .8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s;
+    margin-right: 8px;
+}
+.language-selector:hover {
+    background: rgba(255,255,255,.2);
+}
+.language-selector option {
+    background: var(--navy);
+    color: #fff;
+}
 .nav-links a.nl {
 color: rgba(255,255,255,.72);
 text-decoration: none;

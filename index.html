@@ -20,13 +20,20 @@
                 <span class="brand-name">Dalal Street Quants<small>Algorithmic Trading Bots</small></span>
             </a>
             <div class="nav-links">
-                <a class="nl" href="#download" target="_self">Download</a>
-                <a class="nl" href="#setup" target="_self">Setup</a>
-                <a class="nl" href="#license-verification" target="_self">License Check</a>
-                <a class="nl" href="#account" target="_self">Account</a>
-                <a class="nl" href="#brokers" target="_self">Brokers</a>
-                <a class="nl" href="#about" target="_self">About</a>
-                <a href="https://t.me/dsqfxtrader" class="nl btn-nav-cta"><i class="fab fa-telegram"></i> Join Telegram</a>
+                <!-- Language Selector -->
+                <select id="language-selector" class="language-selector" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी (Hindi)</option>
+                    <option value="bn">বাংলা (Bengali)</option>
+                    <option value="fa">فارسی (Persian)</option>
+                </select>
+                <a class="nl" href="#download" target="_self" data-i18n="nav_download">Download</a>
+                <a class="nl" href="#setup" target="_self" data-i18n="nav_setup">Setup</a>
+                <a class="nl" href="#license-verification" target="_self" data-i18n="nav_license_check">License Check</a>
+                <a class="nl" href="#account" target="_self" data-i18n="nav_account">Account</a>
+                <a class="nl" href="#brokers" target="_self" data-i18n="nav_brokers">Brokers</a>
+                <a class="nl" href="#about" target="_self" data-i18n="nav_about">About</a>
+                <a href="https://t.me/dsqfxtrader" class="nl btn-nav-cta"><i class="fab fa-telegram"></i> <span data-i18n="nav_join_telegram">Join Telegram</span></a>
             </div>
         </div>
     </nav>
@@ -34,18 +41,18 @@
     <!-- Hero -->
     <section class="hero" id="top">
         <div class="container hero-content">
-            <div class="hero-badge"><i class="fas fa-robot"></i> Dalal Street Quants</div>
-            <h1>DSQ <span>Forex Bot</span></h1>
-            <p class="lead">Algorithmic trading strategies built, tested, and analyzed for Nifty 50, Bank Nifty, Nifty 500 stocks, Gold and Bitcoin.</p>
+            <div class="hero-badge" data-i18n="hero_badge"><i class="fas fa-robot"></i> Dalal Street Quants</div>
+            <h1>DSQ <span data-i18n="hero_title_2">Forex Bot</span></h1>
+            <p class="lead" data-i18n="hero_lead">Algorithmic trading strategies built, tested, and analyzed for Nifty 50, Bank Nifty, Nifty 500 stocks, Gold and Bitcoin.</p>
             <div class="hero-ctas">
-                <a href="#download" class="btn-hero-primary" target="_self"><i class="fas fa-download"></i> Download Free Bot</a>
-                <a href="#setup" class="btn-hero-ghost" target="_self"><i class="fas fa-circle-play"></i> Setup Guide</a>
+                <a href="#download" class="btn-hero-primary" target="_self" data-i18n="hero_btn_download"><i class="fas fa-download"></i> Download Free Bot</a>
+                <a href="#setup" class="btn-hero-ghost" target="_self" data-i18n="hero_btn_setup"><i class="fas fa-circle-play"></i> Setup Guide</a>
             </div>
             <div class="hero-stats">
-                <div class="hero-stat"><div class="num">3</div><div class="lbl">Bot Versions</div></div>
-                <div class="hero-stat"><div class="num"><i class="fas fa-gift"></i>FREE</div><div class="lbl">V2 – V3 Licenses</div></div>
-                <div class="hero-stat"><div class="num">24-48h</div><div class="lbl">License Activation</div></div>
-                <div class="hero-stat"><div class="num">5</div><div class="lbl">Partner Brokers</div></div>
+                <div class="hero-stat"><div class="num">3</div><div class="lbl" data-i18n="stat_bot_versions">Bot Versions</div></div>
+                <div class="hero-stat"><div class="num"><i class="fas fa-gift"></i>FREE</div><div class="lbl" data-i18n="stat_licenses">V2 – V3 Licenses</div></div>
+                <div class="hero-stat"><div class="num">24-48h</div><div class="lbl" data-i18n="stat_activation">License Activation</div></div>
+                <div class="hero-stat"><div class="num">5</div><div class="lbl" data-i18n="stat_brokers">Partner Brokers</div></div>
             </div>
         </div>
     </section>
@@ -55,8 +62,8 @@
         <div class="container">
             <div class="tg-strip">
                 <span class="ico"><i class="fab fa-telegram"></i></span>
-                <div class="txt"><strong>Have questions?</strong> Join our Telegram group — our team &amp; community will help you out.</div>
-                <a href="https://t.me/dsqfxtrader" class="btn-tg"><i class="fab fa-telegram"></i> Join Telegram Group</a>
+                <div class="txt"><strong data-i18n="tg_have_questions">Have questions?</strong> <span data-i18n="tg_text">Join our Telegram group — our team &amp; community will help you out.</span></div>
+                <a href="https://t.me/dsqfxtrader" class="btn-tg" data-i18n="tg_btn"><i class="fab fa-telegram"></i> Join Telegram Group</a>
             </div>
         </div>
     </div>
