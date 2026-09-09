@@ -7,31 +7,25 @@ __pycache__/
 dist/
 build/
 *.class
-*.so
-*.dll
 *.exe
+*.dll
+*.so
 *.a
 *.out
 
 # Dependencies
-.venv/
-venv/
 node_modules/
-.mypy_cache/
-.pytest_cache/
-target/
-.gradle/
+venv/
+.venv/
+.env
+.env.local
+.env.*
 
 # Logs and temp files
 *.log
 *.tmp
 *.swp
 *.swo
-
-# Environment
-.env
-.env.local
-*.env.*
 
 # Editors
 .vscode/
@@ -45,6 +39,14 @@ Thumbs.db
 coverage/
 htmlcov/
 .coverage
+
+# Python specific
+.mypy_cache/
+.pytest_cache/
+
+# Java/Gradle
+target/
+.gradle/
 
 # Compressed files
 *.zip

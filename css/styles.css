@@ -591,6 +591,20 @@ color: #0e9f6e !important;
 font-weight: 700;
 }
 
+/* ---------- V2 Card Alignment Fix ---------- */
+.bot-card .real-account-notice {
+min-height: 52px;
+display: flex;
+align-items: center;
+}
+
+/* Ensure consistent card heights for all bot versions */
+@media (min-width: 992px) {
+    .bot-card {
+        min-height: 520px;
+    }
+}
+
 /* ---------- License Activation Widget ---------- */
 .license-activation-widget {
 background: linear-gradient(135deg, #fbfcfd, #f6f7f9);
@@ -795,6 +809,17 @@ background: #dc3545;
 color: #fff;
 }
 .result-body { padding: 22px; }
+.result-body .license-disclaimer {
+margin-top: 18px;
+padding-top: 18px;
+border-top: 1px solid var(--border);
+}
+.result-body .license-disclaimer .alert-box {
+margin-bottom: 12px;
+}
+.result-body .license-disclaimer .alert-box:last-child {
+margin-bottom: 0;
+}
 .result-row {
 display: flex;
 justify-content: space-between;
