@@ -172,524 +172,196 @@
             <div class="title-block">
                 <span class="eyebrow"><i class="fas fa-cogs"></i> Bot Setup</span>
                 <h2 class="section-title">Step-by-Step Setup Guide</h2>
-                <p class="section-subtitle">Follow the guide for your chosen bot version — most setups complete in minutes.</p>
+                <p class="section-subtitle">Follow the guide below — setup is the same for all bot versions.</p>
             </div>
 
             <div class="setup-shell">
-                <ul class="nav nav-pills justify-content-center" id="setupTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="v2-tab" data-bs-toggle="pill" data-bs-target="#v2-setup" type="button" role="tab"><span class="v-dot"></span>DSQ V2</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="v3-tab" data-bs-toggle="pill" data-bs-target="#v3-setup" type="button" role="tab"><span class="v-dot"></span>DSQ V3</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="v4-tab" data-bs-toggle="pill" data-bs-target="#v4-setup" type="button" role="tab"><span class="v-dot"></span>DSQ V4</button>
-                    </li>
-                </ul>
+                <!-- Unified Setup Content - No Tabs -->
+                <div class="alert-box alert-free">
+                    <i class="fas fa-gift alert-icon"></i>
+                    <div><strong>Completely Free.</strong> DSQ V2 & V3 licenses are free. V4 is FREE until October 15th. No hidden charges ever.</div>
+                </div>
 
-                <div class="tab-content" id="setupTabContent">
-                    <!-- V2 Setup -->
-                    <div class="tab-pane fade show active" id="v2-setup" role="tabpanel">
-                        <div class="alert-box alert-free">
-                            <i class="fas fa-gift alert-icon"></i>
-                            <div><strong>Completely Free.</strong> License is free. No payment required. Get your free license via Telegram.</div>
-                        </div>
-
-                        <div class="step-card">
-                            <div class="step-head"><span class="step-number">1</span><span class="step-title">Download MT5 &amp; Login</span></div>
-                            <div class="step-content">
-                                <ul>
-                                    <li>Download MT5 from <a href="https://www.metatrader5.com/en/download">metatrader5.com</a></li>
-                                    <li>Login with your broker credentials (use Cent account only with maximum leverage set like 1:2000)</li>
-                                    <li>
-                                        In MetaTrader, go to <strong>Tools → Options → Expert Advisors</strong>:
-                                        <ul style="margin-top: 8px;">
-                                            <li>Allow <strong>Algorithmic Trading</strong></li>
-                                            <li>Allow <strong>Web Request for listed URL</strong> → Add:
-                                                <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')">
-                                                    https://raw.githubusercontent.com <i class="fas fa-copy copy-icon"></i>
-                                                </span>
-                                            </li>
-                                        </ul>
+                <div class="step-card">
+                    <div class="step-head"><span class="step-number">1</span><span class="step-title">Download MT5 &amp; Login</span></div>
+                    <div class="step-content">
+                        <ul>
+                            <li>Download MT5 from <a href="https://www.metatrader5.com/en/download">metatrader5.com</a></li>
+                            <li>Login with your broker credentials (use Cent account only with maximum leverage set like 1:2000)</li>
+                            <li>
+                                In MetaTrader, go to <strong>Tools → Options → Expert Advisors</strong>:
+                                <ul style="margin-top: 8px;">
+                                    <li>Allow <strong>Algorithmic Trading</strong></li>
+                                    <li>Allow <strong>Web Request for listed URL</strong> → Add:
+                                        <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')">
+                                            https://raw.githubusercontent.com <i class="fas fa-copy copy-icon"></i>
+                                        </span>
                                     </li>
                                 </ul>
-                            </div>
-                        </div>
-
-                        <div class="step-card">
-                            <div class="step-head"><span class="step-number">2</span><span class="step-title">Download &amp; Install DSQ V2</span></div>
-                            <div class="step-content">
-                                <ul>
-                                    <li>Download <code>dsq_v2.ex5</code> from the button above</li>
-                                    <li>Double-click to add to MetaTrader</li>
-                                    <li>Find <strong>dsq_v2</strong> in the Navigator panel under Expert Advisors</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="step-card">
-                            <div class="step-head"><span class="step-number">3</span><span class="step-title">Activate Your Free License</span></div>
-                            <div class="step-content">
-                                <div class="alert-box alert-info-custom mb-3">
-                                    <i class="fas fa-info-circle alert-icon"></i>
-                                    <div><strong>License Activation Period:</strong> License activation takes between <strong>24 to 48 hours</strong>. Please be patient while we verify your request.</div>
-                                </div>
-                                <p><strong>How to get your V2 License:</strong></p>
-                                <ul>
-                                    <li>Join our <a href="https://t.me/dsqfxtrader"><strong>Telegram Channel</strong></a></li>
-                                    <li>Message our Telegram Bot with your <strong>MT5 ID</strong> and <strong>Broker Name</strong></li>
-                                    <li>Your free license will be activated within <strong>24-48 hours</strong></li>
-                                </ul>
-                                
-                                <!-- License Activation Form -->
-                                <div class="license-activation-widget mt-4">
-                                    <h5 class="widget-title"><i class="fas fa-key"></i> Activate Your License Online</h5>
-                                    <p class="widget-subtitle">Fill the form below to submit your license request directly</p>
-                                    
-                                    <form id="v2-license-form" class="license-form" onsubmit="submitLicenseForm(event, 'v2')">
-                                        <div class="form-row">
-                                            <div class="form-group">
-                                                <label for="v2-mt5-id"><i class="fas fa-id-card"></i> MT5 ID *</label>
-                                                <input type="text" id="v2-mt5-id" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="v2-account-mode"><i class="fas fa-exchange-alt"></i> Account Mode *</label>
-                                                <select id="v2-account-mode" name="account_mode" required class="form-input">
-                                                    <option value="">Select Mode</option>
-                                                    <option value="real">Real Account</option>
-                                                    <option value="demo">Demo Account</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group">
-                                                <label for="v2-name"><i class="fas fa-user"></i> Full Name *</label>
-                                                <input type="text" id="v2-name" name="name" required placeholder="Enter your full name" class="form-input">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="v2-partner-code"><i class="fas fa-user-tag"></i> Partner Code Added? *</label>
-                                                <select id="v2-partner-code" name="partner_code" required class="form-input">
-                                                    <option value="">Select Option</option>
-                                                    <option value="yes">Yes</option>
-                                                    <option value="no">No</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group">
-                                                <label for="v2-broker"><i class="fas fa-building"></i> Broker Name *</label>
-                                                <select id="v2-broker" name="broker" required class="form-input">
-                                                    <option value="">Select Broker</option>
-                                                    <option value="vantage">Vantage</option>
-                                                    <option value="roboforex">Roboforex</option>
-                                                    <option value="exness">Exness</option>
-                                                    <option value="xm">XM</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="v2-account-type"><i class="fas fa-wallet"></i> Account Type *</label>
-                                                <select id="v2-account-type" name="account_type" required class="form-input">
-                                                    <option value="">Select Account Type</option>
-                                                    <option value="cent">Cent Account</option>
-                                                    <option value="micro">Micro Account</option>
-                                                    <option value="standard">Standard Account</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn-submit-license">
-                                            <i class="fas fa-paper-plane"></i> Submit License Request
-                                        </button>
-                                    </form>
-                                    <div id="v2-form-message" class="form-message"></div>
-                                </div>
-                                
-                                <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=r-4ae0ceFuY','_blank')">
-                                    <span class="play"><i class="fas fa-play"></i></span>
-                                    <div class="vid-title">Watch: How to Get Your Free V2 License</div>
-                                    <div class="vid-sub">Step-by-step video guide</div>
-                                </div>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
+                </div>
 
-                    <!-- V3 Setup -->
-                    <div class="tab-pane fade" id="v3-setup" role="tabpanel">
-                        <div class="alert-box alert-free">
-                            <i class="fas fa-gift alert-icon"></i>
-                            <div><strong>Completely Free.</strong> License is free. Partner code setup is free. No hidden charges ever.</div>
-                        </div>
-
-                        <div class="alert-box alert-warning-custom">
-                            <i class="fas fa-exclamation-triangle alert-icon"></i>
-                            <div><strong>Important:</strong> DSQ V3 is available <strong>only on a real cent/micro account</strong>. No demo account is available.</div>
-                        </div>
-
-                        <div class="step-card">
-                            <div class="step-head"><span class="step-number">1</span><span class="step-title">Download MT5 &amp; Login</span></div>
-                            <div class="step-content">
-                                <ul>
-                                    <li>Download MT5 from <a href="https://www.metatrader5.com/en/download">metatrader5.com</a></li>
-                                    <li>Login with your broker credentials (use Cent account only with maximum leverage set like 1:2000)</li>
-                                    <li>
-                                        In MetaTrader, go to <strong>Tools → Options → Expert Advisors</strong>:
-                                        <ul style="margin-top: 8px;">
-                                            <li>Allow <strong>Algorithmic Trading</strong></li>
-                                            <li>Allow <strong>Web Request for listed URL</strong> → Add:
-                                                <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')">
-                                                    https://raw.githubusercontent.com <i class="fas fa-copy copy-icon"></i>
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="step-card">
-                            <div class="step-head"><span class="step-number">2</span><span class="step-title">Set Partner Code on Your Account</span></div>
-                            <div class="step-content">
-                                <p>Our bots are supported <strong>only</strong> for the following brokers. Set the partner code on your broker account:</p>
-                                <div class="row g-3 mt-2">
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="partner-card">
-                                            <span class="partner-avatar">V</span>
-                                            <div class="partner-logo">Vantage</div>
-                                            <div class="partner-sub">Partner broker</div>
-                                            <span class="partner-code" onclick="copyToClipboard(this, 'VcM6U1DW')">VcM6U1DW <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
-                                            <a href="https://vigco.co/la-com-inv/VcM6U1DW" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="partner-card">
-                                            <span class="partner-avatar">R</span>
-                                            <div class="partner-logo">Roboforex</div>
-                                            <div class="partner-sub">Partner broker</div>
-                                            <span class="partner-code" onclick="copyToClipboard(this, 'zrfhm')">zrfhm <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
-                                            <a href="https://my.roboforex.com/en/?a=zrfhm" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="partner-card">
-                                            <span class="partner-avatar">E</span>
-                                            <div class="partner-logo">Exness</div>
-                                            <div class="partner-sub">Partner broker</div>
-                                            <span class="partner-code" onclick="copyToClipboard(this, 'c_niibgmkreg')">c_niibgmkreg <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
-                                            <a href="https://one.exnessonelink.com/a/c_niibgmkreg" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="partner-card">
-                                            <span class="partner-avatar">X</span>
-                                            <div class="partner-logo">XM</div>
-                                            <div class="partner-sub">Partner broker</div>
-                                            <span class="partner-code" onclick="copyToClipboard(this, '4299V')">4299V <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
-                                            <a href="https://affs.click/mvjlf" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="partner-card soon">
-                                            <span class="partner-avatar">C</span>
-                                            <div class="partner-logo">CXM</div>
-                                            <div class="partner-sub">Partner broker</div>
-                                            <span class="soon-pill">Coming Soon</span>
-                                            <span class="btn-open-account disabled"><i class="fas fa-user-plus"></i> Open Account</span>
-                                        </div>
-                                    </div>
+                <div class="step-card">
+                    <div class="step-head"><span class="step-number">2</span><span class="step-title">Set Partner Code on Your Account</span></div>
+                    <div class="step-content">
+                        <p>Our bots are supported <strong>only</strong> for the following brokers. Set the partner code on your broker account:</p>
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="partner-card">
+                                    <span class="partner-avatar">V</span>
+                                    <div class="partner-logo">Vantage</div>
+                                    <div class="partner-sub">Partner broker</div>
+                                    <span class="partner-code" onclick="copyToClipboard(this, 'VcM6U1DW')">VcM6U1DW <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                                    <a href="https://vigco.co/la-com-inv/VcM6U1DW" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                                    <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="step-card">
-                            <div class="step-head"><span class="step-number">3</span><span class="step-title">Download &amp; Install DSQ V3</span></div>
-                            <div class="step-content">
-                                <ul>
-                                    <li>Download <code>dsq_v3.ex5</code> from the button above</li>
-                                    <li>Double-click to add to MetaTrader</li>
-                                    <li>Find <strong>dsq_v3</strong> in the Navigator panel</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="step-card">
-                            <div class="step-head"><span class="step-number">4</span><span class="step-title">Activate Your Free License</span></div>
-                            <div class="step-content">
-                                <div class="alert-box alert-info-custom mb-3">
-                                    <i class="fas fa-info-circle alert-icon"></i>
-                                    <div><strong>License Activation Period:</strong> License activation takes between <strong>24 to 48 hours</strong>. Please be patient while we verify your request.</div>
-                                </div>
-                                <p><strong>How to get your V3 License:</strong></p>
-                                <ul>
-                                    <li>Join our <a href="https://t.me/dsqfxtrader"><strong>Telegram Channel</strong></a></li>
-                                    <li>Message our Telegram Bot with your <strong>MT5 ID</strong>, <strong>Broker Name</strong>, and confirm your <strong>Partner Code</strong> is set</li>
-                                    <li>Your free license will be activated within <strong>24-48 hours</strong></li>
-                                </ul>
-                                
-                                <!-- License Activation Form -->
-                                <div class="license-activation-widget mt-4">
-                                    <h5 class="widget-title"><i class="fas fa-key"></i> Activate Your License Online</h5>
-                                    <p class="widget-subtitle">Fill the form below to submit your license request directly</p>
-                                    
-                                    <form id="v3-license-form" class="license-form" onsubmit="submitLicenseForm(event, 'v3')">
-                                        <div class="form-row">
-                                            <div class="form-group">
-                                                <label for="v3-mt5-id"><i class="fas fa-id-card"></i> MT5 ID *</label>
-                                                <input type="text" id="v3-mt5-id" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="v3-account-mode"><i class="fas fa-exchange-alt"></i> Account Mode *</label>
-                                                <select id="v3-account-mode" name="account_mode" required class="form-input">
-                                                    <option value="">Select Mode</option>
-                                                    <option value="real">Real Account</option>
-                                                    <option value="demo">Demo Account</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group">
-                                                <label for="v3-name"><i class="fas fa-user"></i> Full Name *</label>
-                                                <input type="text" id="v3-name" name="name" required placeholder="Enter your full name" class="form-input">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="v3-partner-code"><i class="fas fa-user-tag"></i> Partner Code Added? *</label>
-                                                <select id="v3-partner-code" name="partner_code" required class="form-input">
-                                                    <option value="">Select Option</option>
-                                                    <option value="yes">Yes</option>
-                                                    <option value="no">No</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group">
-                                                <label for="v3-broker"><i class="fas fa-building"></i> Broker Name *</label>
-                                                <select id="v3-broker" name="broker" required class="form-input">
-                                                    <option value="">Select Broker</option>
-                                                    <option value="vantage">Vantage</option>
-                                                    <option value="roboforex">Roboforex</option>
-                                                    <option value="exness">Exness</option>
-                                                    <option value="xm">XM</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="v3-account-type"><i class="fas fa-wallet"></i> Account Type *</label>
-                                                <select id="v3-account-type" name="account_type" required class="form-input">
-                                                    <option value="">Select Account Type</option>
-                                                    <option value="cent">Cent Account</option>
-                                                    <option value="micro">Micro Account</option>
-                                                    <option value="standard">Standard Account</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn-submit-license">
-                                            <i class="fas fa-paper-plane"></i> Submit License Request
-                                        </button>
-                                    </form>
-                                    <div id="v3-form-message" class="form-message"></div>
-                                </div>
-                                
-                                <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=r-4ae0ceFuY','_blank')">
-                                    <span class="play"><i class="fas fa-play"></i></span>
-                                    <div class="vid-title">Watch: How to Get Your Free V3 License</div>
-                                    <div class="vid-sub">Step-by-step video guide </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="partner-card">
+                                    <span class="partner-avatar">R</span>
+                                    <div class="partner-logo">Roboforex</div>
+                                    <div class="partner-sub">Partner broker</div>
+                                    <span class="partner-code" onclick="copyToClipboard(this, 'zrfhm')">zrfhm <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                                    <a href="https://my.roboforex.com/en/?a=zrfhm" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                                    <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- V4 Setup -->
-                    <div class="tab-pane fade" id="v4-setup" role="tabpanel">
-                        <div class="alert-box alert-free">
-                            <i class="fas fa-gift alert-icon"></i>
-                            <div><strong>Limited Time Offer!</strong> DSQ V4 is <strong>FREE until October 15th</strong>. After that, regular pricing applies. Get it now while it's free!</div>
-                        </div>
-
-                        <div class="alert-box alert-danger-custom">
-                            <i class="fas fa-crown alert-icon"></i>
-                            <div><strong>Important:</strong> DSQ V4 is available <strong>only on a real cent/micro account</strong>. No demo account is available for V4.</div>
-                        </div>
-
-                        <div class="step-card">
-                            <div class="step-head"><span class="step-number">1</span><span class="step-title">Download MT5 &amp; Login</span></div>
-                            <div class="step-content">
-                                <ul>
-                                    <li>Download MT5 from <a href="https://www.metatrader5.com/en/download">metatrader5.com</a></li>
-                                    <li>Login with your broker credentials (use Cent account only with maximum leverage set like 1:2000)</li>
-                                    <li>
-                                        In MetaTrader, go to <strong>Tools → Options → Expert Advisors</strong>:
-                                        <ul style="margin-top: 8px;">
-                                            <li>Allow <strong>Algorithmic Trading</strong></li>
-                                            <li>Allow <strong>Web Request for listed URL</strong> → Add:
-                                                <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')">
-                                                    https://raw.githubusercontent.com <i class="fas fa-copy copy-icon"></i>
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="step-card">
-                            <div class="step-head"><span class="step-number">2</span><span class="step-title">Set Partner Code on Your Account</span></div>
-                            <div class="step-content">
-                                <p>Our bots are supported <strong>only</strong> for the following brokers. Set the partner code on your broker account:</p>
-                                <div class="row g-3 mt-2">
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="partner-card">
-                                            <span class="partner-avatar">V</span>
-                                            <div class="partner-logo">Vantage</div>
-                                            <div class="partner-sub">Partner broker</div>
-                                            <span class="partner-code" onclick="copyToClipboard(this, 'VcM6U1DW')">VcM6U1DW <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
-                                            <a href="https://vigco.co/la-com-inv/VcM6U1DW" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="partner-card">
-                                            <span class="partner-avatar">R</span>
-                                            <div class="partner-logo">Roboforex</div>
-                                            <div class="partner-sub">Partner broker</div>
-                                            <span class="partner-code" onclick="copyToClipboard(this, 'zrfhm')">zrfhm <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
-                                            <a href="https://my.roboforex.com/en/?a=zrfhm" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="partner-card">
-                                            <span class="partner-avatar">E</span>
-                                            <div class="partner-logo">Exness</div>
-                                            <div class="partner-sub">Partner broker</div>
-                                            <span class="partner-code" onclick="copyToClipboard(this, 'c_niibgmkreg')">c_niibgmkreg <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
-                                            <a href="https://one.exnessonelink.com/a/c_niibgmkreg" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="partner-card">
-                                            <span class="partner-avatar">X</span>
-                                            <div class="partner-logo">XM</div>
-                                            <div class="partner-sub">Partner broker</div>
-                                            <span class="partner-code" onclick="copyToClipboard(this, '4299V')">4299V <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
-                                            <a href="https://affs.click/mvjlf" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                                            <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="partner-card soon">
-                                            <span class="partner-avatar">C</span>
-                                            <div class="partner-logo">CXM</div>
-                                            <div class="partner-sub">Partner broker</div>
-                                            <span class="soon-pill">Coming Soon</span>
-                                            <span class="btn-open-account disabled"><i class="fas fa-user-plus"></i> Open Account</span>
-                                        </div>
-                                    </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="partner-card">
+                                    <span class="partner-avatar">E</span>
+                                    <div class="partner-logo">Exness</div>
+                                    <div class="partner-sub">Partner broker</div>
+                                    <span class="partner-code" onclick="copyToClipboard(this, 'c_niibgmkreg')">c_niibgmkreg <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                                    <a href="https://one.exnessonelink.com/a/c_niibgmkreg" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                                    <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="step-card">
-                            <div class="step-head"><span class="step-number">3</span><span class="step-title">Download &amp; Install DSQ V4</span></div>
-                            <div class="step-content">
-                                <ul>
-                                    <li>Download <code>dsq_v4.ex5</code> from the button above</li>
-                                    <li>Double-click to add to MetaTrader</li>
-                                    <li>Find <strong>dsq_v4</strong> in the Navigator panel</li>
-                                </ul>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="partner-card">
+                                    <span class="partner-avatar">X</span>
+                                    <div class="partner-logo">XM</div>
+                                    <div class="partner-sub">Partner broker</div>
+                                    <span class="partner-code" onclick="copyToClipboard(this, '4299V')">4299V <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
+                                    <a href="https://affs.click/mvjlf" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
+                                    <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="step-card">
-                            <div class="step-head"><span class="step-number">4</span><span class="step-title">Activate Your Premium License</span></div>
-                            <div class="step-content">
-                                <div class="alert-box alert-info-custom mb-3">
-                                    <i class="fas fa-info-circle alert-icon"></i>
-                                    <div><strong>License Activation Period:</strong> License activation takes between <strong>24 to 48 hours</strong>. Please be patient while we verify your request.</div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="partner-card soon">
+                                    <span class="partner-avatar">C</span>
+                                    <div class="partner-logo">CXM</div>
+                                    <div class="partner-sub">Partner broker</div>
+                                    <span class="soon-pill">Coming Soon</span>
+                                    <span class="btn-open-account disabled"><i class="fas fa-user-plus"></i> Open Account</span>
                                 </div>
-                                <p><strong>How to get your V4 License:</strong></p>
-                                <ul>
-                                    <li>Join our <a href="https://t.me/dsqfxtrader"><strong>Telegram Channel</strong></a></li>
-                                    <li>Message our Telegram Bot with your <strong>MT5 ID</strong> and <strong>Broker Name</strong></li>
-                                    <li>After verification, your V4 license will be activated within <strong>24-48 hours</strong></li>
-                                </ul>
-                                
-                                <!-- License Activation Form -->
-                                <div class="license-activation-widget mt-4">
-                                    <h5 class="widget-title"><i class="fas fa-key"></i> Activate Your License Online</h5>
-                                    <p class="widget-subtitle">Fill the form below to submit your license request directly</p>
-                                    
-                                    <form id="v4-license-form" class="license-form" onsubmit="submitLicenseForm(event, 'v4')">
-                                        <div class="form-row">
-                                            <div class="form-group">
-                                                <label for="v4-mt5-id"><i class="fas fa-id-card"></i> MT5 ID *</label>
-                                                <input type="text" id="v4-mt5-id" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="v4-account-mode"><i class="fas fa-exchange-alt"></i> Account Mode *</label>
-                                                <select id="v4-account-mode" name="account_mode" required class="form-input">
-                                                    <option value="">Select Mode</option>
-                                                    <option value="real">Real Account</option>
-                                                    <option value="demo">Demo Account</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group">
-                                                <label for="v4-name"><i class="fas fa-user"></i> Full Name *</label>
-                                                <input type="text" id="v4-name" name="name" required placeholder="Enter your full name" class="form-input">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="v4-partner-code"><i class="fas fa-user-tag"></i> Partner Code Added? *</label>
-                                                <select id="v4-partner-code" name="partner_code" required class="form-input">
-                                                    <option value="">Select Option</option>
-                                                    <option value="yes">Yes</option>
-                                                    <option value="no">No</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group">
-                                                <label for="v4-broker"><i class="fas fa-building"></i> Broker Name *</label>
-                                                <select id="v4-broker" name="broker" required class="form-input">
-                                                    <option value="">Select Broker</option>
-                                                    <option value="vantage">Vantage</option>
-                                                    <option value="roboforex">Roboforex</option>
-                                                    <option value="exness">Exness</option>
-                                                    <option value="xm">XM</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="v4-account-type"><i class="fas fa-wallet"></i> Account Type *</label>
-                                                <select id="v4-account-type" name="account_type" required class="form-input">
-                                                    <option value="">Select Account Type</option>
-                                                    <option value="cent">Cent Account</option>
-                                                    <option value="micro">Micro Account</option>
-                                                    <option value="standard">Standard Account</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn-submit-license">
-                                            <i class="fas fa-paper-plane"></i> Submit License Request
-                                        </button>
-                                    </form>
-                                    <div id="v4-form-message" class="form-message"></div>
-                                </div>
-                                
-                                <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=r-4ae0ceFuY','_blank')">
-                                    <span class="play"><i class="fas fa-play"></i></span>
-                                    <div class="vid-title">Watch: How to Get Your V4 Premium License</div>
-                                    <div class="vid-sub">Step-by-step video guide </div>
-                                </div>
-                                <small class="text-muted d-block mt-2">V4 approval requires real account verification. Contact our <a href="https://t.me/dsqfxtrader">Telegram Channel</a> for fast-track.</small>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="step-card">
+                    <div class="step-head"><span class="step-number">3</span><span class="step-title">Download &amp; Install Your Bot</span></div>
+                    <div class="step-content">
+                        <ul>
+                            <li>Download your bot version (.ex5 file) from the <a href="#download">Download section</a> above</li>
+                            <li>Double-click the downloaded file to add it to MetaTrader</li>
+                            <li>Find your bot (dsq_v2, dsq_v3, or dsq_v4) in the Navigator panel under Expert Advisors</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-head"><span class="step-number">4</span><span class="step-title">Activate Your License Online</span></div>
+                    <div class="step-content">
+                        <div class="alert-box alert-info-custom mb-3">
+                            <i class="fas fa-info-circle alert-icon"></i>
+                            <div><strong>License Activation Period:</strong> License activation takes between <strong>24 to 48 hours</strong>. Please be patient while we verify your request.</div>
+                        </div>
+                        
+                        <!-- License Activation Form with Bot Version Dropdown -->
+                        <div class="license-activation-widget mt-4">
+                            <h5 class="widget-title"><i class="fas fa-key"></i> Activate Your License Online</h5>
+                            <p class="widget-subtitle">Select your bot version and fill the form below to submit your license request</p>
+                            
+                            <form id="unified-license-form" class="license-form" onsubmit="submitUnifiedLicenseForm(event)">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="license-bot-version"><i class="fas fa-robot"></i> Bot Version *</label>
+                                        <select id="license-bot-version" name="bot_version" required class="form-input" onchange="onBotVersionChange()">
+                                            <option value="" disabled selected>Select Bot Version</option>
+                                            <option value="v2">DSQ V2</option>
+                                            <option value="v3">DSQ V3</option>
+                                            <option value="v4">DSQ V4</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="license-mt5-id"><i class="fas fa-id-card"></i> MT5 ID *</label>
+                                        <input type="text" id="license-mt5-id" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="license-name"><i class="fas fa-user"></i> Full Name *</label>
+                                        <input type="text" id="license-name" name="name" required placeholder="Enter your full name" class="form-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="license-partner-code"><i class="fas fa-user-tag"></i> Partner Code Added? *</label>
+                                        <select id="license-partner-code" name="partner_code" required class="form-input">
+                                            <option value="">Select Option</option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="license-broker"><i class="fas fa-building"></i> Broker Name *</label>
+                                        <select id="license-broker" name="broker" required class="form-input">
+                                            <option value="">Select Broker</option>
+                                            <option value="vantage">Vantage</option>
+                                            <option value="roboforex">Roboforex</option>
+                                            <option value="exness">Exness</option>
+                                            <option value="xm">XM</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="license-account-type"><i class="fas fa-wallet"></i> Account Type *</label>
+                                        <select id="license-account-type" name="account_type" required class="form-input">
+                                            <option value="">Select Account Type</option>
+                                            <option value="cent">Cent Account</option>
+                                            <option value="micro">Micro Account</option>
+                                            <option value="standard">Standard Account</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="license-account-mode"><i class="fas fa-exchange-alt"></i> Account Mode *</label>
+                                        <select id="license-account-mode" name="account_mode" required class="form-input">
+                                            <option value="">Select Mode</option>
+                                            <option value="real">Real Account</option>
+                                            <option value="demo">Demo Account</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn-submit-license">
+                                    <i class="fas fa-paper-plane"></i> Submit License Request
+                                </button>
+                            </form>
+                            <div id="unified-form-message" class="form-message"></div>
+                        </div>
+                        
+                        <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=r-4ae0ceFuY','_blank')">
+                            <span class="play"><i class="fas fa-play"></i></span>
+                            <div class="vid-title">Watch: How to Get Your License</div>
+                            <div class="vid-sub">Step-by-step video guide</div>
+                        </div>
+                        <small class="text-muted d-block mt-2">V3 & V4 approval requires real account verification. Contact our <a href="https://t.me/dsqfxtrader">Telegram Channel</a> for fast-track.</small>
+                    </div>
+                </div>
             </div>
-        </div>
     </section>
 
     <!-- Section: License Verification -->
@@ -703,15 +375,15 @@
 
             <div class="license-verification-widget">
                 <div class="verification-search-box">
-                    <form id="license-check-form" onsubmit="checkLicenseStatus(event)">
+                    <form id="license-check-form" onsubmit="searchLicence(); return false;">
                         <div class="search-input-group">
-                            <select id="check-bot-version" name="bot_version" required class="form-input">
+                            <select id="searchVersion" name="bot_version" required class="form-input">
                                 <option value="" disabled selected>Select Bot Version</option>
                                 <option value="dsq_v2">DSQ V2</option>
                                 <option value="dsq_v3">DSQ V3</option>
                                 <option value="dsq_v4">DSQ V4</option>
                             </select>
-                            <input type="text" id="check-mt5-id" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input search-input">
+                            <input type="text" id="searchMt5" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input search-input">
                             <button type="submit" class="btn-check-license">
                                 <i class="fas fa-search"></i> Check License
                             </button>

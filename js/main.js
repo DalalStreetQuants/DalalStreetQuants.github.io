@@ -144,111 +144,246 @@ submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit License Request
 }
 }
 
-// Check License Status
-async function checkLicenseStatus(event) {
-event.preventDefault();
+// Search Licence by MT5 ID and Bot Version
+async function searchLicence() {
+    const baseUrl = 'https://zhedge.tailc7f7ac.ts.net';
+    const mt5 = document.getElementById('searchMt5').value.trim();
+    const version = document.getElementById('searchVersion').value.trim();
+    const resultDiv = document.getElementById('license-result');
+    const errorDiv = document.getElementById('license-error');
 
-const botVersion = document.getElementById('check-bot-version').value.trim();
-const mt5Id = document.getElementById('check-mt5-id').value.trim();
-const resultDiv = document.getElementById('license-result');
-const errorDiv = document.getElementById('license-error');
+    // Hide previous results
+    resultDiv.style.display = 'none';
+    errorDiv.style.display = 'none';
 
-// Hide previous results
-resultDiv.style.display = 'none';
-errorDiv.style.display = 'none';
+    if (!mt5) {
+        document.getElementById('error-text').textContent = 'Please enter an MT5 ID to search';
+        errorDiv.style.display = 'block';
+        return;
+    }
 
-if (!botVersion) {
-document.getElementById('error-text').textContent = 'Please select a bot version.';
-errorDiv.style.display = 'block';
-return;
-}
+    const url = `${baseUrl}/api/v1/licences/search`;
+    const payload = {
+        metatrader_id: mt5,
+        bot_version: version
+    };
 
-if (!mt5Id) {
-document.getElementById('error-text').textContent = 'Please enter a valid MetaTrader ID.';
-errorDiv.style.display = 'block';
-return;
-}
-
-// Map bot version to API version parameter
-let apiVersion;
-if (botVersion === 'dsq_v2') {
-apiVersion = 'v2';
-} else if (botVersion === 'dsq_v3') {
-apiVersion = 'v3';
-} else if (botVersion === 'dsq_v4') {
-apiVersion = 'v4';
-}
-
-try {
-// Fetch all licences from backend API for the selected bot version
-const response = await fetch(`${BACKEND_API_URL}?version=${apiVersion}`, {
-method: 'GET',
-headers: {
-'Content-Type': 'application/json',
-}
-});
-
-if (!response.ok) {
-throw new Error(`Failed to fetch licence data: ${response.status}`);
-}
-
-const data = await response.json();
-const users = Array.isArray(data) ? data : (data.users || []);
-
-// Find user by MT5 ID
-const user = users.find(u => u.metatrader_id === mt5Id || u.metatrader_id == mt5Id);
-
-if (user) {
-// Display license details
-document.getElementById('result-mt5-id').textContent = user.metatrader_id;
-document.getElementById('result-name').textContent = user.name || 'N/A';
-document.getElementById('result-valid-upto').textContent = user.valid_upto || 'N/A';
-
-const verified = user.Verified === 'True' || user.Verified === true || user.Verified === 'true';
-const statusBadge = document.getElementById('result-status');
-const statusText = document.getElementById('result-verified');
-
-if (verified) {
-statusBadge.className = 'status-badge verified';
-statusBadge.textContent = 'Verified';
-statusText.className = 'result-value status-text verified';
-statusText.textContent = 'Licence is Valid';
-} else {
-statusBadge.className = 'status-badge pending';
-statusBadge.textContent = 'Pending';
-statusText.className = 'result-value status-text pending';
-statusText.textContent = 'Pending for approval. Please wait 24 to 48 hours for approval.';
-
-// Add disclaimer for V3 and V4 about partner code
-if (botVersion === 'dsq_v3' || botVersion === 'dsq_v4') {
-const disclaimerDiv = document.createElement('div');
-disclaimerDiv.className = 'alert-box alert-warning-custom mt-3';
-disclaimerDiv.innerHTML = '<i class="fas fa-exclamation-circle alert-icon"></i><div><strong>Disclaimer:</strong> If partner code is not added, then this will not be verified.</div>';
-
-// Remove any existing disclaimer
-const existingDisclaimer = statusText.parentElement.querySelector('.alert-box');
-if (existingDisclaimer) {
-existingDisclaimer.remove();
-}
-
-statusText.parentElement.appendChild(disclaimerDiv);
-}
-}
-
-resultDiv.style.display = 'block';
-} else {
-// License not found - no MT5 ID in database
-document.getElementById('error-text').textContent = `License not found for MT5 ID: ${mt5Id}. No license exists for this MetaTrader ID. Please submit a license request first.`;
-errorDiv.style.display = 'block';
-}
-
-} catch (error) {
-console.error('Error checking license:', error);
-document.getElementById('error-text').textContent = 'An error occurred while checking license status. Please try again. Ensure the backend API is accessible.';
-errorDiv.style.display = 'block';
-}
+    try {
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        
+        if (res.ok && data.metatrader_id) {
+            // License found - display details
+            document.getElementById('result-mt5-id').textContent = data.metatrader_id;
+            document.getElementById('result-name').textContent = data.name || 'N/A';
+            document.getElementById('result-valid-upto').textContent = data.valid_upto || 'N/A';
+            
+            const statusBadge = document.getElementById('result-status');
+            const statusText = document.getElementById('result-verified');
+            
+            // Check if valid_upto is expired
+            let isExpired = false;
+            if (data.valid_upto) {
+                // Parse date in DD-MM-YYYY format
+                const parts = data.valid_upto.split('-');
+                if (parts.length === 3) {
+                    const expiryDate = new Date(parts[2], parts[1] - 1, parts[0]);
+                    const today = new Date();
+                    if (expiryDate < today) {
+                        isExpired = true;
+                    }
+                }
+            }
+            
+            // Check verification status
+            const isVerified = data.Verified === 'True' || data.Verified === true || data.Verified === 'true';
+            
+            if (isExpired) {
+                // License expired
+                statusBadge.className = 'status-badge expired';
+                statusBadge.textContent = 'Expired';
+                statusText.className = 'result-value status-text expired';
+                statusText.textContent = 'Licence expired. Please apply again.';
+                
+                // Remove any existing disclaimer
+                const existingDisclaimer = statusText.parentElement.querySelector('.alert-box');
+                if (existingDisclaimer) {
+                    existingDisclaimer.remove();
+                }
+            } else if (!isVerified) {
+                // Verification in progress
+                statusBadge.className = 'status-badge pending';
+                statusBadge.textContent = 'Pending';
+                statusText.className = 'result-value status-text pending';
+                statusText.textContent = 'Verification in progress.';
+                
+                // Remove any existing disclaimer
+                const existingDisclaimer = statusText.parentElement.querySelector('.alert-box');
+                if (existingDisclaimer) {
+                    existingDisclaimer.remove();
+                }
+                
+                // Add disclaimer
+                const disclaimerDiv = document.createElement('div');
+                disclaimerDiv.className = 'alert-box alert-warning-custom mt-3';
+                disclaimerDiv.innerHTML = '<i class="fas fa-exclamation-circle alert-icon"></i><div><strong>Disclaimer:</strong> It takes 24/48 hours for the license to activate. Note: If you have not added the partner code, verification will not work.</div>';
+                statusText.parentElement.appendChild(disclaimerDiv);
+                
+                // Add Telegram support message
+                const supportDiv = document.createElement('div');
+                supportDiv.className = 'alert-box alert-info-custom mt-2';
+                supportDiv.innerHTML = '<i class="fab fa-telegram alert-icon"></i><div>If any questions, drop a message to Telegram <a href="https://t.me/dsq_license_support" target="_blank">@dsq_license_support</a></div>';
+                statusText.parentElement.appendChild(supportDiv);
+            } else {
+                // Verified and valid
+                statusBadge.className = 'status-badge verified';
+                statusBadge.textContent = 'Verified';
+                statusText.className = 'result-value status-text verified';
+                statusText.textContent = 'Licence is Valid';
+                
+                // Remove any existing disclaimer
+                const existingDisclaimer = statusText.parentElement.querySelector('.alert-box');
+                if (existingDisclaimer) {
+                    existingDisclaimer.remove();
+                }
+            }
+            
+            resultDiv.style.display = 'block';
+        } else {
+            // License not found
+            document.getElementById('error-text').textContent = `License not found for MT5 ID: ${mt5}. Please check your MT5 ID and bot version, or submit a license request first.`;
+            errorDiv.style.display = 'block';
+        }
+    } catch (err) {
+        console.error('Error searching licence:', err);
+        document.getElementById('error-text').textContent = 'An error occurred while checking license status. Please try again.';
+        errorDiv.style.display = 'block';
+    }
 }
 
 // Expose functions globally for inline event handlers
 window.submitLicenseForm = submitLicenseForm;
-window.checkLicenseStatus = checkLicenseStatus;
+window.searchLicence = searchLicence;
+
+// Unified License Form Submission
+async function submitUnifiedLicenseForm(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const formData = new FormData(form);
+    const version = formData.get('bot_version');
+    const mt5Id = formData.get('mt5_id');
+    const name = formData.get('name');
+    const broker = formData.get('broker');
+    const accountType = formData.get('account_type');
+    const accountMode = formData.get('account_mode');
+    const partnerCode = formData.get('partner_code');
+    
+    const messageDiv = document.getElementById('unified-form-message');
+    const submitBtn = form.querySelector('.btn-submit-license');
+    
+    if (!version) {
+        alert('Please select a bot version.');
+        return;
+    }
+    
+    // Validation for DSQ V3 and V4: Real account and partner code required
+    if (version === 'v3' || version === 'v4') {
+        if (accountMode !== 'real') {
+            alert(`DSQ ${version.toUpperCase()} is supported only for Real accounts. Demo accounts are not allowed.`);
+            return;
+        }
+        if (partnerCode !== 'yes') {
+            alert(`DSQ ${version.toUpperCase()} requires Partner Code to be added. Please add the partner code to your MetaTrader account before submitting.`);
+            return;
+        }
+    }
+    
+    // Disable button during submission
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+    
+    try {
+        const response = await fetch(`${BACKEND_API_URL}?version=${version}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                mt5_id: mt5Id,
+                name: name,
+                broker: broker,
+                account_type: accountType,
+                account_mode: accountMode,
+                partner_code: partnerCode
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+            messageDiv.className = 'form-message success';
+            messageDiv.textContent = `License request submitted successfully for MT5 ID: ${mt5Id}. Status: Verification Ongoing. You will receive confirmation within 24-48 hours.`;
+            form.reset();
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit License Request';
+        } else {
+            messageDiv.className = 'form-message error';
+            messageDiv.textContent = data.detail || 'Failed to submit license request. Please try again.';
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit License Request';
+        }
+        
+    } catch (error) {
+        console.error('Error submitting license:', error);
+        messageDiv.className = 'form-message error';
+        messageDiv.textContent = 'Network error. Please check your connection or contact us on Telegram.';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit License Request';
+    }
+}
+
+// Bot Version Change Handler - Add notices for V3/V4
+function onBotVersionChange() {
+    const version = document.getElementById('license-bot-version').value;
+    const accountModeSelect = document.getElementById('license-account-mode');
+    const partnerCodeSelect = document.getElementById('license-partner-code');
+    
+    // Reset any existing warnings
+    const existingWarning = document.getElementById('version-warning');
+    if (existingWarning) {
+        existingWarning.remove();
+    }
+    
+    if (version === 'v3' || version === 'v4') {
+        // Force real account mode
+        accountModeSelect.value = 'real';
+        accountModeSelect.disabled = true;
+        
+        // Force partner code yes
+        partnerCodeSelect.value = 'yes';
+        partnerCodeSelect.disabled = true;
+        
+        // Add warning notice
+        const warningDiv = document.createElement('div');
+        warningDiv.id = 'version-warning';
+        warningDiv.className = 'alert-box alert-warning-custom mt-2';
+        warningDiv.innerHTML = `<i class="fas fa-exclamation-triangle alert-icon"></i><div><strong>Note:</strong> DSQ ${version.toUpperCase()} requires a Real account with Partner Code added.</div>`;
+        
+        const form = document.getElementById('unified-license-form');
+        const btnSubmit = form.querySelector('.btn-submit-license');
+        form.insertBefore(warningDiv, btnSubmit);
+    } else {
+        // Enable fields for V2
+        accountModeSelect.disabled = false;
+        partnerCodeSelect.disabled = false;
+    }
+}
+
+// Expose new functions globally
+window.submitUnifiedLicenseForm = submitUnifiedLicenseForm;
+window.onBotVersionChange = onBotVersionChange;

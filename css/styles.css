@@ -790,6 +790,10 @@ color: #fff;
 background: #f3d27a;
 color: #7a5b0b;
 }
+.status-badge.expired {
+background: #dc3545;
+color: #fff;
+}
 .result-body { padding: 22px; }
 .result-row {
 display: flex;
@@ -817,6 +821,7 @@ text-align: right;
 }
 .status-text.verified { color: #0e9f6e; }
 .status-text.pending { color: #b8891c; }
+.status-text.expired { color: #dc3545; }
 .license-error {
 background: var(--card);
 border: 1px solid #f2b1b1;
