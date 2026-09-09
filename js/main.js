@@ -222,22 +222,25 @@ async function searchLicence() {
                 statusText.textContent = 'Verification in progress.';
                 
                 // Remove any existing disclaimer
-                const existingDisclaimer = statusText.parentElement.querySelector('.alert-box');
+                const existingDisclaimer = statusText.parentElement.querySelector('.license-disclaimer');
                 if (existingDisclaimer) {
                     existingDisclaimer.remove();
                 }
                 
-                // Add disclaimer
-                const disclaimerDiv = document.createElement('div');
-                disclaimerDiv.className = 'alert-box alert-warning-custom mt-3';
-                disclaimerDiv.innerHTML = '<i class="fas fa-exclamation-circle alert-icon"></i><div><strong>Disclaimer:</strong> It takes 24/48 hours for the license to activate. Note: If you have not added the partner code, verification will not work.</div>';
-                statusText.parentElement.appendChild(disclaimerDiv);
-                
-                // Add Telegram support message
-                const supportDiv = document.createElement('div');
-                supportDiv.className = 'alert-box alert-info-custom mt-2';
-                supportDiv.innerHTML = '<i class="fab fa-telegram alert-icon"></i><div>If any questions, drop a message to Telegram <a href="https://t.me/dsq_license_support" target="_blank">@dsq_license_support</a></div>';
-                statusText.parentElement.appendChild(supportDiv);
+                // Add disclaimer container
+                const disclaimerContainer = document.createElement('div');
+                disclaimerContainer.className = 'license-disclaimer mt-3';
+                disclaimerContainer.innerHTML = `
+                    <div class="alert-box alert-warning-custom">
+                        <i class="fas fa-exclamation-circle alert-icon"></i>
+                        <div><strong>Disclaimer:</strong> It takes 24/48 hours for the license to activate. Note: If you have not added the partner code, verification will not work.</div>
+                    </div>
+                    <div class="alert-box alert-info-custom">
+                        <i class="fab fa-telegram alert-icon"></i>
+                        <div>If any questions, drop a message to Telegram <a href="https://t.me/dsq_license_support" target="_blank">@dsq_license_support</a></div>
+                    </div>
+                `;
+                statusText.parentElement.appendChild(disclaimerContainer);
             } else {
                 // Verified and valid
                 statusBadge.className = 'status-badge verified';
