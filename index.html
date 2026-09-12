@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
 
@@ -32,7 +33,6 @@
                 <a class="nl" href="#setup" target="_self" data-i18n="nav_setup">Setup</a>
                 <a class="nl" href="#license-verification" target="_self" data-i18n="nav_license_check">License Check</a>
                 <a class="nl" href="#account" target="_self" data-i18n="nav_account">Account</a>
-                <a class="nl" href="#brokers" target="_self" data-i18n="nav_brokers">Brokers</a>
                 <a class="nl" href="#about" target="_self" data-i18n="nav_about">About</a>
                 <a href="https://t.me/dsqfxtrader" class="nl btn-nav-cta"><i class="fab fa-telegram"></i> <span data-i18n="nav_join_telegram">Join Telegram</span></a>
             </div>
@@ -194,30 +194,13 @@
                 </div>
 
                 <div class="step-card">
-                    <div class="step-head"><span class="step-number" data-i18n="setup_step1_num">1</span><span class="step-title" data-i18n="setup_step1_title">Download MT5 &amp; Login</span></div>
+                    <div class="step-head"><span class="step-number">1</span><span class="step-title" data-i18n="setup_step2_title">Set Partner Code on Your Account</span></div>
                     <div class="step-content">
-                        <ul>
-                            <li data-i18n="setup_step1_li1">Download MT5 from <a href="https://www.metatrader5.com/en/download">metatrader5.com</a></li>
-                            <li data-i18n="setup_step1_li2">Login with your broker credentials (use Cent account only with maximum leverage set like 1:2000)</li>
-                            <li data-i18n="setup_step1_li3">
-                                In MetaTrader, go to <strong>Tools → Options → Expert Advisors</strong>:
-                                <ul style="margin-top: 8px;">
-                                    <li data-i18n="setup_step1_li3_sub1">Allow <strong>Algorithmic Trading</strong></li>
-                                    <li data-i18n="setup_step1_li3_sub2">Allow <strong>Web Request for listed URL</strong> → Add:
-                                        <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')">
-                                            https://raw.githubusercontent.com <i class="fas fa-copy copy-icon"></i>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-head"><span class="step-number" data-i18n="setup_step2_num">2</span><span class="step-title" data-i18n="setup_step2_title">Set Partner Code on Your Account</span></div>
-                    <div class="step-content">
-                        <p data-i18n="setup_step2_intro">Our bots are supported <strong>only</strong> for the following brokers. Set the partner code on your broker account:</p>
+                        <div class="alert-box alert-info-custom mb-3">
+                            <i class="fas fa-lightbulb alert-icon"></i>
+                            <div><strong>Open a Cent/Micro account</strong> with one of the partner brokers below and <strong>enter the partner code during registration</strong> (you can also add it later from your broker's client portal). The bot only works on accounts registered with a valid partner code.</div>
+                        </div>
+                        <p>Our bots are supported <strong>only</strong> for the following brokers. Click a code to copy it:</p>
                         <div class="row g-3 mt-2">
                             <div class="col-md-6 col-lg-3">
                                 <div class="partner-card">
@@ -273,7 +256,28 @@
                 </div>
 
                 <div class="step-card">
-                    <div class="step-head"><span class="step-number" data-i18n="setup_step3_num">3</span><span class="step-title" data-i18n="setup_step3_title">Download &amp; Install Your Bot</span></div>
+                    <div class="step-head"><span class="step-number">2</span><span class="step-title" data-i18n="setup_step1_title">Download MT5 &amp; Login</span></div>
+                    <div class="step-content">
+                        <ul>
+                            <li data-i18n="setup_step1_li1">Download MT5 from <a href="https://www.metatrader5.com/en/download">metatrader5.com</a></li>
+                            <li data-i18n="setup_step1_li2">Login with your broker credentials (use Cent account only with maximum leverage set like 1:2000)</li>
+                            <li>
+                                In MetaTrader, go to <strong>Tools → Options → Experts</strong>:
+                                <ul style="margin-top: 8px;">
+                                    <li>Allow <strong>Algorithmic Trading</strong></li>
+                                    <li>Allow <strong>Web Request for listed URL</strong> → Add:
+                                        <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')">
+                                            https://raw.githubusercontent.com <i class="fas fa-copy copy-icon"></i>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-head"><span class="step-number">3</span><span class="step-title" data-i18n="setup_step3_title">Download &amp; Install Your Bot</span></div>
                     <div class="step-content">
                         <ul>
                             <li data-i18n="setup_step3_li1">Download your bot version (.ex5 file) from the <a href="#download">Download section</a> above</li>
@@ -284,7 +288,7 @@
                 </div>
 
                 <div class="step-card">
-                    <div class="step-head"><span class="step-number" data-i18n="setup_step4_num">4</span><span class="step-title" data-i18n="setup_step4_title">Activate Your License Online</span></div>
+                    <div class="step-head"><span class="step-number">4</span><span class="step-title" data-i18n="setup_step4_title">Activate Your License Online</span></div>
                     <div class="step-content">
                         <div class="alert-box alert-info-custom mb-3">
                             <i class="fas fa-info-circle alert-icon"></i>
@@ -522,69 +526,6 @@
                     <i class="fas fa-shield-alt alert-icon"></i>
                     <div>
                         <strong>Safety First:</strong> Always test on a <strong>Demo account</strong> first before using a Real account. Same broker, same cent account type.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 4: Partner Codes -->
-    <section class="section alt" id="brokers">
-        <div class="container">
-            <div class="title-block">
-                <span class="eyebrow"><i class="fas fa-handshake"></i> Partner Brokers</span>
-                <h2 class="section-title">Set Partner Code on Your Account</h2>
-                <p class="section-subtitle">Our bots are supported only for the following brokers. Click a code to copy it.</p>
-            </div>
-
-            <div class="row g-3 justify-content-center">
-                <div class="col-md-6 col-lg-3 d-flex">
-                    <div class="partner-card">
-                        <span class="partner-avatar">V</span>
-                        <div class="partner-logo">Vantage</div>
-                        <div class="partner-sub">Partner broker</div>
-                        <span class="partner-code" onclick="copyToClipboard(this, 'VcM6U1DW')">VcM6U1DW <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
-                        <a href="https://vigco.co/la-com-inv/VcM6U1DW" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                        <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 d-flex">
-                    <div class="partner-card">
-                        <span class="partner-avatar">R</span>
-                        <div class="partner-logo">Roboforex</div>
-                        <div class="partner-sub">Partner broker</div>
-                        <span class="partner-code" onclick="copyToClipboard(this, 'zrfhm')">zrfhm <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
-                        <a href="https://my.roboforex.com/en/?a=zrfhm" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                        <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 d-flex">
-                    <div class="partner-card">
-                        <span class="partner-avatar">E</span>
-                        <div class="partner-logo">Exness</div>
-                        <div class="partner-sub">Partner broker</div>
-                        <span class="partner-code" onclick="copyToClipboard(this, 'c_niibgmkreg')">c_niibgmkreg <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
-                        <a href="https://one.exnessonelink.com/a/c_niibgmkreg" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                        <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 d-flex">
-                    <div class="partner-card">
-                        <span class="partner-avatar">X</span>
-                        <div class="partner-logo">XM</div>
-                        <div class="partner-sub">Partner broker</div>
-                        <span class="partner-code" onclick="copyToClipboard(this, '4299V')">4299V <i class="fas fa-copy" style="font-size:0.72rem;"></i></span>
-                        <a href="https://affs.click/mvjlf" class="btn-open-account"><i class="fas fa-user-plus"></i> Open Account</a>
-                        <a href="https://google.com" class="how-to-link"><i class="fas fa-play-circle"></i> How to add partner code</a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 d-flex">
-                    <div class="partner-card soon">
-                        <span class="partner-avatar">C</span>
-                        <div class="partner-logo">CXM</div>
-                        <div class="partner-sub">Partner broker</div>
-                        <span class="soon-pill">Coming Soon</span>
-                        <span class="btn-open-account disabled"><i class="fas fa-user-plus"></i> Open Account</span>
                     </div>
                 </div>
             </div>
