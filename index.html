@@ -174,6 +174,39 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- V5 -->
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <div class="bot-card featured">
+                        <div class="featured-ribbon" data-i18n="v5_ribbon">Latest Version</div>
+                        <div class="bot-head">
+                            <span class="bot-icon"><i class="fas fa-microchip"></i></span>
+                            <span class="license-badge badge-premium" data-i18n="v5_badge"><i class="fas fa-robot"></i> AI-Powered</span>
+                        </div>
+                        <h3 data-i18n="v5_title">DSQ Grid V5.0</h3>
+                        <div class="bot-tagline" data-i18n="v5_tagline">Version 5.0 — Advanced AI & Dynamic Features</div>
+                        <div class="price-row">
+                            <span class="price-now free-timer" data-i18n="v5_free">FREE</span>
+                            <span class="price-was" data-i18n="v5_was">₹8,000</span>
+                            <span class="price-note" id="v5-offer-end" data-i18n="v5_offer">Limited Time Offer</span>
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature1">Grid Trading</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature2">Trailing Stop</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature3">Max Risk Management</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature4">Hybrid Hedge Removal</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="v5_feature_dynamic_tp">Dynamic Take Profit</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="v5_feature_rl_algo">RL Algo for Hedge Removal</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="v5_feature_auto_license">Auto License Approval</span></li>
+                        </ul>
+                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v5.ex5" class="btn-download dark">
+                            <i class="fas fa-download"></i> <span data-i18n="v5_btn">Download V5</span>
+                        </a>
+                        <div class="real-account-notice" data-i18n="v5_notice">
+                            <i class="fas fa-exclamation-circle"></i> <strong>Real Cent/Micro Account Only</strong> — Auto license approval enabled
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -319,6 +352,7 @@
                                 In MetaTrader, go to <strong>Tools → Options → Experts</strong>:
                                 <ul style="margin-top: 8px;">
                                     <li>Allow <strong>Algorithmic Trading</strong></li>
+                                    <li>Allow <strong>dll imports</strong></li>
                                     <li>Allow <strong>Web Request for listed URL</strong> → Add:
                                         <span class="code-block" onclick="copyToClipboard(this, 'https://raw.githubusercontent.com')">
                                             https://raw.githubusercontent.com <i class="fas fa-copy copy-icon"></i>
@@ -336,7 +370,7 @@
                         <ul>
                             <li>Download your bot version (.ex5 file) from the <a href="#download">Download section</a> above</li>
                             <li data-i18n="setup_step3_li2">Double-click the downloaded file to add it to MetaTrader</li>
-                            <li data-i18n="setup_step3_li3">Find your bot (dsq_grid_v2, dsq_grid_v3, or dsq_grid_v4) in the Navigator panel under Expert Advisors</li>
+                            <li data-i18n="setup_step3_li3">Find your bot (dsq_grid_v2, dsq_grid_v3, dsq_grid_v4, or dsq_grid_v5) in the Navigator panel under Expert Advisors</li>
                         </ul>
                     </div>
                 </div>
@@ -349,10 +383,15 @@
                             <div><strong>License Activation Period:</strong> License activation takes between <strong>24 to 48 hours</strong>. Please be patient while we verify your request.</div>
                         </div>
                         
+                        <div class="alert-box alert-success-custom mb-3">
+                            <i class="fas fa-bolt alert-icon"></i>
+                            <div><strong>V5 Auto License Approval:</strong> DSQ V5 comes with automatic license approval. No manual activation required! Simply install and start trading.</div>
+                        </div>
+                        
                         <!-- License Activation Form with Bot Version Dropdown -->
                         <div class="license-activation-widget mt-4">
                             <h5 class="widget-title"><i class="fas fa-key"></i> Activate Your License Online</h5>
-                            <p class="widget-subtitle">Select your bot version and fill the form below to submit your license request</p>
+                            <p class="widget-subtitle">Select your bot version and fill the form below to submit your license request (V5 excluded - auto-approved)</p>
                             
                             <form id="unified-license-form" class="license-form" onsubmit="submitUnifiedLicenseForm(event)">
                                 <div class="form-row">
@@ -363,6 +402,7 @@
                                             <option value="v2">DSQ Grid V2.0</option>
                                             <option value="v3">DSQ Grid V3.0</option>
                                             <option value="v4">DSQ Grid V4.0</option>
+                                            <option value="v5" disabled>DSQ Grid V5.0 (Auto-Approved)</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -427,7 +467,7 @@
                             <div class="vid-title">Watch: Setup Guide</div>
                             <div class="vid-sub">Step-by-step video guide</div>
                         </div>
-                        <small class="text-muted d-block mt-2">V3 & V4 approval requires real account verification. Mesaage me at <a href="https://t.me/dsq_support">Telegram</a> for any issues</small>
+                        <small class="text-muted d-block mt-2">V3 & V4 approval requires real account verification. V5 is auto-approved. Message me at <a href="https://t.me/dsq_support">Telegram</a> for any issues</small>
                     </div>
                 </div>
             </div>
@@ -451,6 +491,7 @@
                                 <option value="v2">DSQ Grid V2.0</option>
                                 <option value="v3">DSQ Grid V3.0</option>
                                 <option value="v4">DSQ Grid V4.0</option>
+                                <option value="v5">DSQ Grid V5.0 (Auto-Approved)</option>
                             </select>
                             <input type="text" id="searchMt5" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input search-input">
                             <button type="submit" class="btn-check-license">

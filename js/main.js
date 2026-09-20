@@ -294,6 +294,13 @@ async function submitUnifiedLicenseForm(event) {
         return;
     }
     
+    // V5 is auto-approved, no license submission needed
+    if (version === 'v5') {
+        messageDiv.className = 'form-message success';
+        messageDiv.textContent = 'DSQ V5 comes with automatic license approval. No manual activation required! Simply install the bot and start trading.';
+        return;
+    }
+    
     // Validation for DSQ V3 and V4: Real account and partner code required
     if (version === 'v3' || version === 'v4') {
         if (accountMode !== 'real') {
@@ -380,6 +387,16 @@ function onBotVersionChange() {
         const form = document.getElementById('unified-license-form');
         const btnSubmit = form.querySelector('.btn-submit-license');
         form.insertBefore(warningDiv, btnSubmit);
+    } else if (version === 'v5') {
+        // V5 is auto-approved, show info message
+        const infoDiv = document.createElement('div');
+        infoDiv.id = 'version-warning';
+        infoDiv.className = 'alert-box alert-success-custom mt-2';
+        infoDiv.innerHTML = `<i class="fas fa-bolt alert-icon"></i><div><strong>V5 Auto-Approved:</strong> DSQ V5 comes with automatic license approval. No manual activation needed!</div>`;
+        
+        const form = document.getElementById('unified-license-form');
+        const btnSubmit = form.querySelector('.btn-submit-license');
+        form.insertBefore(infoDiv, btnSubmit);
     } else {
         // Enable fields for V2
         accountModeSelect.disabled = false;
