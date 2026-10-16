@@ -33,6 +33,7 @@
                 <a class="nl" href="#download" target="_self" data-i18n="nav_download">Download</a>
                 <a class="nl" href="#setup" target="_self" data-i18n="nav_setup">Setup</a>
                 <a class="nl" href="#license-verification" target="_self" data-i18n="nav_license_check">License Check</a>
+                <a class="nl" href="#news" target="_self">News</a>
                 <a class="nl" href="#account" target="_self" data-i18n="nav_account">Account</a>
                 <a class="nl" href="#about" target="_self" data-i18n="nav_about">About</a>
                 <a href="https://t.me/dsq_channel" class="nl btn-nav-cta"><i class="fab fa-telegram"></i> <span data-i18n="nav_join_telegram">Join Telegram</span></a>
@@ -51,8 +52,8 @@
                 <a href="#setup" class="btn-hero-ghost" target="_self" data-i18n="hero_btn_setup"><i class="fas fa-circle-play"></i> Setup Guide</a>
             </div>
             <div class="hero-stats">
-                <div class="hero-stat"><div class="num">3</div><div class="lbl" data-i18n="stat_bot_versions">Bot Versions</div></div>
-                <div class="hero-stat"><div class="num"><i class="fas fa-gift"></i>FREE</div><div class="lbl" data-i18n="stat_licenses">V2 – V3 Licenses</div></div>
+                <div class="hero-stat"><div class="num">1</div><div class="lbl">Available Bot</div></div>
+                <div class="hero-stat"><div class="num"><i class="fas fa-bolt"></i>V5</div><div class="lbl">Auto License</div></div>
                 <div class="hero-stat"><div class="num">24-48h</div><div class="lbl" data-i18n="stat_activation">License Activation</div></div>
                 <div class="hero-stat"><div class="num">5</div><div class="lbl" data-i18n="stat_brokers">Partner Brokers</div></div>
             </div>
@@ -75,106 +76,12 @@
         <div class="container">
             <div class="title-block">
                 <span class="eyebrow" data-i18n="section_download_eyebrow"><i class="fas fa-download"></i> Bot Download</span>
-                <h2 class="section-title" data-i18n="section_download_title">Choose Your Version</h2>
-                <p class="section-subtitle" data-i18n="section_download_subtitle">Pick the version that fits your trading style — V1 to V3 are completely free.</p>
+                <h2 class="section-title">Bot Catalog</h2>
+                <p class="section-subtitle">Explore available bots and upcoming releases from Dalal Street Quants.</p>
             </div>
 
+            <h3 class="catalog-heading">Grid Bots</h3>
             <div class="row g-4 align-items-stretch">
-                <!-- V2 -->
-                <div class="col-md-6 col-lg-4 d-flex">
-                    <div class="bot-card">
-                        <div class="bot-head">
-                            <span class="bot-icon"><i class="fas fa-rocket"></i></span>
-                            <span class="license-badge badge-license"><i class="fas fa-key"></i> Free License</span>
-                        </div>
-                        <h3 data-i18n="v2_title">DSQ Grid V2.0</h3>
-                        <div class="bot-tagline" data-i18n="v2_tagline">Version 2.0 — Adds trailing stop</div>
-                        <div class="price-row">
-                            <span class="price-now" data-i18n="v2_free">FREE</span>
-                            <span class="price-was" data-i18n="v2_was">₹2,000</span>
-                        </div>
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature1">Grid Trading</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature2">Trailing Stop</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature3">Max Risk Management</span></li>
-                            <li class="off"><i class="fas fa-xmark"></i> <span data-i18n="v2_feature4">Hedging</span></li>
-                            <li class="off"><i class="fas fa-xmark"></i> <span data-i18n="v2_feature5">Human Intervention</span></li>
-                        </ul>
-                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v2.ex5" class="btn-download">
-                            <i class="fas fa-download"></i> <span data-i18n="v2_btn">Download V2</span>
-                        </a>
-                        <div class="real-account-notice" data-i18n="v2_notice">
-                            <i class="fas fa-exclamation-circle"></i> <strong>Demo Cent/Micro/std Account </strong> — Demo available
-                        </div>
-                    </div>
-                </div>
-
-                <!-- V3 -->
-                <div class="col-md-6 col-lg-4 d-flex">
-                    <div class="bot-card">
-                        <div class="bot-head">
-                            <span class="bot-icon"><i class="fas fa-shield-halved"></i></span>
-                            <span class="license-badge badge-partner"><i class="fas fa-key"></i> Free + Partner</span>
-                        </div>
-                        <h3 data-i18n="v3_title">DSQ Grid V3.0</h3>
-                        <div class="bot-tagline" data-i18n="v3_tagline">Version 3.0 — Adds hedging</div>
-                        <div class="price-row">
-                            <span class="price-now" data-i18n="v3_free">FREE</span>
-                            <span class="price-was" data-i18n="v3_was">₹4,000</span>
-                        </div>
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature1">Grid Trading</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature2">Trailing Stop</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature3">Max Risk Management</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature4">Hedging</span></li>
-                            <li class="off"><i class="fas fa-xmark"></i> <span data-i18n="v2_feature5">Human Intervention</span></li>
-                        </ul>
-                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v3.ex5" class="btn-download">
-                            <i class="fas fa-download"></i> <span data-i18n="v3_btn">Download V3</span>
-                        </a>
-                        <div class="real-account-notice" data-i18n="v2_notice">
-                            <i class="fas fa-exclamation-circle"></i> <strong>Real Cent/Micro Account Only</strong> — Demo not available
-                        </div>
-                    </div>
-                </div>
-
-                <!-- V4 -->
-                <div class="col-md-6 col-lg-4 d-flex">
-                    <div class="bot-card featured">
-                        <div class="featured-ribbon" data-i18n="v4_ribbon">Limited Offer</div>
-                        <div class="bot-head">
-                            <span class="bot-icon"><i class="fas fa-crown"></i></span>
-                            <span class="license-badge badge-premium" data-i18n="v4_badge"><i class="fas fa-star"></i> FREE till Oct 15</span>
-                        </div>
-                        <h3 data-i18n="v4_title">DSQ Grid V4.0</h3>
-                        <div class="bot-tagline" data-i18n="v4_tagline">Version 4.0 — Full feature suite</div>
-                        <div class="price-row">
-                            <span class="price-now free-timer" data-i18n="v4_free">FREE</span>
-                            <span class="price-was" data-i18n="v4_was">₹6,000</span>
-                            <span class="price-note" id="v4-offer-end" data-i18n="v4_offer">Offer ends in:</span>
-                        </div>
-                        <div class="countdown-timer" id="v4-countdown">
-                            <div class="time-segment"><span class="time-num" id="days">00</span><span class="time-label" data-i18n="v4_days">Days</span></div>
-                            <div class="time-segment"><span class="time-num" id="hours">00</span><span class="time-label" data-i18n="v4_hours">Hours</span></div>
-                            <div class="time-segment"><span class="time-num" id="minutes">00</span><span class="time-label" data-i18n="v4_mins">Mins</span></div>
-                            <div class="time-segment"><span class="time-num" id="seconds">00</span><span class="time-label" data-i18n="v4_secs">Secs</span></div>
-                        </div>
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature1">Grid Trading</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature2">Trailing Stop</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature3">Max Risk Management</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature4">Hedging</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="v2_feature5">Human Intervention</span></li>
-                        </ul>
-                        <a href="https://github.com/ranjanZ/Dalal_Street_Quants/raw/refs/heads/main/EA_bots/dsq_v4.ex5" class="btn-download dark">
-                            <i class="fas fa-download"></i> <span data-i18n="v4_btn">Download V4</span>
-                        </a>
-                        <div class="real-account-notice" data-i18n="v2_notice">
-                            <i class="fas fa-exclamation-circle"></i> <strong>Real Cent/Micro Account Only</strong> — Demo not available
-                        </div>
-                    </div>
-                </div>
-
                 <!-- V5 -->
                 <div class="col-md-6 col-lg-4 d-flex">
                     <div class="bot-card featured">
@@ -186,7 +93,7 @@
                         <h3 data-i18n="v5_title">DSQ Grid V5.0</h3>
                         <div class="bot-tagline" data-i18n="v5_tagline">Version 5.0 — Advanced AI & Dynamic Features</div>
                         <div class="price-row">
-                            <span class="price-now free-timer" data-i18n="v5_free">FREE</span>
+                            <span class="price-now" data-i18n="v5_free">FREE</span>
                             <span class="price-was" data-i18n="v5_was">₹8,000</span>
                             <span class="price-note" id="v5-offer-end" data-i18n="v5_offer">Limited Time Offer</span>
                         </div>
@@ -206,6 +113,42 @@
                             <i class="fas fa-exclamation-circle"></i> <strong>Real Cent/Micro Account Only</strong> — Auto license approval enabled
                         </div>
                     </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <article class="bot-card placeholder-card">
+                        <div class="bot-head">
+                            <span class="bot-icon"><i class="fas fa-layer-group"></i></span>
+                            <span class="license-badge badge-coming-soon">Coming Soon</span>
+                        </div>
+                        <h3>DSQ Grid V6.0</h3>
+                        <p class="bot-tagline">The next Grid Bot release is in development.</p>
+                        <p class="placeholder-copy">Release details will be announced by Dalal Street Quants.</p>
+                    </article>
+                </div>
+            </div>
+            <h3 class="catalog-heading">Other HFT/LFT Bots</h3>
+            <div class="row g-4 align-items-stretch">
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <article class="bot-card placeholder-card">
+                        <div class="bot-head">
+                            <span class="bot-icon"><i class="fas fa-shield-halved"></i></span>
+                            <span class="license-badge badge-coming-soon">Coming Soon</span>
+                        </div>
+                        <h3>DSQ Auto Trail Stoploss</h3>
+                        <p class="bot-tagline">Upcoming bot</p>
+                        <p class="placeholder-copy">More information will be announced soon.</p>
+                    </article>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <article class="bot-card placeholder-card">
+                        <div class="bot-head">
+                            <span class="bot-icon"><i class="fas fa-bolt"></i></span>
+                            <span class="license-badge badge-coming-soon">Coming Soon</span>
+                        </div>
+                        <h3>DSQ Scalping Bot</h3>
+                        <p class="bot-tagline">Upcoming bot</p>
+                        <p class="placeholder-copy">More information will be announced soon.</p>
+                    </article>
                 </div>
             </div>
         </div>
@@ -274,8 +217,8 @@
             <div class="setup-shell">
                 <!-- Unified Setup Content - No Tabs -->
                 <div class="alert-box alert-free">
-                    <i class="fas fa-gift alert-icon"></i>
-                    <div><strong data-i18n="setup_alert_free">Completely Free.</strong> <span data-i18n="setup_alert_free_text">DSQ V2 & V3 licenses are free. V4 is FREE until October 15th. No hidden charges ever.</span></div>
+                    <i class="fas fa-check-circle alert-icon"></i>
+                    <div><strong>One setup for all bots.</strong> Follow these steps for the current Grid Bot and future releases.</div>
                 </div>
 
                 <div class="step-card">
@@ -370,17 +313,17 @@
                         <ul>
                             <li>Download your bot version (.ex5 file) from the <a href="#download">Download section</a> above</li>
                             <li data-i18n="setup_step3_li2">Double-click the downloaded file to add it to MetaTrader</li>
-                            <li data-i18n="setup_step3_li3">Find your bot (dsq_grid_v2, dsq_grid_v3, dsq_grid_v4, or dsq_grid_v5) in the Navigator panel under Expert Advisors</li>
+                            <li>Find the installed DSQ bot in the Navigator panel under Expert Advisors.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="step-card">
-                    <div class="step-head"><span class="step-number">4</span><span class="step-title" data-i18n="setup_step4_title">Activate Your License Online</span></div>
+                    <div class="step-head"><span class="step-number">4</span><span class="step-title">Check Your License Status</span></div>
                     <div class="step-content">
                         <div class="alert-box alert-info-custom mb-3">
                             <i class="fas fa-info-circle alert-icon"></i>
-                            <div><strong>License Activation Period:</strong> License activation takes between <strong>24 to 48 hours</strong>. Please be patient while we verify your request.</div>
+                            <div>DSQ Grid V5 licenses are approved automatically. You can check your MT5 ID in the <a href="#license-verification">License Verification</a> section.</div>
                         </div>
                         
                         <div class="alert-box alert-success-custom mb-3">
@@ -388,78 +331,9 @@
                             <div><strong>V5 Auto License Approval:</strong> DSQ V5 comes with automatic license approval. No manual activation required! Simply install and start trading.</div>
                         </div>
                         
-                        <!-- License Activation Form with Bot Version Dropdown -->
-                        <div class="license-activation-widget mt-4">
-                            <h5 class="widget-title"><i class="fas fa-key"></i> Activate Your License Online</h5>
-                            <p class="widget-subtitle">Select your bot version and fill the form below to submit your license request (V5 excluded - auto-approved)</p>
-                            
-                            <form id="unified-license-form" class="license-form" onsubmit="submitUnifiedLicenseForm(event)">
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="license-bot-version"><i class="fas fa-robot"></i> Bot Version *</label>
-                                        <select id="license-bot-version" name="bot_version" required class="form-input" onchange="onBotVersionChange()">
-                                            <option value="" disabled selected>Select Bot Version</option>
-                                            <option value="v2">DSQ Grid V2.0</option>
-                                            <option value="v3">DSQ Grid V3.0</option>
-                                            <option value="v4">DSQ Grid V4.0</option>
-                                            <option value="v5" disabled>DSQ Grid V5.0 (Auto-Approved)</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="license-mt5-id"><i class="fas fa-id-card"></i> MT5 ID *</label>
-                                        <input type="text" id="license-mt5-id" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="license-name"><i class="fas fa-user"></i> Full Name *</label>
-                                        <input type="text" id="license-name" name="name" required placeholder="Enter your full name" class="form-input">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="license-partner-code"><i class="fas fa-user-tag"></i> Partner Code Added? *</label>
-                                        <select id="license-partner-code" name="partner_code" required class="form-input">
-                                            <option value="">Select Option</option>
-                                            <option value="yes">Yes</option>
-                                            <option value="no">No</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="license-broker"><i class="fas fa-building"></i> Broker Name *</label>
-                                        <select id="license-broker" name="broker" required class="form-input">
-                                            <option value="">Select Broker</option>
-                                            <option value="vantage">Vantage</option>
-                                            <option value="roboforex">Roboforex</option>
-                                            <option value="exness">Exness</option>
-                                            <option value="xm">XM</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="license-account-type"><i class="fas fa-wallet"></i> Account Type *</label>
-                                        <select id="license-account-type" name="account_type" required class="form-input">
-                                            <option value="">Select Account Type</option>
-                                            <option value="cent">Cent Account</option>
-                                            <option value="micro">Micro Account</option>
-                                            <option value="standard">Standard Account</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="license-account-mode"><i class="fas fa-exchange-alt"></i> Account Mode *</label>
-                                        <select id="license-account-mode" name="account_mode" required class="form-input">
-                                            <option value="">Select Mode</option>
-                                            <option value="real">Real Account</option>
-                                            <option value="demo">Demo Account</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn-submit-license">
-                                    <i class="fas fa-paper-plane"></i> Submit License Request
-                                </button>
-                            </form>
-                            <div id="unified-form-message" class="form-message"></div>
+                        <div class="alert-box alert-info-custom mt-4">
+                            <i class="fas fa-shield-halved alert-icon"></i>
+                            <div>License requests for retired bot versions are no longer accepted. V6 and the other upcoming bots will have license details when released.</div>
                         </div>
                         
                         <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=X8RKCp9-ZjE','_blank')">
@@ -467,7 +341,7 @@
                             <div class="vid-title">Watch: Setup Guide</div>
                             <div class="vid-sub">Step-by-step video guide</div>
                         </div>
-                        <small class="text-muted d-block mt-2">V3 & V4 approval requires real account verification. V5 is auto-approved. Message me at <a href="https://t.me/dsq_support">Telegram</a> for any issues</small>
+                        <small class="text-muted d-block mt-2">For license support, contact us on <a href="https://t.me/dsq_support">Telegram</a>.</small>
                     </div>
                 </div>
             </div>
@@ -488,9 +362,6 @@
                         <div class="search-input-group">
                             <select id="searchVersion" name="bot_version" required class="form-input">
                                 <option value="" disabled selected>Select Bot Version</option>
-                                <option value="v2">DSQ Grid V2.0</option>
-                                <option value="v3">DSQ Grid V3.0</option>
-                                <option value="v4">DSQ Grid V4.0</option>
                                 <option value="v5">DSQ Grid V5.0 (Auto-Approved)</option>
                             </select>
                             <input type="text" id="searchMt5" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input search-input">
@@ -623,6 +494,33 @@
                         <strong>Safety First:</strong> Always test on a <strong>Demo account</strong> first before using a Real account. Same broker, same cent account type.
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News -->
+    <section class="section alt" id="news">
+        <div class="container">
+            <div class="title-block">
+                <span class="eyebrow"><i class="fas fa-newspaper"></i> News</span>
+                <h2 class="section-title">DSQ News</h2>
+                <p class="section-subtitle">Updates from Dalal Street Quants.</p>
+            </div>
+            <div class="news-list">
+                <article class="news-item">
+                    <span class="news-date">October 16, 2026</span>
+                    <div>
+                        <h3>Live today at 7:00 PM IST</h3>
+                        <p>Dalal Street Quants will be live today. Join our <a href="https://t.me/dsq_channel">Telegram channel</a> for updates.</p>
+                    </div>
+                </article>
+                <article class="news-item">
+                    <span class="news-date">Coming soon</span>
+                    <div>
+                        <h3>New bots are on the way</h3>
+                        <p>DSQ Grid V6, DSQ Auto Trail Stoploss, and DSQ Scalping Bot are upcoming. Release details will be announced soon.</p>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
