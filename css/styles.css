@@ -297,21 +297,39 @@ padding: 7px 0; font-size: .9rem; color: var(--text);
 .feature-list li i.fa-xmark { color: #c3c9d2; }
 
 /* ---------- News ---------- */
-.news-list { max-width: 900px; margin: 0 auto; border-top: 1px solid var(--border); }
+.news-list {
+max-width: 900px;
+height: 240px;
+margin: 0 auto;
+overflow-y: auto;
+scroll-snap-type: y mandatory;
+scrollbar-width: thin;
+border: 1px solid var(--border);
+border-radius: 12px;
+background: var(--card);
+box-shadow: var(--shadow-sm);
+}
 .news-item {
 display: grid;
 grid-template-columns: 160px minmax(0, 1fr);
+align-items: center;
+min-height: 240px;
 gap: 24px;
-padding: 24px 0;
+padding: 28px;
 border-bottom: 1px solid var(--border);
+scroll-snap-align: start;
 }
+.news-item:last-child { border-bottom: none; }
 .news-date { color: var(--accent); font-size: .82rem; font-weight: 700; }
 .news-item h3 { font-size: 1.12rem; font-weight: 750; margin: 0 0 6px; }
 .news-item p { color: var(--muted); font-size: .94rem; margin: 0; }
 .news-item a { color: #0e7cba; font-weight: 650; text-decoration: none; }
 .news-item a:hover { text-decoration: underline; }
 @media (max-width: 600px) {
-.news-item { grid-template-columns: 1fr; gap: 6px; padding: 20px 0; }
+.news-item { grid-template-columns: 1fr; gap: 6px; padding: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+.news-list { scroll-behavior: auto; }
 }
 
 .btn-download {
@@ -439,6 +457,11 @@ display: flex; flex-direction: column; align-items: center;
 }
 .partner-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: #afc7bd; }
 .partner-card.soon { opacity: .65; }
+.partner-card-cxm { border-color: rgba(232,117,85,.45); }
+.partner-card-cxm .partner-avatar { background: #fff0eb; color: #9a442d; }
+.partner-card-cxm .partner-code { border-color: rgba(232,117,85,.38); }
+.partner-card-cxm .btn-open-account { gap: 8px; }
+.partner-card-cxm .btn-open-account i:last-child { font-size: .72rem; }
 .partner-avatar {
 width: 48px; height: 48px; border-radius: 8px;
 background: #e7f1ed;
@@ -457,6 +480,7 @@ font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: .92rem;
 margin-bottom: 14px;
 cursor: pointer; transition: all .2s; border: 1px solid rgba(255,255,255,.14);
 }
+.partner-code:focus-visible { outline: 3px solid rgba(232,117,85,.45); outline-offset: 3px; }
 .partner-code:hover { border-color: var(--accent); transform: translateY(-1px); }
 .btn-open-account {
 display: inline-flex; align-items: center; gap: 7px;

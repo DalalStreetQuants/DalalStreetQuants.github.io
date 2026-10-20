@@ -272,12 +272,12 @@
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-3">
-                                <div class="partner-card soon">
+                                <div class="partner-card partner-card-cxm">
                                     <span class="partner-avatar">C</span>
                                     <div class="partner-logo">CXM</div>
                                     <div class="partner-sub" data-i18n="partner_broker">Partner broker</div>
-                                    <span class="soon-pill" data-i18n="coming_soon">Coming Soon</span>
-                                    <span class="btn-open-account disabled"><i class="fas fa-user-plus"></i> <span data-i18n="open_account">Open Account</span></span>
+                                    <button type="button" class="partner-code" aria-label="Copy CXM partner code 476084" onclick="copyToClipboard(this, '476084')">476084 <i class="fas fa-copy" aria-hidden="true"></i></button>
+                                    <a href="https://gocxm.co/links/go/476084" class="btn-open-account" target="_blank" rel="noopener noreferrer"><i class="fas fa-user-plus" aria-hidden="true"></i> <span data-i18n="open_account">Open Account</span> <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -333,7 +333,7 @@
                         
                         <div class="alert-box alert-info-custom mt-4">
                             <i class="fas fa-shield-halved alert-icon"></i>
-                            <div><strong>Upcoming releases:</strong> license details for DSQ Grid V6, DSQ Auto Trail Stoploss, and DSQ Scalping Bot will be published when each bot is released.</div>
+                            <div><strong>Upcoming releases:</strong> license details for DSQ Grid V6, DSQ Auto Trail Stoploss, and DSQ Scalping bot will be published when each bot is released.</div>
                         </div>
                         
                         <div class="video-placeholder" onclick="window.open('https://www.youtube.com/watch?v=X8RKCp9-ZjE','_blank')">
@@ -361,8 +361,7 @@
                     <form id="license-check-form" onsubmit="searchLicence(); return false;">
                         <div class="search-input-group">
                             <select id="searchVersion" name="bot_version" required class="form-input">
-                                <option value="" disabled selected>Select Bot Version</option>
-                                <option value="v5">Current DSQ Grid Bot</option>
+                                <option value="v5" selected>DSQ V5 Bot</option>
                             </select>
                             <input type="text" id="searchMt5" name="mt5_id" required placeholder="Enter your MT5 ID" class="form-input search-input">
                             <button type="submit" class="btn-check-license">
@@ -382,6 +381,10 @@
                             <div class="result-row">
                                 <span class="result-label"><i class="fas fa-id-card"></i> MetaTrader ID:</span>
                                 <span id="result-mt5-id" class="result-value"></span>
+                            </div>
+                            <div class="result-row">
+                                <span class="result-label"><i class="fas fa-robot"></i> Bot Version:</span>
+                                <span id="result-version" class="result-value">DSQ V5 Bot</span>
                             </div>
                             <div class="result-row">
                                 <span class="result-label"><i class="fas fa-user"></i> Name:</span>
@@ -506,19 +509,19 @@
                 <h2 class="section-title">DSQ News</h2>
                 <p class="section-subtitle">Updates from Dalal Street Quants.</p>
             </div>
-            <div class="news-list">
+            <div class="news-list" tabindex="0" aria-label="DSQ news articles" aria-live="off">
                 <article class="news-item">
-                    <span class="news-date">October 16, 2026</span>
+                    <span class="news-date">Updates</span>
                     <div>
-                        <h3>Live today at 7:00 PM IST</h3>
-                        <p>Dalal Street Quants will be live today. Join our <a href="https://t.me/dsq_channel">Telegram channel</a> for updates.</p>
+                        <h3>Follow DSQ updates</h3>
+                        <p>Follow our <a href="https://t.me/dsq_channel">Telegram channel</a> for bot announcements and live-session details.</p>
                     </div>
                 </article>
                 <article class="news-item">
                     <span class="news-date">Coming soon</span>
                     <div>
                         <h3>New bots are on the way</h3>
-                        <p>DSQ Grid V6, DSQ Auto Trail Stoploss, and DSQ Scalping Bot are upcoming. Release details will be announced soon.</p>
+                        <p>DSQ Grid V6, DSQ Auto Trail Stoploss, and DSQ Scalping bot are upcoming. Release details will be announced soon.</p>
                     </div>
                 </article>
             </div>

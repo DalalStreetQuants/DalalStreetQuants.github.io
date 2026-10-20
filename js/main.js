@@ -43,6 +43,8 @@ async function searchLicence() {
         if (res.ok && data.metatrader_id) {
             // License found - display details
             document.getElementById('result-mt5-id').textContent = data.metatrader_id;
+            document.getElementById('result-version').textContent =
+                document.getElementById('searchVersion').selectedOptions[0].textContent;
             document.getElementById('result-name').textContent = data.name || 'N/A';
             document.getElementById('result-valid-upto').textContent = data.valid_upto || 'N/A';
             
@@ -1049,4 +1051,40 @@ document.addEventListener('DOMContentLoaded', function() {
         languageSelector.value = savedLang;
     }
     changeLanguage(savedLang);
+
+    const newsList = document.querySelector('.news-list');
+    const newsItems = newsList ? Array.from(newsList.querySelectorAll('.news-item')) : [];
+    if (newsList && newsItems.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        let currentNewsIndex = 0;
+        let newsTimer;
+
+        const stopNewsScroll = () => {
+            clearInterval(newsTimer);
+        };
+        const startNewsScroll = () => {
+            stopNewsScroll();
+            if (!document.hidden && !newsList.matches(':hover') && !newsList.contains(document.activeElement)) {
+                newsTimer = setInterval(() => {
+                    currentNewsIndex = (currentNewsIndex + 1) % newsItems.length;
+                    const scrollTop = currentNewsIndex === 0
+                        ? 0
+                        : newsItems[currentNewsIndex].getBoundingClientRect().top
+                            - newsList.getBoundingClientRect().top
+                            + newsList.scrollTop;
+                    newsList.scrollTo({ top: scrollTop, behavior: 'smooth' });
+                }, 6000);
+            }
+        };
+
+        newsList.addEventListener('pointerenter', stopNewsScroll);
+        newsList.addEventListener('pointerleave', startNewsScroll);
+        newsList.addEventListener('focusin', stopNewsScroll);
+        newsList.addEventListener('focusout', event => {
+            if (!newsList.contains(event.relatedTarget)) {
+                startNewsScroll();
+            }
+        });
+        document.addEventListener('visibilitychange', startNewsScroll);
+        startNewsScroll();
+    }
 });
