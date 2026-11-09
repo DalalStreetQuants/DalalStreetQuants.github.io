@@ -10,7 +10,8 @@ toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
 
 // Search Licence by MT5 ID and Bot Version
 async function searchLicence() {
-    const baseUrl = 'https://zhedge.tailc7f7ac.ts.net';
+    //const baseUrl = 'https://zhedge.tailc7f7ac.ts.net';
+    const baseUrl = 'https://dsqtrader.duckdns.org';
     const mt5 = document.getElementById('searchMt5').value.trim();
     const version = document.getElementById('searchVersion').value.trim();
     const resultDiv = document.getElementById('license-result');
